@@ -1,4 +1,10 @@
 import os
+
+# 确保目录存在
+os.makedirs('scripts', exist_ok=True)
+
+#要写入的Python代码
+code = '''import os
 import re
 import requests
 from datetime import datetime
@@ -30,7 +36,7 @@ def is_valid_rule(line):
         return False
 
     # 过滤过于宽泛的规则
-    if re.match(r'^\|\|[^\.]+\.[a-z]+$', line):
+    if re.match(r'^\\|\\|[^\\.]+\\.[a-z]+$', line):
         return False
 
     # 过滤无效的主机文件格式
@@ -64,7 +70,7 @@ def normalize_rule(line):
 
 def process_category(category):
     """处理单个类别的规则"""
-    print(f"\n🔄 Processing {category} category...")
+    print(f"\\n🔄 Processing {category} category...")
 
     # 查找最新的源文件
     source_files = [f for f in os.listdir('sources') if f.startswith(f'{category}_')]
@@ -112,13 +118,13 @@ def main():
             output_file = f'filters/{category}-blacklist.txt'
             try:
                 with open(output_file, 'w', encoding='utf-8') as f:
-                    f.write(f'! Category: {category}\n')
-                    f.write(f'! Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
-                    f.write(f'! Original source: AWAvenue + Multi-source\n')
-                    f.write(f'! Total rules: {len(rules)}\n')
-                    f.write(f'! Personal whitelist applied: {len(PERSONAL_WHITELIST.get(category, set()))} entries\n\n')
-                    f.write('\n'.join(rules))
-                    f.write('\n')  # 确保文件以换行符结尾
+                    f.write(f'! Category: {category}\\n')
+                    f.write(f'! Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\\n')
+                    f.write(f'! Original source: AWAvenue + Multi-source\\n')
+                    f.write(f'! Total rules: {len(rules)}\\n')
+                    f.write(f'! Personal whitelist applied: {len(PERSONAL_WHITELIST.get(category, set()))} entries\\n\\n')
+                    f.write('\\n'.join(rules))
+                    f.write('\\n')  # 确保文件以换行符结尾
 
                 print(f"  💾 Saved to {output_file}")
             except Exception as e:
@@ -128,5 +134,12 @@ def main():
 
 if __name__ == '__main__':
     main()
-    print("\n✅ All categories processed!")
-EOF
+    print("\\n✅ All categories processed!")
+'''
+
+# 写入文件
+file_path = 'scripts/merge_rules.py'
+with open(file_path, 'w', encoding='utf-8') as f:
+    f.write(code)
+
+print(f"File created: {file_path}")
