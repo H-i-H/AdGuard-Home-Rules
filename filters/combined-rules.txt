@@ -1,0 +1,13 @@
+! Adguard Home Private Rules Bundle
+! =================================
+! Generated: 2025-12-20 08:55:32
+! Total categories: 4
+! Total rules (before dedup): 0
+! Total unique rules: 0
+! Duplicates removed: 0
+! 
+! Coverage: Malware + Adult + Ads + Privacy
+! Personal whitelist applied
+! Auto-update: Daily at 02:00 UTC
+! =================================
+
