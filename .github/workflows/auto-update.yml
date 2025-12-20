@@ -2,8 +2,8 @@
 name: Daily Rules Update
 on:
   schedule:
-    - cron: '0 22 * * *'  # 北京时间每日凌晨6:00 (UTC+8)
-  workflow_dispatch:
+    - cron: '0 22 * * *'  # 每天UTC+8时间6:00执行
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
   update-rules:
@@ -23,46 +23,31 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install requests tldextract pyyaml
+          pip install requests tldextract
 
       - name: Create necessary directories
         run: |
-          mkdir -p sources filters scripts rules
+          mkdir -p sources filters scripts
 
       - name: Fetch upstream rules
-        run: |
-          if [ -f "scripts/fetch_upstream.py" ]; then
-            python scripts/fetch_upstream.py
-          else
-            echo "⚠️ Fetch script not found, using basic rule sources"
-            # 创建基础规则文件
-            echo "||ads.example.com^" > filters/ad-blacklist.txt
-            echo "||malware.example.com^" > filters/malware-blacklist.txt
-            echo "||adult.example.com^" > filters/adult-blacklist.txt
-          fi
+        run: python scripts/fetch_upstream.py
+        continue-on-error: false
 
       - name: Process and merge rules
-        run: |
-          if [ -f "scripts/merge_rules.py" ]; then
-            python scripts/merge_rules.py
-          else
-            echo "⚠️ Merge script not found, skipping"
-          fi
+        run: python scripts/merge_rules.py
+        continue-on-error: false
 
       - name: Apply whitelist processing
-        run: |
-          if [ -f "scripts/whitelist-processor.py" ]; then
-            python scripts/whitelist-processor.py
-          else
-            echo "⚠️ Whitelist processor not found, skipping"
-          fi
+        run: python scripts/whitelist_processor.py
+        continue-on-error: false
 
       - name: Combine final rules
         run: python scripts/combine_final.py
+        continue-on-error: false
 
       - name: Validate rules
         run: |
@@ -80,12 +65,10 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
 
-          # 检查是否有更改
           if git diff --quiet && git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git add filters/ rules/
-            git commit -m "Auto-update: $(date +'%Y-%m-%d %H:%M:%S') [skip ci]"
+            git add filters/
+            git commit -m "Auto-update: $(date +'%Y-%m-%d %H:%M:%S')"
             git push
-            echo "✅ Changes pushed successfully"
           fi
