@@ -31,7 +31,7 @@ PERSONAL_WHITELIST = {
 
 def load_custom_whitelist():
     """加载自定义白名单文件"""
-    whitelist_file = 'whitelist.txt'
+    whitelist_file = 'whitelist.txt,ad-whitelist.txt,adult-whitelist.txt,malware-whitelist.txt'
     custom_whitelist = set()
     
     if os.path.exists(whitelist_file):
