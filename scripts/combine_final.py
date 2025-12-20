@@ -1,3 +1,4 @@
+
 import os
 from datetime import datetime
 
@@ -5,13 +6,13 @@ def combine_all_rules():
     """合并所有规则到最终文件"""
     final_rules = []
     categories = ['malware', 'adult', 'ad', 'privacy']
-
+    
     # 配置参数
     output_dir = 'filters'
     output_file = os.path.join(output_dir, 'combined-rules.txt')
-
+    
     print("\n🔄 Combining all rules...")
-
+    
     # 检查输出目录
     if not os.path.exists(output_dir):
         try:
@@ -20,33 +21,52 @@ def combine_all_rules():
         except OSError as e:
             print(f"  ❌ Cannot create directory {output_dir}: {e}")
             return False
-
+    
     total_original = 0
-
+    
+    # 处理黑名单规则
     for cat in categories:
         filename = os.path.join('filters', f'{cat}-blacklist.txt')
         if os.path.exists(filename):
             try:
                 with open(filename, 'r', encoding='utf-8') as f:
                     content = f.read()
-                    rules = [line.strip() for line in content.split('\n')
-                            if line.strip() and not line.startswith('!')]
+                    rules = [line.strip() for line in content.split('\n') 
+                            if line.strip() and not line.startswith('!') and line.strip() != '']
                     final_rules.extend(rules)
                     total_original += len(rules)
                     print(f"  📥 {cat}: {len(rules)} rules")
             except Exception as e:
                 print(f"  ❌ Error reading {filename}: {e}")
-                return False
+                continue
         else:
             print(f"  ⚠️  {cat}: file not found")
-
+    
+    # 处理私有规则目录
+    private_rules_dir = 'rules'
+    if os.path.exists(private_rules_dir):
+        for filename in os.listdir(private_rules_dir):
+            if filename.endswith('-blacklist.txt'):
+                filepath = os.path.join(private_rules_dir, filename)
+                try:
+                    with open(filepath, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                        rules = [line.strip() for line in content.split('\n') 
+                                if line.strip() and not line.startswith('!') and line.strip() != '']
+                        final_rules.extend(rules)
+                        total_original += len(rules)
+                        print(f"  📥 Private {filename}: {len(rules)} rules")
+                except Exception as e:
+                    print(f"  ❌ Error reading {filepath}: {e}")
+                    continue
+    
     # 最终去重（保持顺序）
     unique_rules = list(dict.fromkeys(final_rules))
     filtered_count = total_original - len(unique_rules)
-
+    
     # 生成更友好的日期格式
     generation_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
+    
     # 写入最终文件
     try:
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -60,16 +80,16 @@ def combine_all_rules():
             f.write('! \n')
             f.write('! Coverage: Malware + Adult + Ads + Privacy\n')
             f.write('! Personal whitelist applied\n')
-            f.write('! Auto-update: Daily at 02:00 UTC\n')
+            f.write('! Auto-update: Daily at 06:00 Beijing Time\n')
             f.write('! =================================\n\n')
             f.write('\n'.join(unique_rules))
-            if unique_rules:  # 确保文件末尾有换行
+            if unique_rules and not unique_rules[-1].endswith('\n'):  # 确保文件末尾有换行
                 f.write('\n')
-
+        
         print(f"  💾 Final bundle: {len(unique_rules)} rules")
         print(f"  📄 Saved to: {output_file}")
         return True
-
+        
     except Exception as e:
         print(f"  ❌ Error writing to {output_file}: {e}")
         return False
