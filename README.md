@@ -38,8 +38,8 @@ AdGuard-Home-Rules/
 ```
 
 #### 鸣谢 
-上游规则
 ```
+上游规则
 📌 ADS
 - https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
 - https://easylist-downloads.adblockplus.org/easylist.txt
