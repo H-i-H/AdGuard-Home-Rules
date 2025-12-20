@@ -1,94 +1,62 @@
+
 import requests
 import os
-from datetime import datetime
 import time
+from urllib.parse import urlparse
 
-# 规则源配置
+# 上游规则源配置
 SOURCES = {
-    'ad': [
-        'https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule.txt',
-        'https://raw.githubusercontent.com/damengzhu/abpmerge/main/abpmerge.txt',  # 直接使用原始URL
-    ],
-    'privacy': [
-        'https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_11_Mobile/filter.txt',
-        'https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_3_Social_media/filter.txt',
+    'ads': [
+        'https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt',
+        'https://easylist-downloads.adblockplus.org/easylist.txt',
+        'https://easylist-downloads.adblockplus.org/easylistchina.txt'
     ],
     'malware': [
-        'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts',
-        'https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_2_Browsing_security/filter.txt',
+        'https://malware-filter.pages.dev/urlhaus-filter-online.txt',
+        'https://malware-filter.pages.dev/phishing-filter.txt',
+        'https://ransomwaretracker.abuse.ch/downloads/RW_DOMBL.txt'
     ],
     'adult': [
-        'https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_16_Adult/filter.txt',
+        'https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts',
+        'https://easylist-downloads.adblockplus.org/easylist-cookie.txt'
     ]
 }
 
-def fetch_with_retry(url, max_retries=3, timeout=30):
-    """带重试的请求函数"""
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-    }
-
-    for attempt in range(max_retries):
-        try:
-            response = requests.get(url, headers=headers, timeout=timeout)
-            if response.status_code == 200:
-                return response.text
-            else:
-                print(f"      ⚠️  Status {response.status_code}, retry {attempt + 1}/{max_retries}")
-        except Exception as e:
-            print(f"      ❌ Error: {str(e)[:50]}, retry {attempt + 1}/{max_retries}")
-
-        if attempt < max_retries - 1:
-            time.sleep(2)  # 等待2秒后重试
-
-    return None
-
-def fetch_and_save():
-    os.makedirs('sources', exist_ok=True)
-    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    success_count = 0
-
-    for category, urls in SOURCES.items():
-        print(f"\n📥 Fetching {category} rules...")
-        all_rules = []
-
-        for i, url in enumerate(urls):
-            print(f"  → Source {i+1}: {url[:60]}...")
-            content = fetch_with_retry(url)
-
-            if content:
-                lines = content.split('\n')
-                all_rules.extend(lines)
-                print(f"    ✅ Fetched {len(lines)} lines")
-                success_count += 1
-            else:
-                print(f"    ❌ Failed to fetch: {url[:60]}...")
-
-        # 只有在获取到数据时才保存
-        if all_rules:
-            filename = f'sources/{category}_{timestamp}.txt'
-            with open(filename, 'w', encoding='utf-8') as f:
-                f.write(f'! Category: {category}\n')
-                f.write(f'! Fetched: {datetime.now()}\n')
-                f.write(f'! Total sources: {len(urls)}\n')
-                f.write('\n'.join(all_rules))
-
-            print(f"  💾 Saved to {filename} ({len(all_rules)} total lines)")
-        else:
-            print(f"  ⚠️  No rules fetched for {category}, skipping save")
-
-    # 检查整体成功率
-    total_sources = sum(len(urls) for urls in SOURCES.values())
-    if success_count == 0:
-        print("\n❌ Failed to fetch any rules!")
+def download_file(url, filename):
+    """下载单个文件"""
+    try:
+        print(f"  📥 Downloading: {url}")
+        response = requests.get(url, timeout=30)
+        response.raise_for_status()
+        
+        # 创建目录
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        
+        with open(filename, 'wb') as f:
+            f.write(response.content)
+        print(f"  ✅ Saved to: {filename}")
+        return True
+    except Exception as e:
+        print(f"  ❌ Failed to download {url}: {e}")
         return False
-    elif success_count < total_sources:
-        print(f"\n⚠️  Partial success: {success_count}/{total_sources} sources fetched")
-        return True
-    else:
-        print(f"\n✅ All upstream rules fetched successfully!")
-        return True
+
+def fetch_all_sources():
+    """获取所有上游规则"""
+    print("🔄 Fetching upstream rules...")
+    
+    for category, urls in SOURCES.items():
+        print(f"\n📂 Processing category: {category}")
+        category_dir = os.path.join('sources', category)
+        os.makedirs(category_dir, exist_ok=True)
+        
+        for i, url in enumerate(urls):
+            filename = os.path.join(category_dir, f"{i+1}.txt")
+            if not download_file(url, filename):
+                print(f"  ⚠️  Continuing with other sources...")
+            time.sleep(1)  # 避免请求过于频繁
+            
+    print("\n✅ All upstream sources fetched!")
+    return True
 
 if __name__ == '__main__':
-    success = fetch_and_save()
-    exit(0 if success else 1)
+    fetch_all_sources()
