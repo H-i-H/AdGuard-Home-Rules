@@ -1,145 +1,124 @@
+
 import os
-
-# 确保目录存在
-os.makedirs('scripts', exist_ok=True)
-
-#要写入的Python代码
-code = '''import os
 import re
-import requests
-from datetime import datetime
+from tldextract import extract as tld_extract
 
-# 误拦截高风险域名白名单（个人测试环境）
-PERSONAL_WHITELIST = {
-    'ad': {
-        '||alicdn.com$',  # 阿里CDN
-        '||bdstatic.com$', # 百度静态资源
-        '||qq.com$',      # 腾讯系
-        '||microsoft.com$', # 微软更新
-    },
-    'malware': {
-        'localhost', '127.0.0.1', '::1',
-        '||test-server.local$', '||dev-env.example$',
-    },
-    'adult': {
-        'health.gov', 'medical-site.com', 'sex-education.org'
-    }
-}
-
-def is_valid_rule(line):
-    """验证规则有效性"""
-    if not line or line.startswith(('!', '[', '#')):
+def is_valid_domain(domain):
+    """检查是否为有效域名"""
+    if not domain or '.' not in domain:
         return False
+    # 简单的域名格式检查
+    pattern = r'^[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?)*$'
+    return re.match(pattern, domain) is not None
 
-    line = line.strip()
-    if not line:
-        return False
-
-    # 过滤过于宽泛的规则
-    if re.match(r'^\\|\\|[^\\.]+\\.[a-z]+$', line):
-        return False
-
-    # 过滤无效的主机文件格式
-    if line.startswith('0.0.0.0 ') or line.startswith('127.0.0.1 '):
-        parts = line.split()
-        if len(parts) >= 2:
-            domain = parts[1]
-            if domain == 'localhost' or domain.startswith('127.'):
-                return False
-
-    return True
-
-def normalize_rule(line):
-    """标准化规则格式"""
-    line = line.strip()
-
-    # 转换hosts格式到adblock格式
-    if line.startswith('0.0.0.0 ') or line.startswith('127.0.0.1 '):
-        parts = line.split()
-        if len(parts) >= 2:
-            domain = parts[1]
-            return f'||{domain}^'
-        else:
-            return line  # 无效格式保持原样
-
-    # 确保以||开头（域名规则）
-    if line.startswith('||') or line.startswith('|http'):
-        return line
-
-    return line
-
-def process_category(category):
-    """处理单个类别的规则"""
-    print(f"\\n🔄 Processing {category} category...")
-
-    # 查找最新的源文件
-    source_files = [f for f in os.listdir('sources') if f.startswith(f'{category}_')]
-    if not source_files:
-        print(f"  ⚠️  No source files found for {category}")
-        return []
-
-    # 读取最新文件（按文件名排序）
-    latest_file = sorted(source_files)[-1]
-    print(f"  📖 Reading from {latest_file}")
-
+def process_hosts_file(filepath):
+    """处理hosts文件格式"""
+    rules = set()
     try:
-        with open(f'sources/{latest_file}', 'r', encoding='utf-8') as f:
-            raw_rules = f.readlines()
-    except FileNotFoundError:
-        print(f"  ❌ File not found: sources/{latest_file}")
-        return []
+        with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+            for line in f:
+                line = line.strip()
+                # 跳过注释和空行
+                if not line or line.startswith('#') or line.startswith('!'):
+                    continue
+                    
+                # 提取域名部分
+                parts = line.split()
+                if len(parts) >= 2 and parts[0] in ('127.0.0.1', '0.0.0.0'):
+                    domain = parts[1]
+                    if is_valid_domain(domain):
+                        rules.add(domain)
     except Exception as e:
-        print(f"  ❌ Error reading file: {e}")
-        return []
+        print(f"  ❌ Error processing {filepath}: {e}")
+    return rules
 
-    # 处理规则
-    processed = set()
-    for line in raw_rules:
-        if is_valid_rule(line):
-            normalized = normalize_rule(line)
-            # 应用个人白名单
-            if normalized not in PERSONAL_WHITELIST.get(category, set()):
-                processed.add(normalized)
+def process_adguard_file(filepath):
+    """处理AdGuard规则文件"""
+    rules = set()
+    try:
+        with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+            for line in f:
+                line = line.strip()
+                # 跳过注释和空行
+                if not line or line.startswith('!') or line.startswith('['):
+                    continue
+                    
+                # 处理 ||example.com^ 格式
+                if line.startswith('||') and line.endswith('^'):
+                    domain = line[2:-1]
+                    if is_valid_domain(domain):
+                        rules.add(domain)
+                        
+                # 处理 ||example.com^$third-party 格式
+                elif line.startswith('||') and '^$' in line:
+                    domain = line[2:].split('^$')[0]
+                    if is_valid_domain(domain):
+                        rules.add(domain)
+    except Exception as e:
+        print(f"  ❌ Error processing {filepath}: {e}")
+    return rules
 
-    print(f"  ✅ Processed: {len(raw_rules)} → {len(processed)} unique rules")
-    return sorted(list(processed))
+def merge_category_rules(category):
+    """合并特定分类的规则"""
+    print(f"  🔄 Merging {category} rules...")
+    all_rules = set()
+    source_dir = os.path.join('sources', category)
+    
+    if not os.path.exists(source_dir):
+        print(f"  ⚠️  No sources for {category}")
+        return False
+        
+    for filename in os.listdir(source_dir):
+        filepath = os.path.join(source_dir, filename)
+        if not os.path.isfile(filepath):
+            continue
+            
+        print(f"    📄 Processing: {filename}")
+        
+        # 根据文件内容判断类型
+        try:
+            with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read(1000)  # 读取前1000个字符判断格式
+                
+            if '||' in content and ('^' in content or '$' in content):
+                # AdGuard格式
+                rules = process_adguard_file(filepath)
+            else:
+                # hosts格式
+                rules = process_hosts_file(filepath)
+                
+            all_rules.update(rules)
+            print(f"    ➕ Extracted {len(rules)} rules")
+        except Exception as e:
+            print(f"    ❌ Error reading {filename}: {e}")
+            
+    # 保存合并后的规则
+    output_dir = 'filters'
+    os.makedirs(output_dir, exist_ok=True)
+    output_file = os.path.join(output_dir, f'{category}-blacklist.txt')
+    
+    try:
+        with open(output_file, 'w', encoding='utf-8') as f:
+            for rule in sorted(all_rules):
+                f.write(f"||{rule}^\n")
+        print(f"  💾 {category}: {len(all_rules)} unique rules saved")
+        return True
+    except Exception as e:
+        print(f"  ❌ Error saving {output_file}: {e}")
+        return False
 
-def main():
-    # 确保必要的目录存在
-    os.makedirs('sources', exist_ok=True)
-    os.makedirs('filters', exist_ok=True)
-
-    all_categories = ['ad', 'privacy', 'malware', 'adult']
-
-    for category in all_categories:
-        rules = process_category(category)
-
-        if rules:
-            output_file = f'filters/{category}-blacklist.txt'
-            try:
-                with open(output_file, 'w', encoding='utf-8') as f:
-                    f.write(f'! Category: {category}\\n')
-                    f.write(f'! Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\\n')
-                    f.write(f'! Original source: AWAvenue + Multi-source\\n')
-                    f.write(f'! Total rules: {len(rules)}\\n')
-                    f.write(f'! Personal whitelist applied: {len(PERSONAL_WHITELIST.get(category, set()))} entries\\n\\n')
-                    f.write('\\n'.join(rules))
-                    f.write('\\n')  # 确保文件以换行符结尾
-
-                print(f"  💾 Saved to {output_file}")
-            except Exception as e:
-                print(f"  ❌ Error writing to {output_file}: {e}")
-        else:
-            print(f"  ⚠️  No valid rules for {category}")
+def merge_all_categories():
+    """合并所有分类规则"""
+    print("🔄 Starting rule merging process...")
+    categories = ['ads', 'malware', 'adult']
+    success_count = 0
+    
+    for category in categories:
+        if merge_category_rules(category):
+            success_count += 1
+            
+    print(f"\n✅ Merging complete: {success_count}/{len(categories)} categories processed")
+    return success_count > 0
 
 if __name__ == '__main__':
-    main()
-    print("\\n✅ All categories processed!")
-'''
-
-# 写入文件
-file_path = 'scripts/merge_rules.py'
-with open(file_path, 'w', encoding='utf-8') as f:
-    f.write(code)
-
-print(f"File created: {file_path}")
+    merge_all_categories()
