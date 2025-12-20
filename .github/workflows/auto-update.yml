@@ -1,0 +1,75 @@
+name: Daily Rules Update
+on:
+  schedule:
+    - cron: '0 2 * * *'  # 每天凌晨2点（UTC时间）
+  workflow_dispatch:      # 允许手动触发
+
+jobs:
+  update-rules:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install requests tldextract pyyaml
+
+      - name: Create necessary directories
+        run: |
+          mkdir -p sources filters scripts
+
+      - name: Fetch upstream rules
+        run: python scripts/fetch_upstream.py
+        continue-on-error: false
+
+      - name: Process and merge rules
+        run: python scripts/merge_rules.py
+        continue-on-error: false
+
+      - name: Apply whitelist processing
+        run: python scripts/whitelist-processor.py
+        continue-on-error: false
+
+      - name: Combine final rules
+        run: python scripts/combine_final.py
+        continue-on-error: false
+
+      - name: Validate rules
+        run: |
+          echo "Validating generated rules..."
+          if [ -s filters/combined-rules.txt ]; then
+            echo "✅ Combined rules file exists and is not empty"
+            wc -l filters/combined-rules.txt
+          else
+            echo "❌ Combined rules file is empty!"
+            exit 1
+          fi
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+
+          # 检查是否有更改
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git add filters/
+            git commit -m "Auto-update: $(date +'%Y-%m-%d %H:%M:%S')"
+            git push
+            echo "✅ Changes pushed successfully"
+          fi

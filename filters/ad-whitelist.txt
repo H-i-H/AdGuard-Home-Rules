@@ -1,0 +1,95 @@
+! 个人广告过滤白名单
+! 用途：防止误拦截重要服务
+! 格式：||域名^
+! 更新时间：2024-12-20
+
+! ========== 阿里系 ==========
+! 淘宝/天猫/支付宝/阿里云
+||alicdn.com^$important
+||aliyun.com^$important
+||taobao.com^$important
+||alipay.com^$important
+||aliexpress.com^$important
+||tmall.com^$important
+||alibaba.com^$important
+
+! ========== 百度系 ==========
+! 百度搜索/贴吧/网盘/地图
+||bdstatic.com^$important
+||bdimg.com^$important
+||baidu.com^$important
+||baidustatic.com^$important
+||pan.baidu.com^$important
+||map.baidu.com^$important
+
+! ========== 腾讯系 ==========
+! 微信/QQ/腾讯云/腾讯视频
+||qq.com^$important
+||gtimg.com^$important
+||qpic.cn^$important
+||weixin.qq.com^$important
+||wechat.com^$important
+||tencent-cloud.com^$important
+||qcloud.com^$important
+||v.qq.com^$important
+
+! ========== 微软系 ==========
+! Windows更新/Office/OneDrive
+||microsoft.com^$important
+||windowsupdate.com^$important
+||msftconnecttest.com^$important
+||office.com^$important
+||onedrive.com^$important
+
+! ========== 苹果系 ==========
+! iCloud/App Store/Apple服务
+||apple.com^$important
+||icloud.com^$important
+||apple-cloudkit.com^$important
+||appstore.com^$important
+||mzstatic.com^$important
+
+! ========== Google系 ==========
+! 开发/搜索/云服务
+||googleapis.com^$important
+||gstatic.com^$important
+||google.com^$important
+||google-analytics.com^$important
+||youtube.com^$important
+||gmail.com^$important
+
+! ========== 字节跳动系 ==========
+! 抖音/今日头条/TikTok
+||douyin.com^$important
+||bytecdntp.com^$important
+||pstatp.com^$important
+||snssdk.com^$important
+
+! ========== 美团/京东系 ==========
+||meituan.com^$important
+||sankuai.com^$important
+||jd.com^$important
+
+! ========== 公共CDN/云服务 ==========
+||amazonaws.com^$important
+||cloudfront.net^$important
+||azureedge.net^$important
+
+! ========== 开发测试环境 ==========
+||localhost^$important
+||127.0.0.1^$important
+||::1^$important
+||dev-server.local^$important
+||192.168.^$important
+
+! ========== 其他常用服务 ==========
+||163.com^$important
+||sina.com.cn^$important
+||weibo.com^$important
+||zhihu.com^$important
+||bilibili.com^$important
+
+! ========== 支付/银行 ==========
+||unionpay.com^$important
+||95516.com^$important
+
