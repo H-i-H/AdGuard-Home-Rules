@@ -1,8 +1,8 @@
 name: Daily Rules Update
 on:
   schedule:
-    - cron: '0 2 * * *'  # 每天凌晨2点（UTC时间）
-  workflow_dispatch:      # 允许手动触发
+    - cron: '0 2 * * *'
+  workflow_dispatch:
 
 jobs:
   update-rules:
@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-          cache: 'pip'
+          cache: 'pip'  # 需要 requirements.txt 文件
 
       - name: Install dependencies
         run: |
@@ -64,7 +64,6 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
 
-          # 检查是否有更改
           if git diff --quiet && git diff --staged --quiet; then
             echo "No changes to commit"
           else
