@@ -8,7 +8,8 @@ def combine_all_rules():
     categories = ['ads', 'malware', 'adult']
 
     # 配置参数
-    output_dir = 'filters'
+    # output_dir = 'filters'
+    output_dir = 'Release'
     output_file = os.path.join(output_dir, 'combined-rules.txt')
 
     print("\n🔄 Combining all rules...")
@@ -61,7 +62,7 @@ def combine_all_rules():
             f.write('! \n')
             f.write('! Coverage: Ads + Malware + Adult\n')
             f.write('! Personal whitelist applied\n')
-            f.write('! Auto-update: Daily at 06:00 UTC\n')
+            f.write('! Auto-update: Daily at 06:00 UTC+8\n')
             f.write('! =================================\n\n')
             f.write('\n'.join(unique_rules))
             if unique_rules:  # 确保文件末尾有换行
