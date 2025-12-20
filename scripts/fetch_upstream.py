@@ -13,12 +13,10 @@ SOURCES = {
     ],
     'malware': [
         'https://malware-filter.pages.dev/urlhaus-filter-online.txt',
-        'https://malware-filter.pages.dev/phishing-filter.txt',
-        'https://ransomwaretracker.abuse.ch/downloads/RW_DOMBL.txt'
+        'https://malware-filter.pages.dev/phishing-filter.txt'
     ],
     'adult': [
-        'https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts',
-        'https://easylist-downloads.adblockplus.org/easylist-cookie.txt'
+        'https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts'
     ]
 }
 
