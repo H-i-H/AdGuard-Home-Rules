@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2025-12-21 06:49:26
+! Generated: 2025-12-21 22:16:32
 ! Total categories: 3
-! Total rules (before dedup): 170105
-! Total unique rules: 169345
+! Total rules (before dedup): 170106
+! Total unique rules: 169346
 ! Duplicates removed: 760
 !
 ! Coverage: Ads + Malware + Adult
@@ -664,6 +664,7 @@
 ||adshot.de^
 ||adsiduous.com^
 ||adsight.nl^
+||adsinteractive.com^
 ||adskeeper.co.uk^
 ||adskeeper.com^
 ||adskpak.com^
