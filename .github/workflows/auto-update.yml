@@ -1,16 +1,14 @@
-
 name: Daily Rules Update
 on:
   schedule:
-    - cron: '0 22 * * *'  # 每天UTC+8时间6:00执行
-  workflow_dispatch:  # 允许手动触发
+    - cron: '0 22 * * *'  # UTC 22:00 daily (Beijing 6:00+1)
+  workflow_dispatch:
 
 jobs:
   update-rules:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      actions: write
+      contents: write  # Removed actions:write unless specifically needed
 
     steps:
       - name: Checkout repository
@@ -19,6 +17,17 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
+      - name: Verify scripts exist
+        run: |
+          missing=()
+          for script in fetch_upstream.py merge_rules.py whitelist_processor.py combine_final.py; do
+            [ -f "scripts/$script" ] || missing+=("$script")
+          done
+          if [ ${#missing[@]} -ne 0 ]; then
+            echo "❌ Missing scripts: ${missing[*]}"
+            exit 1
+          fi
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -26,37 +35,26 @@ jobs:
           cache: 'pip'
 
       - name: Install dependencies
-        run: |
-          pip install requests tldextract
+        run: pip install requests tldextract
 
       - name: Create necessary directories
+        run: mkdir -p sources filters scripts Release
+
+      - name: Run rules pipeline
         run: |
-          mkdir -p sources filters scripts
-
-      - name: Fetch upstream rules
-        run: python scripts/fetch_upstream.py
-        continue-on-error: false
-
-      - name: Process and merge rules
-        run: python scripts/merge_rules.py
-        continue-on-error: false
-
-      - name: Apply whitelist processing
-        run: python scripts/whitelist_processor.py
-        continue-on-error: false
-
-      - name: Combine final rules
-        run: python scripts/combine_final.py
-        continue-on-error: false
+          python scripts/fetch_upstream.py
+          python scripts/merge_rules.py
+          python scripts/whitelist_processor.py
+          python scripts/combine_final.py
 
       - name: Validate rules
         run: |
-          echo "Validating generated rules..."
-          if [ -s Release/combined-rules.txt ]; then
-            echo "✅ Combined rules file exists and is not empty"
-            wc -l Release/combined-rules.txt
+          FILE="Release/combined-rules.txt"
+          if [ -s "$FILE" ]; then
+            echo "✅ Rules generated successfully"
+            echo "Line count: $(wc -l < "$FILE")"
           else
-            echo "❌ Combined rules file is empty!"
+            echo "❌ Combined rules file is empty or missing!"
             exit 1
           fi
 
@@ -65,10 +63,10 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
 
-          if git diff --quiet && git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
+          if ! git diff --quiet || ! git diff --staged --quiet; then
             git add Release/
             git commit -m "Auto-update: $(date +'%Y-%m-%d %H:%M:%S')"
             git push
+          else
+            echo "No changes to commit"
           fi
