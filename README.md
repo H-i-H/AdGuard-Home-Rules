@@ -52,6 +52,3 @@ AdGuard-Home-Rules/
 - https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts
 - https://easylist-downloads.adblockplus.org/easylist-cookie.txt
 ```
-
-## Stargazers over time
-[![Stargazers over time](https://starchart.cc/H-i-H/AdGuard-Home-Rules.svg)](https://starchart.cc/H-i-H/AdGuard-Home-Rules)
