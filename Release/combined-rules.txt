@@ -1,10 +1,10 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2025-12-21 22:16:32
+! Generated: 2025-12-22 22:17:39
 ! Total categories: 3
-! Total rules (before dedup): 170106
-! Total unique rules: 169346
-! Duplicates removed: 760
+! Total rules (before dedup): 170112
+! Total unique rules: 169353
+! Duplicates removed: 759
 !
 ! Coverage: Ads + Malware + Adult
 ! Personal whitelist applied
@@ -191,6 +191,7 @@
 ||2smarttracker.com^
 ||2track.info^
 ||30937261.xyz^
+||30dcf.com^
 ||31fq.com^
 ||32472254.xyz^
 ||33848102.xyz^
@@ -270,6 +271,7 @@
 ||693836.com^
 ||6angebot.ch^
 ||6avz.com^
+||6by30.com^
 ||6v4.cn^
 ||72075223.xyz^
 ||72356275.xyz^
@@ -2567,6 +2569,7 @@
 ||gvcaffiliates.com^
 ||gwithearamajo.org^
 ||gyazo.com^
+||gys5.com^
 ||h0w-t0-watch.net^
 ||h6295.com^
 ||h74v6kerf.com^
@@ -2666,6 +2669,7 @@
 ||hooliganapps.com^
 ||hooligapps.com^
 ||hooligs.app^
+||hooliredir.com^
 ||hoopbeingsmigraine.com^
 ||hopelessrolling.com^
 ||hopghpfa.com^
@@ -3384,6 +3388,7 @@
 ||metrepeaches.com^
 ||metrezaannatto.shop^
 ||metrica-yandex.com^
+||mettend-hamous.xyz^
 ||mevarabon.com^
 ||mghkpg.com^
 ||mgid.com^
@@ -4342,6 +4347,7 @@
 ||r2b2.cz^
 ||r2b2.io^
 ||r3f.technology^
+||r8bz.com^
 ||rack-media.com^
 ||racunn.com^
 ||radikal.ru^
@@ -5826,6 +5832,7 @@
 ||ziffdavis.com^
 ||zikroarg.com^
 ||zirdough.net^
+||zk1w.com^
 ||zlink1.com^
 ||zlink2.com^
 ||zlink6.com^
@@ -5853,7 +5860,6 @@
 ||zybrdr.com^
 ||zype.com^
 ||zzad.com^
-||first-security-verden.de^
 ||la-pan-adventures.com^
 ||orca-slicer.com.co^
 ||vk.com.clubs.5tv5.ru^
@@ -44089,6 +44095,7 @@
 ||firrectly.top^
 ||firsatinaldin.site^
 ||first-mature.com^
+||first-security-verden.de^
 ||first-time.fapfamily.com^
 ||first-xxx.org^
 ||firstadultgames.com^
