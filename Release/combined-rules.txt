@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2025-12-22 22:17:39
+! Generated: 2025-12-23 22:17:01
 ! Total categories: 3
-! Total rules (before dedup): 170112
-! Total unique rules: 169353
+! Total rules (before dedup): 170113
+! Total unique rules: 169354
 ! Duplicates removed: 759
 !
 ! Coverage: Ads + Malware + Adult
@@ -2414,6 +2414,7 @@
 ||get-link.xyz^
 ||get-me-wow.in^
 ||get-partner.life^
+||get-trust-vpn.info^
 ||get.stoplocker.com^
 ||getdownloadfree.cfd^
 ||getflowads.net^
