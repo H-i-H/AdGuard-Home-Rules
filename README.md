@@ -11,8 +11,7 @@
 ```
 黑名单：
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/combined-rules.txt
-```
-、、、
+
 白名单：
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/combined-whitelist
 、、、
