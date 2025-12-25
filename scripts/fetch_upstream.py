@@ -8,7 +8,10 @@ from typing import Tuple, Optional
 # 上游规则源配置
 SOURCES = {
     'ads': [
-        'https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt',
+        'https://github.com/ppfeufer/adguard-filter-list/blob/master/blocklist?raw=true',
+        'https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt',
+        'https://adguardteam.github.io/HostlistsRegistry/assets/filter_21.txt',
+        'https://gcore.jsdelivr.net/gh/217heidai/adblockfilters@main/rules/adblockdnslite.txt',
         'https://easylist-downloads.adblockplus.org/easylist.txt',
         'https://easylist-downloads.adblockplus.org/easylistchina.txt'
     ],
