@@ -10,3 +10,5 @@
 @@||t*.baidu.com^$important
 ！小米手机主题
 @@||t*.market.xiaomi.com^$important
+！小米天气
+@@||wtradv.market.xiaomi.com^$important
