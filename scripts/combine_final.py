@@ -73,7 +73,8 @@ def combine_all_rules() -> bool:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # 生成头部信息
-    generation_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    from datetime import datetime, timezone, timedelta
+    generation_time = datetime.now(timezone(timedelta(hours=8))).strftime('%Y-%m-%d %H:%M:%S')
     header = [
         "! Adguard Home Private Rules Bundle",
         "! =================================",
