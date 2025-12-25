@@ -4,45 +4,44 @@
 ! 更新时间：2024-12-20
 
 ! ==========政府卫生机构 ==========
-||health.gov^$important
-||cdc.gov^$important
-||who.int^$important
-||nhs.uk^$important
-||nih.gov^$important
+||health.gov^
+||cdc.gov^
+||who.int^
+||nhs.uk^
+||nih.gov^
 
 ! ========== 医疗健康网站 ==========
-||medical-site.com^$important
-||healthline.com^$important
-||mayoclinic.org^$important
-||webmd.com^$important
-||medlineplus.gov^$important
+||medical-site.com^
+||healthline.com^
+||mayoclinic.org^
+||webmd.com^
+||medlineplus.gov^
 
 ! ========== 性教育/生殖健康 ==========
-||sex-education.org^$important
-||plannedparenthood.org^$important
-||scarleteen.com^$important
+||sex-education.org^
+||plannedparenthood.org^
+||scarleteen.com^
 
 ! ========== 教育机构 ==========
 !中国教育网
-||edu.cn^$important
+||edu.cn^
 !国际大学
-||harvard.edu^$important
-||stanford.edu^$important
-||mit.edu^$important
-||ox.ac.uk^$important
+||harvard.edu^
+||stanford.edu^
+||mit.edu^
+||ox.ac.uk^
 
 ! ========== 医疗研究机构 ==========
-||bmj.com^$important
-||nejm.org^$important
-||lancet.com^$important
-||pubmed.ncbi.nlm.nih.gov^$important
+||bmj.com^
+||nejm.org^
+||lancet.com^
+||pubmed.ncbi.nlm.nih.gov^
 
 ! ========== 公共卫生 ==========
-||publichealth.gov^$important
-||healthcare.gov^$important||mentalhealth.gov^$important
+||publichealth.gov^
+||healthcare.gov^||mentalhealth.gov^
 
 ! ==========老年用户友好 ==========
 !这些网站可能包含健康内容但被误判
-||aarp.org^$important
-||webmd.com^$important
-
+||aarp.org^
+||webmd.com^
