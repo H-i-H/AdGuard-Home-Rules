@@ -9,8 +9,13 @@
 **使用方法**
 #### 直接使用：在AdGuard Home中添加规则订阅
 ```
+黑名单：
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/combined-rules.txt
 ```
+、、、
+白名单：
+https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/combined-whitelist
+、、、
 
 #### 文件目录说明
 ```
@@ -18,7 +23,8 @@ AdGuard-Home-Rules/
 ├── .github/workflows/          # GitHub Actions 工作流配置
 │   └── auto-update.yml          # 自动更新规则主流程
 ├── Release/
-│   └── combined-rules.txt       # 最终合并规则集
+│   ├── combined-whitelist      #白名单规则集，如发现新增的，可直接添加在此文件
+│   └── combined-rules.txt       # 最终合并黑名单规则集
 ├── filters/                      # 生成的过滤规则文件
 │   ├── ad-blacklist.txt         # 广告黑名单
 │   ├── malware-blacklist.txt    # 恶意软件黑名单
@@ -42,13 +48,12 @@ AdGuard-Home-Rules/
 ```
 上游规则
 📌 ADS
-- https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
 - https://github.com/ppfeufer/adguard-filter-list/blob/master/blocklist?raw=true
 - https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt
-- https://adguardteam.github.io/HostlistsRegistry/assets/filter_21.txt
-- https://gcore.jsdelivr.net/gh/217heidai/adblockfilters@main/rules/adblockdnslite.txt
 - https://easylist-downloads.adblockplus.org/easylist.txt
-- https://easylist-downloads.adblockplus.org/easylistchina.tx
+- https://easylist-downloads.adblockplus.org/easylistchina.txt
+- https://raw.githubusercontent.com/chinanjh/hosts/refs/heads/master/fuck%20youtube.txt
+- https://raw.githubusercontent.com/BlueSkyXN/AdGuardHomeRules/master/all.txt
 
 📌 malware
 - https://malware-filter.pages.dev/urlhaus-filter-online.txt
