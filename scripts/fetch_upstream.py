@@ -10,10 +10,10 @@ SOURCES = {
     'ads': [
         'https://github.com/ppfeufer/adguard-filter-list/blob/master/blocklist?raw=true',
         'https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt',
-        'https://adguardteam.github.io/HostlistsRegistry/assets/filter_21.txt',
-        'https://gcore.jsdelivr.net/gh/217heidai/adblockfilters@main/rules/adblockdnslite.txt',
         'https://easylist-downloads.adblockplus.org/easylist.txt',
-        'https://easylist-downloads.adblockplus.org/easylistchina.txt'
+        'https://easylist-downloads.adblockplus.org/easylistchina.txt',
+        'https://raw.githubusercontent.com/chinanjh/hosts/refs/heads/master/fuck%20youtube.txt',
+        'https://raw.githubusercontent.com/BlueSkyXN/AdGuardHomeRules/master/all.txt'
     ],
     'malware': [
         'https://malware-filter.pages.dev/urlhaus-filter-online.txt',
