@@ -5,7 +5,6 @@ from pathlib import Path
 def load_custom_whitelist():
     """加载自定义白名单文件"""
     whitelist_files = [
-        'filters/whitelist.txt',
         'filters/ad-whitelist.txt',
         'filters/adult-whitelist.txt',
         'filters/malware-whitelist.txt'
