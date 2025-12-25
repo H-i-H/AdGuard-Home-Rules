@@ -16,9 +16,9 @@ https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Relea
 ```
 AdGuard-Home-Rules/
 ├── .github/workflows/          # GitHub Actions 工作流配置
-│   ├── auto-update.yml          # 自动更新规则主流程
+│   └── auto-update.yml          # 自动更新规则主流程
 ├── Release/
-│   ├── combined-rules.txt       # 最终合并规则集
+│   └── combined-rules.txt       # 最终合并规则集
 ├── filters/                      # 生成的过滤规则文件
 │   ├── ad-blacklist.txt         # 广告黑名单
 │   ├── malware-blacklist.txt    # 恶意软件黑名单
