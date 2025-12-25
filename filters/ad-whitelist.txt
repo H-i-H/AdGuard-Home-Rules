@@ -6,16 +6,8 @@
 ! ========== 小米系 ==========
 ||thm.market.xiaomi.com^$important
 ||mibi.api.xiaomi.com^$important
-||t1.market.xiaomi.com^$important
-||t2.market.xiaomi.com^$important
-||t3.market.xiaomi.com^$important
-||t4.market.xiaomi.com^$important
-||t5.market.xiaomi.com^$important
-||t6.market.xiaomi.com^$important
-||t7.market.xiaomi.com^$important
-||t8.market.xiaomi.com^$important
-||t9.market.xiaomi.com^$important
-|cnbj1.fds.api.xiaomi.com^$important
+||t*.market.xiaomi.com^$important
+|cnbj*.fds.api.xiaomi.com^$important
 ||hot.browser.miui.com^$important
 ||api.browser.miui.com^$important
 ||ai.search.miui.com^$important
@@ -45,18 +37,7 @@
 ||baidustatic.com^$important
 ||pan.baidu.com^$important
 ||map.baidu.com^$important
-||t1.baidu.com^$important
-||t2.baidu.com^$important
-||t3.baidu.com^$important
-||t4.baidu.com^$important
-||t5.baidu.com^$important
-||t6.baidu.com^$important
-||t7.baidu.com^$important
-||t8.baidu.com^$important
-||t9.baidu.com^$important
-||t10.baidu.com^$important
-||t11.baidu.com^$important
-||t12.baidu.com^$important
+||t*.baidu.com^$important
 
 ! ========== 腾讯系 ==========
 ! 微信/QQ/腾讯云/腾讯视频
@@ -78,6 +59,9 @@
 ||msftconnecttest.com^$important
 ||office.com^$important
 ||onedrive.com^$important
+||h*.sinaimg.cn^$important
+||tvax*.sinaimg.cn^$important
+||wx*.sinaimg.cn^$important
 
 ! ========== 苹果系 ==========
 ! iCloud/App Store/Apple服务
