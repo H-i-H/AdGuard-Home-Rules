@@ -1,0 +1,12 @@
+! Adguard Home Private Rules Bundle
+! =================================
+！=============白名单列表============
+! =================================
+！小米手机浏览器
+@@||h*.sinaimg.cn^$important
+@@||tvax*.sinaimg.cn^$important
+@@||wx*.sinaimg.cn^$important
+@@||tva*.sinaimg.cn^$important
+@@||t*.baidu.com^$important
+！小米手机主题
+@@||t*.market.xiaomi.com^$important
