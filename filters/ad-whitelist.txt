@@ -4,7 +4,6 @@
 ! 更新时间：2025-12-25
 
 ! ========== 小米系 ==========
-! 主题软件
 ||thm.market.xiaomi.com^$important
 ||mibi.api.xiaomi.com^$important
 ||t1.market.xiaomi.com^$important
@@ -17,26 +16,16 @@
 ||t8.market.xiaomi.com^$important
 ||t9.market.xiaomi.com^$important
 |cnbj1.fds.api.xiaomi.com^$important
-！浏览器
 ||hot.browser.miui.com^$important
 ||api.browser.miui.com^$important
 ||ai.search.miui.com^$important
-！社区
 ||api.vip.miui.com^$important
 ||web.vip.miui.com^$important
-！负一屏
 ||api.hybrid.xiaomi.com^$important
 ||statusapi.micloud.xiaomi.net^$important
-！应用商店
 ||api.installer.xiaomi.com^$important
-！日历
 ||api.comm.miui.com^$important
-！多看
 ||cdn.browser.miui.com^$important
-！唯品会
-||ms.vipstatic.com^$important
-！小红书广告
-||ads-vp5.xhscdn.com^$important
 
 ! ========== 阿里系 ==========
 ! 淘宝/天猫/支付宝/阿里云
@@ -106,6 +95,8 @@
 ||google-analytics.com^$important
 ||youtube.com^$important
 ||gmail.com^$important
+||google.com^$important
+||github.com^$important
 
 ! ========== 字节跳动系 ==========
 ! 抖音/今日头条/TikTok
@@ -133,6 +124,9 @@
 ||::1^$important
 ||dev-server.local^$important
 ||192.168.^$important
+||stackoverflow.com^$important
+||npmjs.com^$important
+||pypi.org^$important
 
 ! ========== 其他常用服务 ==========
 ||163.com^$important
@@ -140,8 +134,20 @@
 ||weibo.com^$important
 ||zhihu.com^$important
 ||bilibili.com^$important
+||amazon.com^$important
+||wikipedia.org^$important
+||twitter.com^$important
+||linkedin.com^$important
+||reddit.com^$important
+||reuters.com^$important
+||bbc.com^$important
+||nytimes.com^$important
+||ms.vipstatic.com^$important
+||ads-vp5.xhscdn.com^$important
 
 ! ========== 支付/银行 ==========
 ||unionpay.com^$important
 ||95516.com^$important
-
+||paypal.com^$important
+||visa.com^$important
+||mastercard.com^$important
