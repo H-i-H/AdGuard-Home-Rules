@@ -1,0 +1,6 @@
+# adguard home 过滤youtube广告规则
+/googleads.$~script,domain=~googleads.github.io
+/pagead/lvz?
+||google.com/pagead/
+||static.doubleclick.net^$domain=youtube.com
+||youtube.com/get_midroll_
