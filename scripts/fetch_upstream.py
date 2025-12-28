@@ -13,7 +13,9 @@ SOURCES = {
         'https://easylist-downloads.adblockplus.org/easylist.txt',
         'https://easylist-downloads.adblockplus.org/easylistchina.txt',
         'https://raw.githubusercontent.com/chinanjh/hosts/refs/heads/master/fuck%20youtube.txt',
-        'https://raw.githubusercontent.com/BlueSkyXN/AdGuardHomeRules/master/all.txt'
+        'https://raw.githubusercontent.com/BlueSkyXN/AdGuardHomeRules/master/all.txt',
+        'https://raw.githubusercontent.com/damengzhu/banad/main/jiekouAD.txt',
+        'https://cdn.jsdelivr.net/gh/banbendalao/ADgk@master/ADgk.txt'
     ],
     'malware': [
         'https://malware-filter.pages.dev/urlhaus-filter-online.txt',
