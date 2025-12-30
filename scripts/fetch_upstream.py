@@ -16,10 +16,7 @@ SOURCES = {
         'https://raw.githubusercontent.com/BlueSkyXN/AdGuardHomeRules/master/all.txt',
         'https://raw.githubusercontent.com/damengzhu/banad/main/jiekouAD.txt',
         'https://cdn.jsdelivr.net/gh/banbendalao/ADgk@master/ADgk.txt',
-        'https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/refs/heads/main/Filters/AWAvenue-Ads-Rule-Adguard.txt',
         'https://raw.githubusercontent.com/lingeringsound/adblock_auto/refs/heads/main/Rules/adblock_auto.txt',
-        'https://raw.githubusercontent.com/Womsxd/MyAdBlockRules/refs/heads/master/httpdnsblock.txt',
-        'https://raw.githubusercontent.com/Womsxd/MyAdBlockRules/refs/heads/master/p2pcdnblock.txt',
         'https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/Ad-rules.txt',
         'https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/AdGuard-fanqie.txt',
         'https://raw.githubusercontent.com/KiryChanOfficial/AdFilterForAdGuard/refs/heads/main/KR_DNS_Filter.txt'
