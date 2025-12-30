@@ -9,6 +9,10 @@
 @@||tva*.sinaimg.cn^$important
 @@||t*.baidu.com^$important
 # 小米手机主题
-@@||t*.market.xiaomi.com^$important
+## @@||t*.market.xiaomi.com^$important
 # 小米天气
-@@||wtradv.market.xiaomi.com^$important
+## @@||wtradv.market.xiaomi.com^$important
+# 小米应用商店，手机主题，大多数服务用到的域名
+@@||*.market.xiaomi.com^$important
+# 小米手机下载程序
+@@||hub*pn.wap.sandai.net^$important
