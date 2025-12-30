@@ -16,3 +16,5 @@
 @@||*.market.xiaomi.com^$important
 # 小米手机下载程序
 @@||hub*pn.wap.sandai.net^$important
+# 腾讯视频
+@@||qpic.cn^$important
