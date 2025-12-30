@@ -48,12 +48,18 @@ AdGuard-Home-Rules/
 ```
 上游规则
 📌 ADS
-- https://github.com/ppfeufer/adguard-filter-list/blob/master/blocklist?raw=true
+- https://raw.githubusercontent.com/ppfeufer/adguard-filter-list/refs/heads/master/blocklist
 - https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt
 - https://easylist-downloads.adblockplus.org/easylist.txt
 - https://easylist-downloads.adblockplus.org/easylistchina.txt
 - https://raw.githubusercontent.com/chinanjh/hosts/refs/heads/master/fuck%20youtube.txt
 - https://raw.githubusercontent.com/BlueSkyXN/AdGuardHomeRules/master/all.txt
+- https://raw.githubusercontent.com/damengzhu/banad/main/jiekouAD.txt
+- https://cdn.jsdelivr.net/gh/banbendalao/ADgk@master/ADgk.txt
+- https://raw.githubusercontent.com/lingeringsound/adblock_auto/refs/heads/main/Rules/adblock_auto.txt
+- https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/Ad-rules.txt
+- https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/AdGuard-fanqie.txt
+- https://raw.githubusercontent.com/KiryChanOfficial/AdFilterForAdGuard/refs/heads/main/KR_DNS_Filter.txt'
 
 📌 malware
 - https://malware-filter.pages.dev/urlhaus-filter-online.txt
