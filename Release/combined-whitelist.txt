@@ -16,3 +16,5 @@
 @@||qpic.cn^$important
 # 网易云
 @@||d*.music.126.net^$important
+# 头条
+@@||*.toutiaoimg.com^$important
