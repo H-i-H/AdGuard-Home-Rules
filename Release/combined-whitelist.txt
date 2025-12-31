@@ -8,13 +8,11 @@
 @@||wx*.sinaimg.cn^$important
 @@||tva*.sinaimg.cn^$important
 @@||t*.baidu.com^$important
-# 小米手机主题
-## @@||t*.market.xiaomi.com^$important
-# 小米天气
-## @@||wtradv.market.xiaomi.com^$important
-# 小米应用商店，手机主题，大多数服务用到的域名
+# 小米
 @@||*.market.xiaomi.com^$important
 # 小米手机下载程序
 @@||hub*pn.wap.sandai.net^$important
 # 腾讯视频
 @@||qpic.cn^$important
+# 网易云
+@@||d*.music.126.net^$important
