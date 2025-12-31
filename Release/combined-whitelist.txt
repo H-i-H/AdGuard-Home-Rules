@@ -18,3 +18,5 @@
 @@||d*.music.126.net^$important
 # 头条
 @@||*.toutiaoimg.com^$important
+# 京东
+@@||*.360buyimg.com^$important
