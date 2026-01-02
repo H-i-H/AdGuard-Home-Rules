@@ -4,5 +4,7 @@
 ||google.com/pagead/
 ||static.doubleclick.net^$domain=youtube.com
 ||youtube.com/get_midroll_
-#车来了广告获取
+# 车来了广告获取
 ||adx.sogaha.cn^$important
+# 百度网盘开屏广告
+https://api-access.pangolin-sdk-toutiao.com
