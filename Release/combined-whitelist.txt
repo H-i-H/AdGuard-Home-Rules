@@ -19,3 +19,5 @@
 @@||*.360buyimg.com^$important
 # 微软
 @@||*.microsoft.com^$important
+@@||*.bing.com^$important
+@@||skype.com^$important
