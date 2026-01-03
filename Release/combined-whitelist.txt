@@ -3,10 +3,7 @@
 # =============白名单列表============
 # =================================
 # 小米手机浏览器
-@@||h*.sinaimg.cn^$important
-@@||tvax*.sinaimg.cn^$important
-@@||wx*.sinaimg.cn^$important
-@@||tva*.sinaimg.cn^$important
+@@||*.sinaimg.cn^$important
 @@||t*.baidu.com^$important
 # 小米
 @@||*.market.xiaomi.com^$important
@@ -15,8 +12,10 @@
 # 腾讯视频
 @@||qpic.cn^$important
 # 网易云
-@@||d*.music.126.net^$important
+@@||*.music.126.net^$important
 # 头条
 @@||*.toutiaoimg.com^$important
 # 京东
 @@||*.360buyimg.com^$important
+# 微软
+@@||*.microsoft.com^$important
