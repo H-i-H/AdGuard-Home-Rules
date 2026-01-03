@@ -20,4 +20,4 @@
 # 微软
 @@||*.microsoft.com^$important
 @@||*.bing.com^$important
-@@||skype.com^$important
+@@||*.skype.com^$important
