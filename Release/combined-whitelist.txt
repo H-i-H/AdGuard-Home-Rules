@@ -2,13 +2,14 @@
 # =================================
 # =============白名单列表============
 # =================================
-# 小米手机浏览器
+# 小米手机
 @@||*.sinaimg.cn^$important
 @@||t*.baidu.com^$important
-# 小米
 @@||*.market.xiaomi.com^$important
-# 小米手机下载程序
 @@||hub*pn.wap.sandai.net^$important
+@@||security.browser.miui.com^$important
+@@||tracking.miui.com^$important
+@@||api.sec.miui.com^$important
 # 腾讯视频
 @@||qpic.cn^$important
 # 网易云
@@ -22,3 +23,14 @@
 @@||*.bing.com^$important
 @@||*.skype.com^$important
 @@||*.live.com^$important
+@@||ctldl.windowsupdate.com^$important
+@@||login.microsoftonline.com^$important
+# 115网盘
+@@||cpats*.115.com^$important
+@@||down.115.com^$important
+@@||cdnfhnfile.115cdn.net^$important
+#饿了么
+@@||waimai-guide.ele.me^
+@@||ipassport.ele.me^
+#支付宝
+@@||audid-api-sg.taobao.com^
