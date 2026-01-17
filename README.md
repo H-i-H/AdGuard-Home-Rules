@@ -50,7 +50,7 @@ AdGuard-Home-Rules/
 
 #### 鸣谢 
 ```
-上游规则
+上游规则（感谢以下上游规则，如有侵权，请联系我删除：QQ：1753582514）
 
 # 白名单
 - https://raw.githubusercontent.com/qq5460168/666/master/allow.txt
