@@ -961,7 +961,7 @@
 @@||nstool.netease.com^
 @@||downpack.baidu.com^
 @@||gdown.baidu.com^
-@@||pkg.sinaimg.cn^
+@@||pkg.^
 #喵酷扫描登录
 @@||qr.cp31.ott.cibntv.net^
 @@||heyi-acs.cp31.ott.cibntv.net^
@@ -1983,7 +1983,7 @@
 #官网
 @@||tousu.sina.com.cn^
 #网页布局
-@@||n.sinaimg.cn^
+@@||n.^
 #网页内容加载
 @@||news.sina.com.cn^
 #右上角登录布局
@@ -2000,7 +2000,7 @@
 #网易年度总结
 @@||count.mail.163.com^
 #新浪新闻图片^
-@@||k.sinaimg.cn^
+@@||k.^
 #网易光遇 sky 登录
 @@||fp-upload.dun.163.com^
 # 网易云蜗牛阅读^
@@ -2015,12 +2015,12 @@
 #天下手游
 @@||tx163.com^
 !新浪
-@@||free.sinaimg.cn^
+@@||free.^
 @@||simg.sinajs.cn^
 @@||u1.img.mobile.sina.cn^
 @@||wbapp.mobile.sina.cn^
 @@||*.img.mobile.sina.cn^
-@@||wx2.sinaimg.cn^
+@@||wx2.^
 
 # 酷狗
 
