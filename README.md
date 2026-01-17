@@ -12,6 +12,10 @@
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/combined-rules.txt
 ```
+补充
+```
+https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/Supplement-rules.txt
+```
 白名单：
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/combined-whitelist.txt
@@ -47,6 +51,11 @@ AdGuard-Home-Rules/
 #### 鸣谢 
 ```
 上游规则
+
+# 白名单
+- https://raw.githubusercontent.com/qq5460168/666/master/allow.txt
+
+# 黑名单
 📌 ADS
 - https://raw.githubusercontent.com/ppfeufer/adguard-filter-list/refs/heads/master/blocklist
 - https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt
