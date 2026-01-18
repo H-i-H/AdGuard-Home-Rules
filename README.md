@@ -8,7 +8,7 @@
 
 **使用方法**
 #### 直接使用：在AdGuard Home中添加规则订阅
-黑名单：
+黑名单
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/combined-rules.txt
 ```
@@ -16,7 +16,11 @@ https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Relea
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/Supplement-rules.txt
 ```
-白名单：
+白名单
+```
+https://raw.githubusercontent.com/qq5460168/666/master/allow.txt
+```
+白名单(补充)
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/combined-whitelist.txt
 ```
