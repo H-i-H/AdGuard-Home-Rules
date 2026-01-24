@@ -26,6 +26,5 @@
 @@||ctldl.windowsupdate.com^$important
 @@||login.microsoftonline.com^$important
 # 115网盘
-@@||cpats*.115.com^$important
 @@||down.115.com^$important
-@@||cdnfhnfile.115cdn.net^$important
+@@||*.115cdn.net^$important
