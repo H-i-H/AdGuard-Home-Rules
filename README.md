@@ -76,5 +76,3 @@ AdGuard-Home-Rules/
 📌 adult
 - https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts
 ```
-
-︽
