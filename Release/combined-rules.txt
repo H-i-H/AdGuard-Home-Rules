@@ -1,6 +1,6 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-06-30 10:35:07
+! Generated: 2026-06-30 11:21:41
 ! Total categories: 3
 ! Total rules (before dedup): 745527
 ! Total unique rules: 701888
