@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-07-01 10:31:28
+! Generated: 2026-07-01 12:52:57
 ! Total categories: 3
-! Total rules (before dedup): 745706
-! Total unique rules: 702069
+! Total rules (before dedup): 745710
+! Total unique rules: 702073
 ! Duplicates removed: 43637
 !
 ! Coverage: Ads + Malware + Adult
@@ -312428,6 +312428,7 @@
 ||myaffiliates.com^
 ||myaffpartners.com^
 ||myafr.net^
+||myafriend.com^
 ||myafyanow.com^
 ||myagentco.com^
 ||myagi.qwilr.com^
@@ -355678,6 +355679,7 @@
 ||playable-res.avidly.com^
 ||playable.tapjoy.com^
 ||playables-debug.lfstmedia.com^
+||playafterdark.com^
 ||playallthis.com^
 ||playalongmusic.net^
 ||playamo30.com^
@@ -362334,6 +362336,7 @@
 ||procdnvids.net^
 ||proceder-film.blogspot.com^
 ||proceed.aweber.com^
+||proceedflow.com^
 ||procej-mali.org^
 ||procesos.adx1.com^
 ||procesotg.com^
@@ -363091,6 +363094,7 @@
 ||profitable-forex.clickfunnels.com^
 ||profitablecpmgate.com^
 ||profitablecpmnetwork.com^
+||profitablecpmratenetwork.com^
 ||profitabledisplaycontent.com^
 ||profitableexactly.com^
 ||profitablegate.com^
