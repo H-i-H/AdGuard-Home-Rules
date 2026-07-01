@@ -75,6 +75,7 @@ def download_with_retry(url: str, filepath: Path, max_retries: int = MAX_RETRIES
                 if b'<html' in content.lower() or b'<body' in content.lower():
                     return False, "Received HTML error page"
 
+            # 【关键】：强制覆盖写入，确保文件内容更新，配合 YAML 的哈希对比
             filepath.write_bytes(content)
             filename = get_filename_from_url(url)
             return True, f"Downloaded {filename}"
@@ -93,12 +94,8 @@ def process_single_url(url: str, category: str) -> Tuple[str, bool, str]:
     filename = get_filename_from_url(url)
     filepath = category_dir / filename
 
-    # 如果文件已存在且大小正常，跳过下载（配合哈希对比使用）
-    if filepath.exists():
-        size = filepath.stat().st_size
-        if size > MIN_FILE_SIZE:
-            return url, True, f"Skipped (exists): {filename}"
-
+    # 【关键修复】：移除“文件存在则跳过”的逻辑，必须每次都强制下载覆盖！
+    # 否则 YAML 中的 MD5 哈希对比会永远返回“无变化”，导致规则永远不更新。
     success, message = download_with_retry(url, filepath)
     return url, success, message
 
@@ -111,7 +108,7 @@ def fetch_all_sources():
         for url in urls:
             tasks.append((url, category))
 
-    stats = {'success': 0, 'failed': 0, 'skipped': 0}
+    stats = {'success': 0, 'failed': 0}
     
     # 使用线程池并发下载，最多 10 个并发
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
@@ -120,16 +117,13 @@ def fetch_all_sources():
         for future in concurrent.futures.as_completed(futures):
             url, success, message = future.result()
             if success:
-                if "Skipped" in message:
-                    stats['skipped'] += 1
-                else:
-                    stats['success'] += 1
+                stats['success'] += 1
                 print(f"  ✅ {message}")
             else:
                 stats['failed'] += 1
                 print(f"  ❌ {url} -> {message}")
 
-    print(f"\n📊 Summary: {stats['success']} succeeded, {stats['failed']} failed, {stats['skipped']} skipped")
+    print(f"\n📊 Summary: {stats['success']} succeeded, {stats['failed']} failed")
     return stats['failed'] == 0
 
 def validate_downloaded_files():
