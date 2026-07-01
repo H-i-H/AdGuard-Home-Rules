@@ -78,11 +78,15 @@ def combine_all_rules() -> bool:
             print(f"  ❌ Error reading {filepath}: {e}")
             return False
 
-    total_original = len(final_rules)
+    # 【关键修复】：统计原始有效规则数（严格排除注释行，防止统计错乱）
+    total_original = len([r for r in final_rules if not r.startswith('!') and not r.startswith('#')])
 
-    # 使用深度清洗与去重函数 (替代原有的 dict.fromkeys)
+    # 使用深度清洗与去重函数
     unique_rules = clean_and_deduplicate_rules(final_rules)
-    duplicates_removed = total_original - len([r for r in unique_rules if not r.startswith('!') and not r.startswith('#')])
+    
+    # 统计去重后的有效规则数
+    unique_rules_count = len([r for r in unique_rules if not r.startswith('!') and not r.startswith('#')])
+    duplicates_removed = total_original - unique_rules_count
 
     if not unique_rules:
         print("  ⚠️ Warning: No rules after deduplication!")
@@ -99,7 +103,7 @@ def combine_all_rules() -> bool:
         f"! Generated: {generation_time}",
         f"! Total categories: {len(categories)}",
         f"! Total rules (before dedup): {total_original}",
-        f"! Total unique rules: {len(unique_rules)}",
+        f"! Total unique rules: {unique_rules_count}",
         f"! Duplicates removed: {duplicates_removed}",
         "!",
         "! Coverage: Ads + Malware + Adult",
