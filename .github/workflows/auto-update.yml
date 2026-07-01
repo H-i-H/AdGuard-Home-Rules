@@ -5,7 +5,7 @@ on:
     - cron: '0 */12 * * *' # 每 12 小时运行一次
   workflow_dispatch:
 
-# 【修复 3】：并发控制，防止手动和定时任务同时运行导致 Git 冲突
+# 并发控制，防止手动和定时任务同时运行导致 Git 冲突
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -46,9 +46,9 @@ jobs:
             find sources -type f -exec md5sum {} + 2>/dev/null | sort > /tmp/before.md5
           else
             touch /tmp/before.md5
-          fi
+          fi 
 
-      # 1.2 执行下载
+      # 1.2 执行下载 (现在已改为并发下载)
       - name: Fetch upstream sources
         run: python scripts/fetch_upstream.py
 
@@ -86,7 +86,7 @@ jobs:
             echo "$INVALID_FILES"
             echo "$INVALID_FILES" | xargs rm -f
           else
-            echo "✅ 所有文件大小正常。"
+            echo "✅ 所有文件大小正常。" 
           fi
 
       # 2.2 深度污染检测（防止错误页面混入）
@@ -105,7 +105,7 @@ jobs:
           echo "✅ 未检测到污染特征。"
 
       # ==========================================
-      # 核心阶段 3：合并与提交
+      # 核心阶段 3：合并、清洗与提交
       # ==========================================
 
       - name: Run rules pipeline
@@ -132,13 +132,28 @@ jobs:
             exit 1
           fi
 
+      # 新增：自动更新 README 统计信息
+      - name: Update README stats
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          # 计算有效规则数（排除空行和注释行）
+          LINES=$(grep -c -v -E '^\s*$|^\s*[!#]' Release/combined-rules.txt || echo "0")
+          DATE=$(date +'%Y-%m-%d %H:%M:%S')
+          
+          # 使用 sed 替换 README 中的占位符
+          sed -i "s/<!-- RULES_COUNT -->.*/<!-- RULES_COUNT --> ${LINES} 条/" README.md
+          sed -i "s/<!-- LAST_UPDATE -->.*/<!-- LAST_UPDATE --> ${DATE}/" README.md
+          
+          git add README.md
+          echo "- **README 更新**：✅ 已更新规则数($LINES)和时间" >> $GITHUB_STEP_SUMMARY
+
       - name: Commit and push changes
         if: steps.check_changes.outputs.has_changes == 'true'
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           
-          # 仅提交最终产物，避免 sources/ 撑爆仓库
+          # 提交最终产物和更新后的 README
           git add Release/
           
           if ! git diff --staged --quiet; then
@@ -149,7 +164,7 @@ jobs:
             echo "- **Git 提交**：⏭️ 最终产物无变化，跳过提交" >> $GITHUB_STEP_SUMMARY
           fi
 
-      # 如果没有变化，也生成一个摘要，让你知道脚本正常活着
+      # 如果没有变化，也生成一个摘要
       - name: Generate skip summary
         if: steps.check_changes.outputs.has_changes == 'false'
         run: |
