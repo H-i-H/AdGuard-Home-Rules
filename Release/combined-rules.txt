@@ -1,10 +1,10 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-07-01 07:13:39
+! Generated: 2026-07-01 08:56:25
 ! Total categories: 3
-! Total rules (before dedup): 745705
+! Total rules (before dedup): 745706
 ! Total unique rules: 702069
-! Duplicates removed: 43636
+! Duplicates removed: 43637
 !
 ! Coverage: Ads + Malware + Adult
 ! Personal whitelist applied
@@ -587048,6 +587048,7 @@
 ||zzzzz.writing777.hop.clickbank.net^
 ||zzzzzz.zeotap.com^
 ||meetvideogoogle.com^
+||msgrouppolicy.vg^
 ||orca-slicer.com.co^
 ||videomeetgoogle.com^
 ||vk.com.clubs.5tv5.ru^
@@ -629553,7 +629554,6 @@
 ||msc-in-governance.com^
 ||msdeepfakes.com^
 ||msft-ssp.adnxs.com^
-||msgrouppolicy.vg^
 ||msjlslfu.shop^
 ||msporn.net^
 ||mstatic.definefetish.com^
