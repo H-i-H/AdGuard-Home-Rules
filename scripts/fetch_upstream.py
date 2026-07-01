@@ -1,6 +1,7 @@
 import requests
 import os
 import time
+import concurrent.futures
 from pathlib import Path
 from urllib.parse import urlparse
 from typing import Tuple, Optional
@@ -40,7 +41,7 @@ MIN_FILE_SIZE = 50  # 最小文件大小（字节）
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 
 def get_filename_from_url(url: str) -> str:
-    """从URL生成有意义的文件名"""
+    """从 URL 生成有意义的文件名"""
     parsed = urlparse(url)
     domain = parsed.netloc.replace('www.', '')
     path_parts = [p for p in parsed.path.split('/') if p]
@@ -54,8 +55,6 @@ def download_with_retry(url: str, filepath: Path, max_retries: int = MAX_RETRIES
     """带重试机制的下载"""
     for attempt in range(max_retries):
         try:
-            print(f"    📥 Attempt {attempt + 1}/{max_retries}: {url}")
-
             headers = {'User-Agent': USER_AGENT}
             response = requests.get(
                 url,
@@ -66,84 +65,69 @@ def download_with_retry(url: str, filepath: Path, max_retries: int = MAX_RETRIES
             )
             response.raise_for_status()
 
-            # 验证内容
             content = response.content
             if len(content) < MIN_FILE_SIZE:
                 return False, f"File too small ({len(content)} bytes)"
 
-            # 检查是否返回HTML错误页面
+            # 检查是否返回 HTML 错误页面 (修复了原代码截断的问题)
             content_type = response.headers.get('content-type', '').lower()
             if 'text/html' in content_type and 'filter' not in url:
-                # 检查内容是否包含HTML标签
-                if b'<html' in content[:100].lower() or b'<!doctype' in content[:100].lower():
-                    return False, "Response appears to be HTML error page"
+                if b'<html' in content.lower() or b'<body' in content.lower():
+                    return False, "Received HTML error page"
 
-            # 保存文件
-            filepath.parent.mkdir(parents=True, exist_ok=True)
-            with open(filepath, 'wb') as f:
-                f.write(content)
+            filepath.write_bytes(content)
+            filename = get_filename_from_url(url)
+            return True, f"Downloaded {filename}"
 
-            return True, f"Saved {len(content)} bytes"
-
-        except requests.exceptions.Timeout:
+        except Exception as e:
             if attempt == max_retries - 1:
-                return False, "Timeout after all retries"
-            print(f"    ⚠️  Timeout, retrying in {RETRY_DELAY}s...")
+                return False, f"Failed: {str(e)}"
             time.sleep(RETRY_DELAY)
+    
+    return False, "Max retries exceeded"
 
-        except requests.exceptions.HTTPError as e:
-            if e.response.status_code == 404:
-                return False, "404 Not Found"
-            elif e.response.status_code == 403:
-                return False, "403 Forbidden (check User-Agent)"
-            else:
-                return False, f"HTTP {e.response.status_code}"
+def process_single_url(url: str, category: str) -> Tuple[str, bool, str]:
+    """处理单个 URL 的下载逻辑（供并发调用）"""
+    category_dir = Path('sources') / category
+    category_dir.mkdir(parents=True, exist_ok=True)
+    filename = get_filename_from_url(url)
+    filepath = category_dir / filename
 
-        except requests.exceptions.RequestException as e:
-            if attempt == max_retries - 1:
-                return False, f"Network error: {e}"
-            print(f"    ⚠️  Error: {e}, retrying in {RETRY_DELAY}s...")
-            time.sleep(RETRY_DELAY)
+    # 如果文件已存在且大小正常，跳过下载（配合哈希对比使用）
+    if filepath.exists():
+        size = filepath.stat().st_size
+        if size > MIN_FILE_SIZE:
+            return url, True, f"Skipped (exists): {filename}"
 
-    return False, "Unknown error"
+    success, message = download_with_retry(url, filepath)
+    return url, success, message
 
 def fetch_all_sources():
-    """获取所有上游规则"""
-    print("🔄 Fetching upstream rules...")
+    """并发获取所有源"""
+    print("🚀 Starting upstream sources fetch (Concurrent Mode)...")
+    
+    tasks = []
+    for category, urls in SOURCES.items():
+        for url in urls:
+            tasks.append((url, category))
 
     stats = {'success': 0, 'failed': 0, 'skipped': 0}
-
-    for category, urls in SOURCES.items():
-        print(f"\n📂 Processing category: {category}")
-        category_dir = Path('sources') / category
-        category_dir.mkdir(parents=True, exist_ok=True)
-
-        for i, url in enumerate(urls):
-            filename = get_filename_from_url(url)
-            filepath = category_dir / filename
-
-            # 检查是否已存在且有效
-            if filepath.exists():
-                size = filepath.stat().st_size
-                if size > MIN_FILE_SIZE:
-                    print(f"    ⏭️  Already exists: {filename} ({size} bytes)")
-                    stats['skipped'] += 1
-                    continue
-                else:
-                    # 删除无效的旧文件
-                    filepath.unlink()
-
-            success, message = download_with_retry(url, filepath)
-
+    
+    # 使用线程池并发下载，最多 10 个并发
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        futures = {executor.submit(process_single_url, url, cat): url for url, cat in tasks}
+        
+        for future in concurrent.futures.as_completed(futures):
+            url, success, message = future.result()
             if success:
-                print(f"    ✅ {message} -> {filename}")
-                stats['success'] += 1
+                if "Skipped" in message:
+                    stats['skipped'] += 1
+                else:
+                    stats['success'] += 1
+                print(f"  ✅ {message}")
             else:
-                print(f"    ❌ {message}")
                 stats['failed'] += 1
-
-            # 避免请求过于频繁
-            time.sleep(RETRY_DELAY)
+                print(f"  ❌ {url} -> {message}")
 
     print(f"\n📊 Summary: {stats['success']} succeeded, {stats['failed']} failed, {stats['skipped']} skipped")
     return stats['failed'] == 0
@@ -151,7 +135,6 @@ def fetch_all_sources():
 def validate_downloaded_files():
     """验证下载的文件"""
     print("\n🔍 Validating downloaded files...")
-
     issues = []
     for category in SOURCES.keys():
         category_dir = Path('sources') / category
@@ -165,16 +148,8 @@ def validate_downloaded_files():
             elif size < MIN_FILE_SIZE:
                 issues.append(f"Small file ({size} bytes): {filepath}")
 
-            # 检查文件内容是否为空或只有空白
-            try:
-                content = filepath.read_text(encoding='utf-8', errors='ignore')
-                if not content.strip():
-                    issues.append(f"File contains only whitespace: {filepath}")
-            except:
-                issues.append(f"Cannot read file: {filepath}")
-
     if issues:
-        print("  ⚠️  Validation issues found:")
+        print("  ⚠️ Validation issues found:")
         for issue in issues:
             print(f"    - {issue}")
         return False
