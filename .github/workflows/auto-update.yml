@@ -9,7 +9,7 @@ jobs:
   update-rules:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Removed actions:write unless specifically needed
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -41,14 +41,32 @@ jobs:
       - name: Create necessary directories
         run: mkdir -p sources filters scripts Release
 
-      - name: Run rules pipeline
+      # 第一步：仅下载上游源文件
+      - name: Fetch upstream sources
+        run: python scripts/fetch_upstream.py
+
+      # 第二步：检查 sources 目录是否有变化
+      - name: Check for upstream changes
+        id: check_changes
         run: |
-          python scripts/fetch_upstream.py
+          if git diff --quiet sources/; then
+            echo "✅ No changes in upstream sources, skipping pipeline."
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "🔄 Changes detected in upstream sources."
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      # 第三步：仅在有变化时才执行合并和处理
+      - name: Run rules pipeline
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
           python scripts/merge_rules.py
           python scripts/whitelist_processor.py
           python scripts/combine_final.py
 
       - name: Validate rules
+        if: steps.check_changes.outputs.has_changes == 'true'
         run: |
           FILE="Release/combined-rules.txt"
           if [ -s "$FILE" ]; then
@@ -60,12 +78,13 @@ jobs:
           fi
 
       - name: Commit and push changes
+        if: steps.check_changes.outputs.has_changes == 'true'
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
 
           if ! git diff --quiet || ! git diff --staged --quiet; then
-            git add Release/
+            git add Release/ sources/
             git commit -m "Auto-update: $(date +'%Y-%m-%d %H:%M:%S')"
             git push
           else
