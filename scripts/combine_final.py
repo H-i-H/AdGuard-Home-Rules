@@ -1,6 +1,33 @@
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from typing import List, Tuple, Optional
+import re
+
+def clean_and_deduplicate_rules(lines: List[str]) -> List[str]:
+    """深度清洗与去重规则"""
+    seen = set()
+    cleaned_lines = []
+    
+    for line in lines:
+        line = line.strip()
+        
+        # 1. 跳过空行
+        if not line:
+            continue
+            
+        # 2. 保留注释和元数据
+        if line.startswith('!') or line.startswith('#') or line.startswith('['):
+            cleaned_lines.append(line)
+            continue
+            
+        # 3. 规则去重（统一转小写，防止大小写导致的重复，AdGuard 域名部分不区分大小写）
+        rule_key = line.lower()
+        
+        if rule_key not in seen:
+            seen.add(rule_key)
+            cleaned_lines.append(line)
+            
+    return cleaned_lines
 
 def combine_all_rules() -> bool:
     """合并所有规则到最终文件"""
@@ -8,7 +35,6 @@ def combine_all_rules() -> bool:
     output_dir = Path('Release')
     output_file = output_dir / 'combined-rules.txt'
     categories = ['ads', 'malware', 'adult']
-
     print("\n🔄 Combining all rules...")
 
     # 验证输入目录
@@ -24,7 +50,7 @@ def combine_all_rules() -> bool:
         if filepath.exists():
             input_files.append((cat, filepath))
         else:
-            print(f"  ⚠️  {cat}: file not found")
+            print(f"  ⚠️ {cat}: file not found")
 
     if not input_files:
         print("  ❌ No input files found to combine")
@@ -36,12 +62,10 @@ def combine_all_rules() -> bool:
 
     for cat, filepath in input_files:
         try:
-            # 逐行读取，避免大文件内存问题
             rules = []
             with open(filepath, 'r', encoding='utf-8') as f:
                 for line in f:
                     line = line.strip()
-                    # 跳过空行和注释
                     if line and not line.startswith('!'):
                         rules.append(line)
 
@@ -54,26 +78,20 @@ def combine_all_rules() -> bool:
             print(f"  ❌ Error reading {filepath}: {e}")
             return False
 
-    # 统计
     total_original = len(final_rules)
 
-    # 去重并保持顺序
-    unique_rules = list(dict.fromkeys(final_rules))
-    duplicates_removed = total_original - len(unique_rules)
+    # 使用深度清洗与去重函数 (替代原有的 dict.fromkeys)
+    unique_rules = clean_and_deduplicate_rules(final_rules)
+    duplicates_removed = total_original - len([r for r in unique_rules if not r.startswith('!') and not r.startswith('#')])
 
-    # 检查结果
     if not unique_rules:
-        print("  ⚠️  Warning: No rules after deduplication!")
+        print("  ⚠️ Warning: No rules after deduplication!")
         return False
-
-    if len(unique_rules) < 10:
-        print(f"  ⚠️  Warning: Only {len(unique_rules)} rules generated (suspiciously low)")
 
     # 准备输出
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # 生成头部信息
-    from datetime import datetime, timezone, timedelta
     generation_time = datetime.now(timezone(timedelta(hours=8))).strftime('%Y-%m-%d %H:%M:%S')
     header = [
         "! Adguard Home Private Rules Bundle",
@@ -99,16 +117,6 @@ def combine_all_rules() -> bool:
             if unique_rules:
                 f.write('\n')  # 确保末尾换行
 
-        # 输出统计详情
-        print(f"\n  📊 Statistics:")
-        for cat, count in stats.items():
-            print(f"    - {cat}: {count} rules")
-        print(f"    ───────────────────────")
-        print(f"    Total: {total_original} rules")
-        print(f"    Unique: {len(unique_rules)} rules")
-        if duplicates_removed > 0:
-            print(f"    Duplicates: {duplicates_removed} removed")
-
         print(f"\n  💾 Final bundle saved to: {output_file}")
         return True
 
@@ -119,7 +127,6 @@ def combine_all_rules() -> bool:
 def validate_combined_file() -> bool:
     """验证生成的文件"""
     output_file = Path('Release') / 'combined-rules.txt'
-
     if not output_file.exists():
         print("  ❌ Output file not found")
         return False
@@ -129,7 +136,6 @@ def validate_combined_file() -> bool:
         print("  ❌ Output file is empty")
         return False
 
-    # 检查内容
     try:
         content = output_file.read_text(encoding='utf-8')
         lines = [l for l in content.split('\n') if l.strip() and not l.startswith('!')]
@@ -148,11 +154,10 @@ def validate_combined_file() -> bool:
 if __name__ == '__main__':
     success = combine_all_rules()
     if success:
-        # 额外验证
         if validate_combined_file():
             print("\n✅ Bundle creation and validation complete!")
         else:
-            print("\n⚠️  Bundle created but validation failed!")
+            print("\n⚠️ Bundle created but validation failed!")
             exit(1)
     else:
         print("\n❌ Bundle creation failed!")
