@@ -48,7 +48,7 @@ jobs:
             touch /tmp/before.md5
           fi 
 
-      # 1.2 执行下载 (现在已改为并发下载)
+      # 1.2 执行下载
       - name: Fetch upstream sources
         run: python scripts/fetch_upstream.py
 
@@ -89,13 +89,13 @@ jobs:
             echo "✅ 所有文件大小正常。" 
           fi
 
-      # 2.2 深度污染检测（防止错误页面混入）
+      # 2.2 深度污染检测（修复错误2：排除注释行，防止误杀合法规则）
       - name: Deep pollution check
         if: steps.check_changes.outputs.has_changes == 'true'
         run: |
           echo "正在深度检测错误页面特征..."
-          # 匹配 HTML 标签、常见 HTTP 错误文本、拒绝访问等
-          if grep -r -q -i -E "<html|404 Not Found|502 Bad Gateway|503 Service Unavailable|Access Denied|403 Forbidden" sources/ 2>/dev/null; then
+          # 【核心修复】：使用 grep -v '^!' 先排除 AdGuard 注释行，防止注释中包含 "404" 等字眼导致误杀
+          if grep -r -v '^!' sources/ | grep -q -i -E "<html|<body|404 Not Found|502 Bad Gateway|503 Service Unavailable|Access Denied|403 Forbidden" 2>/dev/null; then
             echo "❌ 致命错误：检测到上游返回了错误页面内容！"
             echo "为防止规则污染，已强制终止本次更新。"
             echo "### ⚠️ 每日检测报告" >> $GITHUB_STEP_SUMMARY
@@ -132,7 +132,7 @@ jobs:
             exit 1
           fi
 
-      # 新增：自动更新 README 统计信息
+      # 自动更新 README 统计信息
       - name: Update README stats
         if: steps.check_changes.outputs.has_changes == 'true'
         run: |
