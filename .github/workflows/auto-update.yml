@@ -1,9 +1,14 @@
 name: Daily Rules Update
+
 on:
   schedule:
-    # 每 12 小时自动更新一次（UTC 00:00 和 12:00，对应北京时间 08:00 和 20:00）
-    - cron: '0 */12 * * *'
+    - cron: '0 */12 * * *' # 每 12 小时运行一次
   workflow_dispatch:
+
+# 【修复 3】：并发控制，防止手动和定时任务同时运行导致 Git 冲突
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   update-rules:
@@ -18,17 +23,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Verify scripts exist
-        run: |
-          missing=()
-          for script in fetch_upstream.py merge_rules.py whitelist_processor.py combine_final.py; do
-            [ -f "scripts/$script" ] || missing+=("$script")
-          done
-          if [ ${#missing[@]} -ne 0 ]; then
-            echo "❌ Missing scripts: ${missing[*]}"
-            exit 1
-          fi
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -39,25 +33,81 @@ jobs:
         run: pip install requests tldextract
 
       - name: Create necessary directories
-        run: mkdir -p sources filters scripts Release
+        run: mkdir -p sources filters Release
 
-      # 第一步：仅下载上游源文件
+      # ==========================================
+      # 核心阶段 1：下载与哈希对比（彻底解决 Git 盲区）
+      # ==========================================
+      
+      # 1.1 记录下载前的文件哈希
+      - name: Record pre-fetch hashes
+        run: |
+          if [ -d "sources" ] && [ "$(ls -A sources)" ]; then
+            find sources -type f -exec md5sum {} + 2>/dev/null | sort > /tmp/before.md5
+          else
+            touch /tmp/before.md5
+          fi
+
+      # 1.2 执行下载
       - name: Fetch upstream sources
         run: python scripts/fetch_upstream.py
 
-      # 第二步：检查 sources 目录是否有变化
-      - name: Check for upstream changes
+      # 1.3 记录下载后的文件哈希并对比
+      - name: Check for changes via Hash
         id: check_changes
         run: |
-          if git diff --quiet sources/; then
-            echo "✅ No changes in upstream sources, skipping pipeline."
+          if [ -d "sources" ] && [ "$(ls -A sources)" ]; then
+            find sources -type f -exec md5sum {} + 2>/dev/null | sort > /tmp/after.md5
+          else
+            touch /tmp/after.md5
+          fi
+
+          # 对比哈希文件
+          if diff -q /tmp/before.md5 /tmp/after.md5 > /dev/null; then
+            echo "✅ 上游源内容无任何变化 (Hash 匹配)。"
             echo "has_changes=false" >> $GITHUB_OUTPUT
           else
-            echo "🔄 Changes detected in upstream sources."
+            echo "🔄 检测到上游源内容发生变化！"
             echo "has_changes=true" >> $GITHUB_OUTPUT
           fi
 
-      # 第三步：仅在有变化时才执行合并和处理
+      # ==========================================
+      # 核心阶段 2：防污染与清理（保护规则纯洁性）
+      # ==========================================
+
+      # 2.1 清理异常小文件（防止空文件混入）
+      - name: Clean up invalid files
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          echo "正在检查异常小文件..."
+          INVALID_FILES=$(find sources/ -type f -size -1k 2>/dev/null)
+          if [ -n "$INVALID_FILES" ]; then
+            echo "⚠️ 发现以下小于 1KB 的异常文件，已自动清理："
+            echo "$INVALID_FILES"
+            echo "$INVALID_FILES" | xargs rm -f
+          else
+            echo "✅ 所有文件大小正常。"
+          fi
+
+      # 2.2 深度污染检测（防止错误页面混入）
+      - name: Deep pollution check
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          echo "正在深度检测错误页面特征..."
+          # 匹配 HTML 标签、常见 HTTP 错误文本、拒绝访问等
+          if grep -r -q -i -E "<html|404 Not Found|502 Bad Gateway|503 Service Unavailable|Access Denied|403 Forbidden" sources/ 2>/dev/null; then
+            echo "❌ 致命错误：检测到上游返回了错误页面内容！"
+            echo "为防止规则污染，已强制终止本次更新。"
+            echo "### ⚠️ 每日检测报告" >> $GITHUB_STEP_SUMMARY
+            echo "**状态**：❌ 拦截到上游错误页面，已强制跳过更新以防规则失效。" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+          echo "✅ 未检测到污染特征。"
+
+      # ==========================================
+      # 核心阶段 3：合并与提交
+      # ==========================================
+
       - name: Run rules pipeline
         if: steps.check_changes.outputs.has_changes == 'true'
         run: |
@@ -70,10 +120,15 @@ jobs:
         run: |
           FILE="Release/combined-rules.txt"
           if [ -s "$FILE" ]; then
-            echo "✅ Rules generated successfully"
-            echo "Line count: $(wc -l < "$FILE")"
+            LINES=$(wc -l < "$FILE")
+            echo "✅ Rules generated: $LINES lines"
+            echo "### 📊 每日检测报告" >> $GITHUB_STEP_SUMMARY
+            echo "✅ **状态**：更新成功" >> $GITHUB_STEP_SUMMARY
+            echo "- **规则总数**：\`$LINES\` 条" >> $GITHUB_STEP_SUMMARY
           else
-            echo "❌ Combined rules file is empty or missing!"
+            echo "❌ Combined rules file is empty!"
+            echo "### 📊 每日检测报告" >> $GITHUB_STEP_SUMMARY
+            echo "❌ **状态**：合并失败，规则文件为空！" >> $GITHUB_STEP_SUMMARY
             exit 1
           fi
 
@@ -82,11 +137,21 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-
-          if ! git diff --quiet || ! git diff --staged --quiet; then
-            git add Release/ sources/
+          
+          # 仅提交最终产物，避免 sources/ 撑爆仓库
+          git add Release/
+          
+          if ! git diff --staged --quiet; then
             git commit -m "Auto-update: $(date +'%Y-%m-%d %H:%M:%S')"
             git push
+            echo "- **Git 提交**：✅ 已推送" >> $GITHUB_STEP_SUMMARY
           else
-            echo "No changes to commit"
+            echo "- **Git 提交**：⏭️ 最终产物无变化，跳过提交" >> $GITHUB_STEP_SUMMARY
           fi
+
+      # 如果没有变化，也生成一个摘要，让你知道脚本正常活着
+      - name: Generate skip summary
+        if: steps.check_changes.outputs.has_changes == 'false'
+        run: |
+          echo "### 📊 每日检测报告" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **状态**：上游源未更新，已跳过合并流程，节省运行时间。" >> $GITHUB_STEP_SUMMARY
