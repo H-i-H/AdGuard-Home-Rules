@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-07-10 07:08:46
+! Generated: 2026-07-11 06:57:43
 ! Total categories: 3
-! Total rules (before dedup): 741312
-! Total unique rules: 697690
+! Total rules (before dedup): 741313
+! Total unique rules: 697691
 ! Duplicates removed: 43622
 !
 ! Coverage: Ads + Malware + Adult
@@ -278104,6 +278104,7 @@
 ||lolahemp.refersion.com^
 ||lolahome.solution.weborama.fr^
 ||lolalynch.pl^
+||lolapelisse.cyou^
 ||lolatunde.info^
 ||lolavandersteen.nl^
 ||lolavendeghaz.hu^
