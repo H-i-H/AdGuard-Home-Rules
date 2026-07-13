@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-07-13 06:43:28
+! Generated: 2026-07-14 06:53:39
 ! Total categories: 3
-! Total rules (before dedup): 741313
-! Total unique rules: 697691
+! Total rules (before dedup): 741316
+! Total unique rules: 697694
 ! Duplicates removed: 43622
 !
 ! Coverage: Ads + Malware + Adult
@@ -260505,6 +260505,7 @@
 ||kineticconceptsinc.122.2o7.net^
 ||kinetics.hk^
 ||kinetikproje.com^
+||kinetiksoft.com^
 ||kineziolog.si^
 ||kinfinitytech.onesignal.com^
 ||kinfly.ru^
@@ -374212,6 +374213,7 @@
 ||rajubk.ga^
 ||rajzocsoport.000webhostapp.com^
 ||rak-tehlem.com^
+||rak8s.com^
 ||rakabac.com^
 ||rakamari.in^
 ||rakamu.com^
@@ -394891,6 +394893,7 @@
 ||scarf.sh^
 ||scarfos.com.au^
 ||scarfsmash.com^
+||scarfstartpickle.com^
 ||scari-maurer.ro^
 ||scarianobrothers.com^
 ||scarificatoare.com^
