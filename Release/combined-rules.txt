@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-07-16 06:56:29
+! Generated: 2026-07-17 06:54:40
 ! Total categories: 3
-! Total rules (before dedup): 738858
-! Total unique rules: 695308
+! Total rules (before dedup): 738860
+! Total unique rules: 695310
 ! Duplicates removed: 43550
 !
 ! Coverage: Ads + Malware + Adult
@@ -137252,6 +137252,7 @@
 ||consulter.med.ec^
 ||consultesistemas.com.br^
 ||consultfgs.cfd^
+||consultflow.click^
 ||consulting-case-interviews.leadpages.co^
 ||consulting.affex.org^
 ||consulting.guidehouse.com^
@@ -188592,6 +188593,7 @@
 ||fantomgl.com^
 ||fantomhmao.ru^
 ||fantomsombrixapp.net^
+||fantovix.shop^
 ||fantucho.info^
 ||fanuc-eu.com^
 ||fanxing.kugou.com^
