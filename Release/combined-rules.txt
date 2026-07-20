@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-07-20 06:47:59
+! Generated: 2026-07-21 06:56:40
 ! Total categories: 3
-! Total rules (before dedup): 743740
-! Total unique rules: 700206
+! Total rules (before dedup): 743737
+! Total unique rules: 700203
 ! Duplicates removed: 43534
 !
 ! Coverage: Ads + Malware + Adult
@@ -77411,6 +77411,7 @@
 ||app.pubserver.adhood.com^
 ||app.pulsatehq.com^
 ||app.push-ad.com^
+||app.pushaja.com^
 ||app.pushengage.com^
 ||app.qa1.jivox.com^
 ||app.qa3.jivox.com^
@@ -91334,7 +91335,6 @@
 ||bagiennanarew.pl^
 ||bagimsizarabuluculukmerkezi.com^
 ||bagira.org^
-||bagirastyle.ru^
 ||bagiyapi.com^
 ||bagkakaku.com^
 ||bagladys.biz^
@@ -100307,7 +100307,6 @@
 ||birdnestatbunyonyi.com^
 ||birds.affex.org^
 ||birdsec.awsmppl.com^
-||birdsend.co^
 ||birdsend.firstpromoter.com^
 ||birdswood.trafficbos.hop.clickbank.net^
 ||birdtricks.refersion.com^
@@ -103559,7 +103558,6 @@
 ||bn.profiwin.de^
 ||bn.take-profit.org^
 ||bn.vanzherke.ru^
-||bn.ziare.com^
 ||bn119.infusionsoft.com^
 ||bn198.infusionsoft.com^
 ||bn215.infusionsoft.com^
@@ -204188,7 +204186,6 @@
 ||gadfaros.com^
 ||gadget-plaza.ru^
 ||gadget.affex.org^
-||gadget.pico.tools^
 ||gadget.s1.exacttarget.com^
 ||gadget.s4.exacttarget.com^
 ||gadgetandplay.com^
@@ -306895,7 +306892,6 @@
 ||monsoonbd.com^
 ||monstargroup.net^
 ||monstat.com^
-||monstelenius.com^
 ||monster-ads.net^
 ||monster-high-ru.ru^
 ||monster.affex.org^
@@ -307593,7 +307589,6 @@
 ||motasahisab.com^
 ||motavaseteh.isfedu.org^
 ||motavera.com^
-||motazeever.com^
 ||motbw.com^
 ||motd.pinion.gg^
 ||motdepasse.net^
@@ -308282,13 +308277,13 @@
 ||mp3dirsorter.apponic.com^
 ||mp3dowload.mysace.com^
 ||mp3downy.matomo.cloud^
-||mp3lofts.com^
 ||mp3musicfree.info^
 ||mp3olimp.org^
 ||mp3playersource.com^
 ||mp3rank.info^
 ||mp3red.cc^
 ||mp3smak.ru.domain.name^
+||mp3starz.com^
 ||mp3texts.ru^
 ||mp3toavi.xyz^
 ||mp3tomidiconverter.net^
@@ -310256,6 +310251,7 @@
 ||muciblpg.com^
 ||mucinex.co.il^
 ||mucizelerkursu.net^
+||mucizewus.com^
 ||mucocutaneousmyrmecophaga.com^
 ||mucous-consequences.000webhostapp.com^
 ||mucu.jp^
@@ -347166,7 +347162,6 @@
 ||pathforpoints.com^
 ||pathful.com^
 ||pathiltravels.com^
-||pathlinex.com^
 ||pathmesh.online^
 ||pathofhacks.com^
 ||pathotesta.digital^
@@ -347266,6 +347261,7 @@
 ||patronimproveyourselves.com^
 ||patroposalun.pro^
 ||patrosen.com^
+||patrospermit.com^
 ||patryk-razny.pl^
 ||patrykszwedo.pl^
 ||patrzonline.pl^
@@ -355774,6 +355770,7 @@
 ||player.stg.apester.com^
 ||player.sundaysky.com^
 ||player.sync.viewdeos.com^
+||player.twitch.tv^
 ||player.viewdeos.com^
 ||player.vuukle.com^
 ||player1.aniview.com^
@@ -387244,6 +387241,7 @@
 ||rushdafilms.com^
 ||rushdirect.net^
 ||rushforthrealestate.leadpages.co^
+||rushhips.com^
 ||rushhourr.info^
 ||rushingservices.net^
 ||rushkolnik.ru^
@@ -587078,7 +587076,6 @@
 ||orca-slicer.com.co^
 ||videomeetgoogle.com^
 ||vk.com.clubs.5tv5.ru^
-||wegrowcoaching.com^
 ||0.ackzany.com^
 ||0.athwartwhoafat.com^
 ||0.blissfullyzebra.com^
