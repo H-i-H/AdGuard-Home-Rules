@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-07-27 06:57:05
+! Generated: 2026-07-28 06:57:45
 ! Total categories: 3
-! Total rules (before dedup): 755970
-! Total unique rules: 712102
+! Total rules (before dedup): 755973
+! Total unique rules: 712105
 ! Duplicates removed: 43868
 !
 ! Coverage: Ads + Malware + Adult
@@ -64301,6 +64301,7 @@
 ||ajpxs.xyz^
 ||ajqmrtwi.yyjvimo.com^
 ||ajqzz.pcprob.adsservingtwig.xyz^
+||ajrkmx1.com^
 ||ajrousek223.clickfunnels.com^
 ||ajrwmjdbey.com^
 ||ajs-c.com^
@@ -295193,6 +295194,7 @@
 ||mbjqc.voluumtrk.com^
 ||mbjrejhbcaihz.com^
 ||mbjrkm2.com^
+||mbjrkmms.com^
 ||mbkglobal.clickfunnels.com^
 ||mbkglobal.fbsuperaff.hop.clickbank.net^
 ||mbkvisionent.com^
@@ -326843,6 +326845,7 @@
 ||nudedworld.com^
 ||nudegirls.info^
 ||nudehider.com^
+||nudeidols.com^
 ||nudesfree.info^
 ||nudetracker.com^
 ||nudevistadbx.dnset.com^
