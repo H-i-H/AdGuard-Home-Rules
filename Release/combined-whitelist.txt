@@ -47,10 +47,10 @@
 @@||*.xhscdn.com^$important
 
 # 美团
-@@||*.meituan.net^$important
+## @@||*.meituan.net^$important
 
 # 饿了么
-@@||*.ele.me^$important
+## @@||*.ele.me^$important
 
 # 小红书表情包
 @@||*.myqcloud.com^$important
