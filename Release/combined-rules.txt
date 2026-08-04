@@ -1,10 +1,10 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-08-04 06:57:15
+! Generated: 2026-08-05 06:59:34
 ! Total categories: 3
-! Total rules (before dedup): 761895
+! Total rules (before dedup): 761896
 ! Total unique rules: 718034
-! Duplicates removed: 43861
+! Duplicates removed: 43862
 !
 ! Coverage: Ads + Malware + Adult
 ! Personal whitelist applied
