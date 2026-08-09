@@ -10,14 +10,14 @@
 ||https://guid.tpns.tencent.com^$important
 ||http://sdk.beizi.biz^$important
 ||http://sdktmp.hubcloud.com.cn^$important
-||*.e.qq.com^$important^$important
-||*.y.qq.com^$important^$important
+||e.qq.com^$important^$important
+||y.qq.com^$important^$important
 ||https://resolve.umeng.com^$important
 ||https://open.e.kuaishou.com^$important
 ||https://tnc3-bjlgy.zijieapi.com^$important
 ||https://yumao.puata.info^$important
 # 美团广告
-||https://api-unionid.meituan.com^$important
+||meituan.com^$important
 # 开屏广告
 ||sdk-monitoring.unityads.unity3d.com^$important
 ||ad.xiaomi.com^$important
