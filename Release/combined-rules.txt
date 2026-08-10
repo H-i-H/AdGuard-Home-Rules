@@ -1,10 +1,10 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-08-10 06:26:24
+! Generated: 2026-08-11 06:33:33
 ! Total categories: 3
-! Total rules (before dedup): 762168
+! Total rules (before dedup): 762166
 ! Total unique rules: 718325
-! Duplicates removed: 43843
+! Duplicates removed: 43841
 !
 ! Coverage: Ads + Malware + Adult
 ! Personal whitelist applied
@@ -11352,6 +11352,7 @@
 ||2omoj102.emltrk.com^
 ||2ondmebd.emltrk.com^
 ||2op9ugda.emltrk.com^
+||2osb.com^
 ||2oyb82awp8.monster^
 ||2oytee0r.emltrk.com^
 ||2p-raum.com^
@@ -66068,7 +66069,6 @@
 ||algerie.affex.org^
 ||algerie.info^
 ||algerie360.onesignal.com^
-||algesismesse.cyou^
 ||algfrance2007.112.2o7.net^
 ||alghanim.count.ly^
 ||alghassangroup.us^
@@ -201505,7 +201505,6 @@
 ||fruitrouge.solution.weborama.fr^
 ||fruitsmarket.eu^
 ||fruitstip.com^
-||fruityarbors.cfd^
 ||fruityblue.com^
 ||fruitycorner.com^
 ||fruityloopes.com^
@@ -364694,6 +364693,7 @@
 ||proxy3.affex.org^
 ||proxy4.affex.org^
 ||proxy4.switchadhub.com^
+||proxy4mmo.com^
 ||proxy5.affex.org^
 ||proxy5.switchadhub.com^
 ||proxy6.switchadhub.com^
@@ -373377,6 +373377,7 @@
 ||racdn.gwallet.com^
 ||race-game.org^
 ||race.affex.org^
+||raceamen.com^
 ||raceasociados.com^
 ||raceofthedecades.tresensa.com^
 ||racer.affex.org^
@@ -373787,7 +373788,6 @@
 ||ragainesvaldos.ekovalstybe.lt^
 ||ragamcasino.com^
 ||ragamjayakonveksi.com^
-||ragan-qdr.com^
 ||raganosbrigitosdvarelis.lt^
 ||ragantechnical.com^
 ||ragapa.com^
@@ -403326,7 +403326,6 @@
 ||shein.rdtk.io^
 ||sheinbr.website^
 ||sheisam.ru^
-||sheitelhamatum.shop^
 ||shejipxw.com^
 ||shekharkoirala.com.np^
 ||sheki-spb.ru^
@@ -490447,6 +490446,7 @@
 ||weblogos.org^
 ||weblookup.govrecords.hop.clickbank.net^
 ||weblover.info^
+||webls.net^
 ||weblycum.com^
 ||weblync.affex.org^
 ||weblytics.io^
@@ -586897,9 +586897,7 @@
 ||zzzzz.woodprofit.hop.clickbank.net^
 ||zzzzz.writing777.hop.clickbank.net^
 ||zzzzzz.zeotap.com^
-||meetvideogoogle.com^
 ||orca-slicer.com.co^
-||videomeetgoogle.com^
 ||vk.com.clubs.5tv5.ru^
 ||0.ackzany.com^
 ||0.athwartwhoafat.com^
@@ -632885,6 +632883,7 @@
 ||meetme.nl^
 ||meetmyfans.com^
 ||meetuptours.ae^
+||meetvideogoogle.com^
 ||mefuckmore.com^
 ||mega-livesex.ch^
 ||mega-porno.love^
@@ -665929,6 +665928,7 @@
 ||videomanysex.com^
 ||videomature.pro^
 ||videomaturegratis.com^
+||videomeetgoogle.com^
 ||videomonstr.com^
 ||videonew20xx.hotbokep-hotvideo.info^
 ||videooxxx.com^
