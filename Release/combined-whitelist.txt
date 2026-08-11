@@ -186,3 +186,8 @@
 @@||elemecdn.com^$important
 @@||elemecdn.net^$important
 @@||aldcdn.com^$important
+
+# ----------------------------------
+# 证书
+# ----------------------------------
+@@||certum.pl^$important
