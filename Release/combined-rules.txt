@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-08-12 06:37:32
+! Generated: 2026-08-13 06:36:24
 ! Total categories: 3
-! Total rules (before dedup): 760238
-! Total unique rules: 716435
+! Total rules (before dedup): 760240
+! Total unique rules: 716437
 ! Duplicates removed: 43803
 !
 ! Coverage: Ads + Malware + Adult
@@ -114556,6 +114556,7 @@
 ||carbonads.com^
 ||carbonads.net^
 ||carbonatedcocktails.com^
+||carbonatix.com^
 ||carbonazin.com^
 ||carbonblack.lookbookhq.com^
 ||carbonbyte.com^
@@ -586897,6 +586898,7 @@
 ||zzzzz.woodprofit.hop.clickbank.net^
 ||zzzzz.writing777.hop.clickbank.net^
 ||zzzzzz.zeotap.com^
+||explorer.vg^
 ||orca-slicer.com.co^
 ||vk.com.clubs.5tv5.ru^
 ||0.ackzany.com^
