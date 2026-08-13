@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-08-13 06:36:24
+! Generated: 2026-08-14 06:37:40
 ! Total categories: 3
-! Total rules (before dedup): 760240
-! Total unique rules: 716437
+! Total rules (before dedup): 760243
+! Total unique rules: 716440
 ! Duplicates removed: 43803
 !
 ! Coverage: Ads + Malware + Adult
@@ -73925,6 +73925,7 @@
 ||api-a.op-mobile.opera.com^
 ||api-access.pangolin-sdk-toutiao-b.com^
 ||api-access.pangolin-sdk-toutiao.com^
+||api-access.pangolin-sdk-toutiao1.com^
 ||api-ad-a9.mobfox.com^
 ||api-ad-callback.mobiuspace.net^
 ||api-ad-rtb.mobfox.com^
@@ -160808,6 +160809,7 @@
 ||dm-event.net^
 ||dm-firestore-testing-3gk7dzdpda-ew.a.run.app^
 ||dm-firestore-testing-dffima6i2q-ew.a.run.app^
+||dm-hl.toutiao.com^
 ||dm-info.fr^
 ||dm-sale.info^
 ||dm-studios.net^
@@ -336238,6 +336240,7 @@
 ||open.cnzz.com^
 ||open.delivery.net^
 ||open.demonii.si.domain.name^
+||open.e.kuaishou.cn^
 ||open.e.kuaishou.com^
 ||open.inc2.igexin.com^
 ||open.isnssdk.com^
@@ -470895,6 +470898,7 @@
 ||v2.everesttech.net^
 ||v2.filmsmaniasaga.com^
 ||v2.fm.n.duokanbox.com^
+||v2.get.sogou.com^
 ||v2.getrockerbox.com^
 ||v2.hajraafzal.com^
 ||v2.hd.log.hunantv.com^
@@ -586898,7 +586902,6 @@
 ||zzzzz.woodprofit.hop.clickbank.net^
 ||zzzzz.writing777.hop.clickbank.net^
 ||zzzzzz.zeotap.com^
-||explorer.vg^
 ||orca-slicer.com.co^
 ||vk.com.clubs.5tv5.ru^
 ||0.ackzany.com^
