@@ -113,9 +113,11 @@
 # ----------------------------------
 # 美团
 # ----------------------------------
-@@||www.meituan.com^$important
-@@||meituan.net^$important
-@@||sankuai.com^$important
+@@||waimai.meituan.com^$important       # 外卖主站
+@@||i.waimai.meituan.com^$important     # 外卖图片
+@@||msp.meituan.com^$important          # 支付/订单
+@@||dianping.com^$important             # 大众点评
+@@||file.neixin.cn^$important           # 消息通知图片
 @@||dianping.com^$important
 
 # ----------------------------------
@@ -181,7 +183,6 @@
 # ----------------------------------
 # 饿了么
 # ----------------------------------
-@@||www.ele.me^$important
 @@||h5.ele.me^$important
 @@||elemecdn.com^$important
 @@||elemecdn.net^$important
