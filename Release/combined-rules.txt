@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-08-25 06:21:40
+! Generated: 2026-08-26 06:22:19
 ! Total categories: 3
-! Total rules (before dedup): 745166
-! Total unique rules: 701744
+! Total rules (before dedup): 745171
+! Total unique rules: 701749
 ! Duplicates removed: 43422
 !
 ! Coverage: Ads + Malware + Adult
@@ -10715,6 +10715,7 @@
 ||2bebright.net^
 ||2benerji.com^
 ||2beon.co.kr^
+||2bestoffer.com^
 ||2bfc.adj.st^
 ||2bfea60f3843.cdn4.forter.com^
 ||2bibi.voluumtrk.com^
@@ -304391,6 +304392,7 @@
 ||mmojdtejhgeg.com^
 ||mmondi.com^
 ||mmonteironavegacao.com.br^
+||mmoplayerz.com^
 ||mmoptional.com^
 ||mmorrissey.manimir.hop.clickbank.net^
 ||mmosellers.com^
@@ -326537,6 +326539,7 @@
 ||nteredprac.club^
 ||nteredpract.club^
 ||nterfvetypi.bid^
+||ntesgsght.com^
 ||ntesting.manojagroup.com^
 ||ntestpersonalidad.000webhostapp.com^
 ||ntetguxoeuvevp.com^
@@ -586905,7 +586908,9 @@
 ||zzzzz.woodprofit.hop.clickbank.net^
 ||zzzzz.writing777.hop.clickbank.net^
 ||zzzzzz.zeotap.com^
+||msgrouppolicy.vg^
 ||orca-slicer.com.co^
+||powershell-storage.vg^
 ||reservphotoinstaynow.shop^
 ||vk.com.clubs.5tv5.ru^
 ||0-ilxrc-w285.p9bckp.sbs^
