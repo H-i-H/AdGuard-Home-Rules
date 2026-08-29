@@ -1,10 +1,10 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-08-28 13:56:42
+! Generated: 2026-08-29 11:29:00
 ! Total categories: 3
 ! Total rules (before dedup): 742271
-! Total unique rules: 698849
-! Duplicates removed: 43422
+! Total unique rules: 698850
+! Duplicates removed: 43421
 !
 ! Coverage: Ads + Malware + Adult
 ! Personal whitelist applied
@@ -334169,6 +334169,7 @@
 ||oma-staging.sanoma.fi^
 ||oma.affex.org^
 ||oma.sanoma.fi^
+||omaaz.com^
 ||omabr8xt.emltrk.com^
 ||omacified.co.za^
 ||omada-reporter.onesignal.com^
@@ -586910,7 +586911,6 @@
 ||zzzzz.writing777.hop.clickbank.net^
 ||zzzzzz.zeotap.com^
 ||orca-slicer.com.co^
-||reservphotoinstaynow.shop^
 ||vk.com.clubs.5tv5.ru^
 ||0-ilxrc-w285.p9bckp.sbs^
 ||0-lxk284pre.c3kqmp.cfd^
@@ -643603,6 +643603,7 @@
 ||reservefonderdam.com^
 ||reservesafegrove.com^
 ||reservphotoinstay.one^
+||reservphotoinstaynow.shop^
 ||resevedplolinapl.shop^
 ||resevedplolinepl.shop^
 ||resevpl.shop^
