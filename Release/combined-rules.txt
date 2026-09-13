@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-09-13 07:41:59
+! Generated: 2026-09-14 07:52:46
 ! Total categories: 3
-! Total rules (before dedup): 742528
-! Total unique rules: 699194
+! Total rules (before dedup): 742529
+! Total unique rules: 699195
 ! Duplicates removed: 43334
 !
 ! Coverage: Ads + Malware + Adult
@@ -366489,6 +366489,7 @@
 ||publishercup.zanox.com^
 ||publisherdesk-d.openx.net^
 ||publisherdesk.amp.permutive.com^
+||publisherdesk.com^
 ||publisherpanel.rtbhouse.com^
 ||publisherportal.doubleclick.net^
 ||publisherpro.flexoffers.com^
