@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-09-15 08:13:45
+! Generated: 2026-09-16 07:56:39
 ! Total categories: 3
-! Total rules (before dedup): 740806
-! Total unique rules: 697512
+! Total rules (before dedup): 740810
+! Total unique rules: 697516
 ! Duplicates removed: 43294
 !
 ! Coverage: Ads + Malware + Adult
@@ -307041,6 +307041,7 @@
 ||moonlight.affex.org^
 ||moonlightbird.xyz^
 ||moonlightcar.ma^
+||moonlighthathel.org^
 ||moonlightingapi-ads.com^
 ||moonlightladys.villa69.org^
 ||moonlit-tartufo-1cdb7a.netlify.app^
@@ -376639,6 +376640,7 @@
 ||record.foresee.com^
 ||record.mrwin.com^
 ||record.rizk.com^
+||record.royalreelspartners.com^
 ||recordeaglecom.112.2o7.net^
 ||recordedonperson.com^
 ||recordemoselayersiempre.000webhostapp.com^
@@ -430835,6 +430837,7 @@
 ||summerschool.festfoundation.eu^
 ||summerschool.sith.itb.ac.id^
 ||summersfitness.clickfunnels.com^
+||summertisaridicu.org^
 ||summertour.com.br^
 ||summertreesnews.com^
 ||summertv.000webhostapp.com^
@@ -455998,6 +456001,7 @@
 ||treepad-plus.apponic.com^
 ||treeremovalnerds.com^
 ||treesguru.com^
+||treesmajestic.com^
 ||treesurveys.infrontdesigns.com^
 ||treetotub.refersion.com^
 ||treexy.pxf.io^
