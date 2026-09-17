@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-09-16 07:56:39
+! Generated: 2026-09-17 08:03:02
 ! Total categories: 3
-! Total rules (before dedup): 740810
-! Total unique rules: 697516
+! Total rules (before dedup): 740815
+! Total unique rules: 697521
 ! Duplicates removed: 43294
 !
 ! Coverage: Ads + Malware + Adult
@@ -14994,6 +14994,7 @@
 ||3xtraffic.com^
 ||3xupdate.com^
 ||3xvh4.voluumtrk.com^
+||3xyy.com^
 ||3y0h.cn^
 ||3y6c.cn^
 ||3ya0a8nq.emltrk.com^
@@ -101773,6 +101774,7 @@
 ||blender.marketingautomation.services^
 ||blender3d.fr^
 ||blenderseyewear.refersion.com^
+||blendfencingprune.com^
 ||blendman.onesignal.com^
 ||blendr.oneopinion.com^
 ||blendswap.org^
@@ -173318,6 +173320,7 @@
 ||effectionothere.site^
 ||effectivebrand.com^
 ||effectivecpmcontent.com^
+||effectivecpmnetwork.com^
 ||effectivefamilycounseling.com^
 ||effectivelyreport.com^
 ||effectivemeasure.com^
@@ -482806,6 +482809,7 @@
 ||waniakurier.com^
 ||wanle0758.com^
 ||wannacrydecryptor.com^
+||wannaknowmysecret.com^
 ||wannawatch.com^
 ||wannemaker8.com^
 ||wannest-masks.000webhostapp.com^
@@ -575491,6 +575495,7 @@
 ||xn--wcsy74a6d835f5lf.com^
 ||xn--weky16hdcxhv91bqq0guyo.net^
 ||xn--wertschtzende-worte-mwb.de^
+||xn--wgvp78a61swpe6zdozj.cn^
 ||xn--ws-fwca.adj.st^
 ||xn--ws-i3sa.adj.st^
 ||xn--ws-zmca.adj.st^
