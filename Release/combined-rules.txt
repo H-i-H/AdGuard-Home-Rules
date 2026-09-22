@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-09-21 07:49:44
+! Generated: 2026-09-22 08:34:01
 ! Total categories: 3
-! Total rules (before dedup): 738989
-! Total unique rules: 695702
+! Total rules (before dedup): 738992
+! Total unique rules: 695705
 ! Duplicates removed: 43287
 !
 ! Coverage: Ads + Malware + Adult
@@ -55042,6 +55042,7 @@
 ||adpop-1.com^
 ||adpopcon.com^
 ||adport.io^
+||adport.net^
 ||adpostback.headlines.pw^
 ||adpostmalta.com^
 ||adpozitif.com^
@@ -98997,6 +98998,7 @@
 ||bidbroid.affise.com^
 ||bidc.mndtrk.com^
 ||bidc.solocpm.com^
+||bidcliq.com^
 ||bidclix.com^
 ||bidclix.net^
 ||bidder-ap-northeast-1.prod.justpremium.com^
@@ -360607,8 +360609,10 @@
 ||prebid2.cootlogix.com^
 ||prebidaws.cootlogix.com^
 ||prebidbuilder.snigelweb.com^
+||prebidcache.com^
 ||prebidgcp.cootlogix.com^
 ||prebidgcp1.cootlogix.com^
+||prebidly.com^
 ||prebidmanager.com^
 ||prebidnp.cootlogix.com^
 ||prebids.adnsx.com^
@@ -586924,7 +586928,6 @@
 ||zzzzz.woodprofit.hop.clickbank.net^
 ||zzzzz.writing777.hop.clickbank.net^
 ||zzzzzz.zeotap.com^
-||vdsina.vg^
 ||vk.com.clubs.5tv5.ru^
 ||0.ackzany.com^
 ||0.athwartwhoafat.com^
