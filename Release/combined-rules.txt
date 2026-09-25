@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-09-24 08:13:00
+! Generated: 2026-09-25 08:14:45
 ! Total categories: 3
-! Total rules (before dedup): 739294
-! Total unique rules: 696013
+! Total rules (before dedup): 739295
+! Total unique rules: 696014
 ! Duplicates removed: 43281
 !
 ! Coverage: Ads + Malware + Adult
@@ -418745,6 +418745,7 @@
 ||spinexitems16.dnset.com^
 ||spinfflucky.000webhostapp.com^
 ||spinfo.wps.cn^
+||spinforluck.blog^
 ||spinfrost16.dnset.com^
 ||spingsangi.site^
 ||spinhuis.org^
