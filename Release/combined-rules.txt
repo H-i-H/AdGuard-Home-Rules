@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-09-26 08:21:10
+! Generated: 2026-09-27 08:10:15
 ! Total categories: 3
-! Total rules (before dedup): 738796
-! Total unique rules: 695511
+! Total rules (before dedup): 738795
+! Total unique rules: 695510
 ! Duplicates removed: 43285
 !
 ! Coverage: Ads + Malware + Adult
@@ -586932,7 +586932,6 @@
 ||zzzzz.woodprofit.hop.clickbank.net^
 ||zzzzz.writing777.hop.clickbank.net^
 ||zzzzzz.zeotap.com^
-||communication-hub.vg^
 ||vk.com.clubs.5tv5.ru^
 ||0.ackzany.com^
 ||0.athwartwhoafat.com^
