@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-09-29 09:26:54
+! Generated: 2026-09-30 09:01:04
 ! Total categories: 3
-! Total rules (before dedup): 737713
-! Total unique rules: 694431
+! Total rules (before dedup): 737714
+! Total unique rules: 694432
 ! Duplicates removed: 43282
 !
 ! Coverage: Ads + Malware + Adult
@@ -578355,6 +578355,7 @@
 ||ydwjfuhuiesrhp.com^
 ||ydwn.adj.st^
 ||ydxkao592.lat^
+||ydxlcw.cn^
 ||ydyxtg.tttxf.com^
 ||ydzakntxe.com^
 ||ydziox.cn^
