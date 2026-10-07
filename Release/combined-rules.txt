@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-10-06 10:03:13
+! Generated: 2026-10-07 09:12:37
 ! Total categories: 3
-! Total rules (before dedup): 734377
-! Total unique rules: 691102
+! Total rules (before dedup): 734380
+! Total unique rules: 691105
 ! Duplicates removed: 43275
 !
 ! Coverage: Ads + Malware + Adult
@@ -84448,6 +84448,7 @@
 ||auctioneer1.50million.club^
 ||auctioneer2.50million.club^
 ||auctionnudge.com^
+||auctionr.org^
 ||auctions.affex.org^
 ||auctions.joystickinteractive.com^
 ||auctionsbywolf.com^
@@ -142884,6 +142885,7 @@
 ||crdefault.link^
 ||crdefault1.com^
 ||crdefault2.com^
+||crdema.com^
 ||crdp-strsbourg.fr^
 ||crdpgcollege.co.in^
 ||crdpmaule.cl^
@@ -154065,6 +154067,7 @@
 ||deluxewatch.su^
 ||delvarionestivano.icu^
 ||delve24.5gbfree.com^
+||delvefencescrewdriver.com^
 ||delwuinfoservices.com^
 ||dely-d.openx.net^
 ||delyth.clickfunnels.com^
