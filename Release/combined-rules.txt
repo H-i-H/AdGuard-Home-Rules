@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-10-08 09:32:55
+! Generated: 2026-10-09 09:43:19
 ! Total categories: 3
-! Total rules (before dedup): 734702
-! Total unique rules: 691448
+! Total rules (before dedup): 734703
+! Total unique rules: 691449
 ! Duplicates removed: 43254
 !
 ! Coverage: Ads + Malware + Adult
@@ -58261,6 +58261,7 @@
 ||adscompute-d.openx.net^
 ||adsconvertz.click^
 ||adscore.clickcease.com^
+||adscoreip.com^
 ||adscorelab.shop^
 ||adscorp.win^
 ||adscouch.affise.com^
@@ -72428,6 +72429,7 @@
 ||anonymous-net.com^
 ||anonymous-news.onesignal.com^
 ||anonymous.affex.org^
+||anonymous.qub.ca^
 ||anonymous.s11.exacttarget.com^
 ||anonymous.s5.exacttarget.com^
 ||anonymous.s50.exacttarget.com^
@@ -586992,7 +586994,6 @@
 ||zzzzz.woodprofit.hop.clickbank.net^
 ||zzzzz.writing777.hop.clickbank.net^
 ||zzzzzz.zeotap.com^
-||geo-foundation.vg^
 ||vk.com.clubs.5tv5.ru^
 ||0.ackzany.com^
 ||0.athwartwhoafat.com^
