@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-10-09 09:43:19
+! Generated: 2026-10-10 09:29:26
 ! Total categories: 3
-! Total rules (before dedup): 734703
-! Total unique rules: 691449
+! Total rules (before dedup): 734706
+! Total unique rules: 691452
 ! Duplicates removed: 43254
 !
 ! Coverage: Ads + Malware + Adult
@@ -351238,6 +351238,7 @@
 ||phiambczsg.com^
 ||phidels.com^
 ||phiesi.stroeerdp.de^
+||phiglerdail.net^
 ||phigolf.info^
 ||phigvelers.com^
 ||phihungmobile.net^
@@ -481878,6 +481879,7 @@
 ||w1eij0cg.emltrk.com^
 ||w1eucl9n.emltrk.com^
 ||w1eylymzdxjb07rfe93ttfuw0bg3k4ki.edns.ip-api.com^
+||w1fky.com^
 ||w1glv.com^
 ||w1jesu6.package12.com^
 ||w1jobs-gb.w1jobs.com^
@@ -497766,6 +497768,7 @@
 ||wvax6iac.emltrk.com^
 ||wvbdtcyhgwy.com^
 ||wvcdn.cn^
+||wvdme.com^
 ||wveg79ll.emltrk.com^
 ||wveqoz7q.emltrk.com^
 ||wvesvozyuoxg.com^
