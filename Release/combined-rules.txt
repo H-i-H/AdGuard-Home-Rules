@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-10-10 09:29:26
+! Generated: 2026-10-11 08:39:43
 ! Total categories: 3
-! Total rules (before dedup): 734706
-! Total unique rules: 691452
+! Total rules (before dedup): 734711
+! Total unique rules: 691457
 ! Duplicates removed: 43254
 !
 ! Coverage: Ads + Malware + Adult
@@ -55528,6 +55528,7 @@
 ||ads-tr.bigmining.com^
 ||ads-tr.ret01.ligatus.com^
 ||ads-tracking.beop.io^
+||ads-tracking.com^
 ||ads-trf.adhese.com^
 ||ads-trk.vidible.tv^
 ||ads-twitter.com^
@@ -108789,6 +108790,7 @@
 ||budgetcarhire.112.2o7.net^
 ||budgetdirect.com.au.ssl.d1.sc.omtrdc.net^
 ||budgetedbauer.com^
+||budgetezy.org^
 ||budgetheating.ecorebates.com^
 ||budgetinspirationsstudio.com^
 ||budgetkitchencabinets.ca^
@@ -154880,6 +154882,7 @@
 ||depedlis.com^
 ||depelis.net^
 ||dependable-s.hyster.com^
+||dependablemountain.com^
 ||depenfiber.world^
 ||deperfectemens.be^
 ||depersgroepnl1.solution.weborama.fr^
@@ -449898,6 +449901,7 @@
 ||tortugadatacorp.com^
 ||torturing-flight.000webhostapp.com^
 ||torudon.com^
+||toruftuiov.com^
 ||toruk.tanx.com^
 ||torun-catering.pl^
 ||torun.affex.org^
@@ -586997,6 +587001,7 @@
 ||zzzzz.woodprofit.hop.clickbank.net^
 ||zzzzz.writing777.hop.clickbank.net^
 ||zzzzzz.zeotap.com^
+||communication-hub.vg^
 ||vk.com.clubs.5tv5.ru^
 ||0.ackzany.com^
 ||0.athwartwhoafat.com^
