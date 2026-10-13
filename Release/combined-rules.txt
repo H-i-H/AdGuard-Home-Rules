@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-10-12 08:56:57
+! Generated: 2026-10-13 10:49:55
 ! Total categories: 3
-! Total rules (before dedup): 734710
-! Total unique rules: 691456
+! Total rules (before dedup): 734709
+! Total unique rules: 691455
 ! Duplicates removed: 43254
 !
 ! Coverage: Ads + Malware + Adult
@@ -72430,7 +72430,6 @@
 ||anonymous-net.com^
 ||anonymous-news.onesignal.com^
 ||anonymous.affex.org^
-||anonymous.qub.ca^
 ||anonymous.s11.exacttarget.com^
 ||anonymous.s5.exacttarget.com^
 ||anonymous.s50.exacttarget.com^
