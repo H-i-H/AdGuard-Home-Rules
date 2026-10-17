@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-10-16 08:03:12
+! Generated: 2026-10-17 08:08:41
 ! Total categories: 3
-! Total rules (before dedup): 735891
-! Total unique rules: 692854
+! Total rules (before dedup): 735892
+! Total unique rules: 692855
 ! Duplicates removed: 43037
 !
 ! Coverage: Ads + Malware + Adult
@@ -310095,6 +310095,7 @@
 ||mtrs.fluorconstructors.com^
 ||mtrs.fluoruniversity.com^
 ||mtrs.virtainc.com^
+||mtrtb.com^
 ||mtrx.go.sonobi.com^
 ||mtry.club^
 ||mts-ws.rueducommerce.fr^
