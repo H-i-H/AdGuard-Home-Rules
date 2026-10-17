@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-10-17 08:08:41
+! Generated: 2026-10-18 07:44:21
 ! Total categories: 3
-! Total rules (before dedup): 735892
-! Total unique rules: 692855
+! Total rules (before dedup): 735893
+! Total unique rules: 692856
 ! Duplicates removed: 43037
 !
 ! Coverage: Ads + Malware + Adult
@@ -446971,6 +446971,7 @@
 ||tippyandfriends.com^
 ||tips.affex.org^
 ||tips.berita.usm.ac.id^
+||tips.delt.io^
 ||tips.logger.baofeng.com^
 ||tips.oewabox.at^
 ||tips10life.com^
