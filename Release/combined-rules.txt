@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-10-19 07:54:09
+! Generated: 2026-10-20 08:54:31
 ! Total categories: 3
-! Total rules (before dedup): 733757
-! Total unique rules: 690722
+! Total rules (before dedup): 733759
+! Total unique rules: 690724
 ! Duplicates removed: 43035
 !
 ! Coverage: Ads + Malware + Adult
@@ -445741,6 +445741,8 @@
 ||thputr.pro^
 ||thqwivyhdpoem.com^
 ||thr.cloud.kargo.com^
+||thrad.ai^
+||thrads.ai^
 ||thrawzigza.site^
 ||threaded.info^
 ||threadless.attn.tv^
