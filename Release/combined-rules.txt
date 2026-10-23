@@ -1,9 +1,9 @@
 ! Adguard Home Private Rules Bundle
 ! =================================
-! Generated: 2026-10-22 08:24:51
+! Generated: 2026-10-23 08:22:58
 ! Total categories: 3
-! Total rules (before dedup): 733759
-! Total unique rules: 690724
+! Total rules (before dedup): 733760
+! Total unique rules: 690725
 ! Duplicates removed: 43035
 !
 ! Coverage: Ads + Malware + Adult
@@ -376961,6 +376961,7 @@
 ||redbullmediahouse.hb.omtrdc.net^
 ||redcapeco.clickfunnels.com^
 ||redcapplumbing.rtrk.com^
+||redcapsfillip.com^
 ||redcarpet.kargo.com^
 ||redcarpet.vn^
 ||redchillicrackers.com^
