@@ -9,6 +9,12 @@
 **使用方法**
 #### 直接使用：AdGuard Home 管理面板 → 过滤器 → DNS 黑名单/白名单中添加规则订阅：
 
+##### 最终订阅地址（广告内容拦截+恶意内容拦截+成人内容拦截-白名单）→
+```
+https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-rules.txt
+```
+
+````
 ##### 广告内容拦截→
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/ads-blacklist.txt
@@ -21,14 +27,11 @@ https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/malware-
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/adult-blacklist.txt
 ```
-##### 合并黑名单（广告内容拦截+恶意内容拦截+成人内容拦截）→
-```
-https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-rules.txt
-```
-##### 白名单→
+##### 自维护白名单→
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-whitelist.txt
 ```
+````
 
 #### 文件目录说明
 ```
@@ -37,15 +40,12 @@ AdGuard-Home-Rules/
 │   └── auto-update.yml          # 自动更新规则主流程
 ├── Release/
 │   ├── combined-whitelist      #白名单规则集，如发现新增的，可直接添加在此文件
-│   └── combined-rules.txt       # 最终合并黑名单规则集
-│   └── special-rules.txt       # 补充黑名单规则集（非通用格式）
+│   └── combined-rules.txt       # 最终合并黑名单规则集（添加此黑名单即可）
+│   └── special-rules.txt       # 补充黑名单规则集（浏览器插件专用）
 ├── filters/                      # 生成的过滤规则文件
-│   ├── ad-blacklist.txt         # 广告黑名单
+│   ├── ads-blacklist.txt         # 广告黑名单
 │   ├── malware-blacklist.txt    # 恶意软件黑名单
 │   ├── adult-blacklist.txt       # 成人内容黑名单
-│   ├── ad-whitelist.txt         # 广告白名单
-│   ├── malware-whitelist.txt    # 恶意软件白名单
-│   └── adult-whitelist.txt      # 成人内容白名单
 ├── scripts/                      # 核心处理脚本
 │   ├── fetch_upstream.py        # 上游规则获取
 │   ├── merge_rules.py            # 规则合并处理
