@@ -7,7 +7,9 @@
 - **轻量精简**：基于高质量规则源，避免臃肿
 
 **使用方法**
-#### 直接使用：在AdGuard Home中添加规则订阅
+#### 直接使用：AdGuard Home 管理面板 → 过滤器 → DNS 黑名单/白名单中添加规则订阅：
+
+```text
 广告内容拦截
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/ad-blacklist.txt
@@ -63,24 +65,40 @@ AdGuard-Home-Rules/
 
 # 黑名单
 📌 ADS
-- https://raw.githubusercontent.com/ppfeufer/adguard-filter-list/refs/heads/master/blocklist
-- https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt
-- https://easylist-downloads.adblockplus.org/easylist.txt
-- https://easylist-downloads.adblockplus.org/easylistchina.txt
 - https://anti-ad.net/easylist.txt
-- https://raw.githubusercontent.com/chinanjh/hosts/refs/heads/master/fuck%20youtube.txt
 - https://raw.githubusercontent.com/BlueSkyXN/AdGuardHomeRules/master/all.txt
+- https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/AWAvenue-Ads-Rule.txt
+- https://raw.githubusercontent.com/8680/GOODBYEADS/master/data/rules/dns.txt
+- https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt
+- https://raw.githubusercontent.com/ppfeufer/adguard-filter-list/refs/heads/master/blocklist
+- https://raw.githubusercontent.com/KiryChanOfficial/AdFilterForAdGuard/refs/heads/main/KR_DNS_Filter.txt
 - https://raw.githubusercontent.com/damengzhu/banad/main/jiekouAD.txt
 - https://cdn.jsdelivr.net/gh/banbendalao/ADgk@master/ADgk.txt
-- https://raw.githubusercontent.com/lingeringsound/adblock_auto/refs/heads/main/Rules/adblock_auto.txt
 - https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/Ad-rules.txt
 - https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/AdGuard-fanqie.txt
-- https://raw.githubusercontent.com/KiryChanOfficial/AdFilterForAdGuard/refs/heads/main/KR_DNS_Filter.txt'
+- https://raw.githubusercontent.com/lingeringsound/adblock_auto/refs/heads/main/Rules/adblock_auto.txt
+- https://raw.githubusercontent.com/chinanjh/hosts/refs/heads/master/fuck%20youtube.txt
+- https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
+- https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt
+- https://big.oisd.nl
+- https://badmojr.github.io/1Hosts/Lite/hosts.txt
+- https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt
+- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+- https://adaway.org/hosts.txt
+- https://someonewhocares.org/hosts/zero/hosts
+- https://easylist-downloads.adblockplus.org/easylist.txt
+- https://easylist-downloads.adblockplus.org/easylistchina.txt
+- https://easylist-downloads.adblockplus.org/easyprivacy.txt
+- https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt
+- https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
+- https://raw.githubusercontent.com/blocklistproject/Lists/main/ads.txt
+
 
 📌 malware
-- https://malware-filter.pages.dev/urlhaus-filter-online.txt
-- https://malware-filter.pages.dev/phishing-filter.txt
+- https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-agh-online.txt
+- https://malware-filter.gitlab.io/malware-filter/phishing-filter-agh.txt
 
 📌 adult
 - https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts
+- https://nsfw.oisd.nl
 ```
