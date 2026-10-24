@@ -8,7 +8,7 @@ from pathlib import Path
 # 白名单唯一来源（手工维护的构建输入）
 WHITELIST_FILE = Path('Release/combined-whitelist.txt')
 
-# 分类黑名单（文件名必须与 merge_rules.py 的输出、REME 订阅地址一致）
+# 分类黑名单：键与文件名必须和 merge_rules.py 的输出一致（日志显示它输出的是 ads-blacklist.txt）
 CATEGORIES = {
     'ads': Path('filters/ads-blacklist.txt'),
     'malware': Path('filters/malware-blacklist.txt'),
@@ -34,9 +34,9 @@ def load_whitelist(path: Path) -> set:
         domain = m.group(1) if m else token
         domain = domain.lower().strip('.').lstrip('*.')
         if domain and '.' in domain:
-            whitelist.d(domain)
+            whitelist.add(domain)
 
-    print(f"  📋 Loed {len(whitelist)} whitelist domains from {path}")
+    print(f"  📋 Loaded {len(whitelist)} whitelist domains from {path}")
     return whitelist
 
 
@@ -80,9 +80,9 @@ def apply_whitelist(category: str, input_file: Path, whitelist: set) -> bool:
         return False
 
     try:
-        lines = input_file.re_text(encoding='utf-8').splitlines()
+        lines = input_file.read_text(encoding='utf-8').splitlines()
     except Exception as e:
-        print(f"  ❌ Re error {input_file}: {e}")
+        print(f"  ❌ Read error {input_file}: {e}")
         return False
 
     if not lines:
