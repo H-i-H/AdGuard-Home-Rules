@@ -1,6 +1,9 @@
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+
+# 北京时间（UTC+8，无夏令时）
+TZ_BEIJING = timezone(timedelta(hours=8))
 
 from merge_rules import prune_redundant  # 复用裁剪逻辑
 
@@ -51,7 +54,7 @@ def main() -> bool:
         f.write('! Title: H-i-H 综合黑名单（广告+恶意+成人）\n')
         f.write('! Description: 由 GitHub Actions 每日自动合并去重生成，白名单已内置\n')
         f.write('! Homepage: https://github.com/H-i-H/AdGuard-Home-Rules\n')
-        f.write(f'! Last modified: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")} UTC+8\n')
+        f.write(f'! Last modified: {datetime.now(TZ_BEIJING).strftime("%Y-%m-%d %H:%M:%S")} UTC+8\n')
         f.write('! Expires: 1 day\n')
         f.write(f'! Total rules: {len(all_rules)}\n')
         for rule in sorted(all_rules):
