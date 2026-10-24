@@ -1,9 +1,11 @@
+import os
 import re
 import sys
+from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
-# 与 fetch_upstream.py 的 SOURCES 键、README 订阅地址(filters/{cat}-blacklist.txt)保持一致
+# 必须与 fetch_upstream.py 的 SOURCES 键、README 订阅地址一致
 CATEGORIES = ['ads', 'malware', 'adult']
 
 RE_HOSTS = re.compile(r'^(?:0\.0\.0\.0|127\.0\.0\.1|::)\s+(\S+)', re.I)
@@ -13,6 +15,12 @@ RE_VALID = re.compile(r'^[^\s/^$*]+$')
 SINKHOLE = {'0.0.0.0', '127.0.0.1', '::', '::1', 'localhost', 'broadcasthost',
             'localhost.localdomain', 'local', 'ip6-localhost'}
 
+CATEGORY_TITLES = {
+    'ads': 'H-i-H 广告黑名单',
+    'malware': 'H-i-H 恶意网站黑名单',
+    'adult': 'H-i-H 成人内容黑名单',
+}
+
 
 def _norm(candidate: str) -> Optional[str]:
     """规范化并校验；无效返回 None"""
@@ -21,7 +29,7 @@ def _norm(candidate: str) -> Optional[str]:
         d = d[2:]
     if not d or d in SINKHOLE:
         return None
-    if ':' in d:                      # IPv6 字面量
+    if ':' in d:
         return d if RE_IPV6.match(d) and d.count(':') >= 2 else None
     if '.' not in d:
         return None
@@ -29,11 +37,8 @@ def _norm(candidate: str) -> Optional[str]:
 
 
 def extract_from_line(line: str) -> Optional[str]:
-    """单行提取域名/IP。支持：
-    - hosts:      0.0.0.0 example.com
-    - adblock:    ||example.com^  ||example.com^$mod  ||1.2.3.4^  |https://example.com/path^
-    - 纯域名:      example.com  *.example.com
-    跳过：注释(#)、! 元信息、@@ 放行、/正则/、元素隐藏(##)
+    """单行提取域名/IP。支持 hosts、||domain^、||domain^$mod、||IP^、|https://domain/path^、纯域名。
+    跳过注释、@@ 放行、/正则/、元素隐藏(##)。
     """
     s = line.strip()
     if not s or s[0] in '!#/[<' or s.startswith('@@') or '##' in s:
@@ -46,10 +51,23 @@ def extract_from_line(line: str) -> Optional[str]:
         cand = s.split()[0].lstrip('|')
         cand = re.sub(r'^https?://', '', cand)
         cand = cand.split('^')[0].split('$')[0].split('/')[0]
-        if cand.count(':') == 1:      # domain:port；IPv6（多冒号）保留
+        if cand.count(':') == 1:
             cand = cand.split(':')[0]
 
     return _norm(cand)
+
+
+def prune_redundant(domains: set) -> set:
+    """父域已在集合中时，子域规则冗余（||父域^ 天然覆盖子域），予以删除"""
+    out = set()
+    for d in domains:
+        if '.' not in d or d.replace('.', '').isdigit():
+            out.add(d)
+            continue
+        parts = d.split('.')
+        if not any('.'.join(parts[i:]) in domains for i in range(1, len(parts))):
+            out.add(d)
+    return out
 
 
 def detect_file_type(lines) -> str:
@@ -103,6 +121,10 @@ def merge_category_rules(category: str) -> bool:
         print(f"  ❌ No rules extracted for {category}")
         return False
 
+    before = len(all_rules)
+    all_rules = prune_redundant(all_rules)
+    print(f"  ✂️  Pruned redundant subdomains: {before} -> {len(all_rules)}")
+
     output_dir = Path('filters')
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / f'{category}-blacklist.txt'
@@ -110,11 +132,13 @@ def merge_category_rules(category: str) -> bool:
     try:
         tmp_file = output_file.with_name(output_file.name + '.tmp')
         with open(tmp_file, 'w', encoding='utf-8') as f:
-            f.write(f"! Generated from {len(files)} sources\n")
+            f.write(f"! Title: {CATEGORY_TITLES.get(category, category)}\n")
+            f.write(f"! Source files: {len(files)}\n")
             f.write(f"! Total unique rules: {len(all_rules)}\n")
+            f.write(f"! Last modified: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} UTC+8\n")
+            f.write(f"! Homepage: https://github.com/H-i-H/AdGuard-Home-Rules\n")
             for rule in sorted(all_rules):
                 f.write(f"||{rule}^\n")
-        import os
         os.replace(tmp_file, output_file)
         print(f"  💾 {category}: {len(all_rules)} unique rules saved to {output_file}")
         return True
