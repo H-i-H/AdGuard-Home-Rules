@@ -9,28 +9,26 @@
 **使用方法**
 #### 直接使用：AdGuard Home 管理面板 → 过滤器 → DNS 黑名单/白名单中添加规则订阅：
 
-````text
-广告内容拦截
+# 广告内容拦截
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/ad-blacklist.txt
 ```
-恶意内容拦截
+# 恶意内容拦截
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/malware-blacklist.txt
 ```
-成人内容拦截
+# 成人内容拦截
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/adult-blacklist.txt
 ```
-合并黑名单（广告内容拦截+恶意内容拦截+成人内容拦截）
+# 合并黑名单（广告内容拦截+恶意内容拦截+成人内容拦截）
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-rules.txt
 ```
-白名单
+# 白名单
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-whitelist.txt
 ```
-````
 
 #### 文件目录说明
 ```
