@@ -8,17 +8,25 @@
 
 **使用方法**
 #### 直接使用：在AdGuard Home中添加规则订阅
-黑名单
+广告内容拦截
 ```
-https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/combined-rules.txt
+https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/ad-blacklist.txt
 ```
-黑名单（非通用格式）
+恶意内容拦截
 ```
-https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/special-rules.txt
+https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/malware-blacklist.txt
 ```
-白名单
+成人内容拦截
 ```
-https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/combined-whitelist.txt
+https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/adult-blacklist.txt
+```
+# 合并黑名单（广告内容拦截+恶意内容拦截+成人内容拦截）
+```
+https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-rules.txt
+```
+# 白名单
+```
+https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-whitelist.txt
 ```
 
 #### 文件目录说明
