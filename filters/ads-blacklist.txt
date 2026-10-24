@@ -1,7 +1,7 @@
 ! Title: H-i-H 广告黑名单
 ! Source files: 24
-! Total unique rules: 2588283
-! Last modified: 2026-10-24 06:18:24 UTC+8
+! Total unique rules: 2588292
+! Last modified: 2026-10-24 14:51:29 UTC+8
 ! Homepage: https://github.com/H-i-H/AdGuard-Home-Rules
 ||%2fevent.gif%3f^
 ||%2fo.gif&^
@@ -91650,6 +91650,7 @@
 ||aansem-jibunbany-co-jp.com^
 ||aantai-amende.com^
 ||aantai.fr^
+||aanvqmyqaojwu.website^
 ||aanvraag-nieuwe-pas-r.cfd^
 ||aanvragen-dentifier.info^
 ||aanvragen-nieuwe-pas-r.cfd^
@@ -425321,6 +425322,7 @@
 ||brmratenr.shop^
 ||brmrfxnpajqqx.site^
 ||brmrwnopuowq.bid^
+||brmsiboiewolm.space^
 ||brmtr.org^
 ||brmuvif.eccocar.com^
 ||brmuvon.eccocar.com^
@@ -516118,6 +516120,7 @@
 ||cdn.adbert.info^
 ||cdn.addscliv.com^
 ||cdn.addsnsfw.com^
+||cdn.adelivery.se^
 ||cdn.adimo.co^
 ||cdn.adkreator.com^
 ||cdn.admetrics.media^
@@ -654573,6 +654576,7 @@
 ||crimsonwealths.com^
 ||crimsonx.shop^
 ||crimtan.com^
+||crimumbowosith.qpon^
 ||crinalwaywode.help^
 ||crinavolenthas.com^
 ||crinberg.pro^
@@ -823027,6 +823031,7 @@
 ||dzw10jpcgj03fckc.com^
 ||dzwagxju.bid^
 ||dzwcn.com^
+||dzwcpfwwkcexd.space^
 ||dzwftr.top^
 ||dzwiekowe.com^
 ||dzwjy.questoutdoors.com.au^
@@ -1040303,6 +1040308,7 @@
 ||g4w5c.com^
 ||g4w7r.com^
 ||g4whisperermedia.com^
+||g4xtww15iwrkwkkyj.rest^
 ||g4yic-kiaaa-aaaab-qbwgq-cai.icp0.io^
 ||g4yk4cyyw.com^
 ||g4z8712756.com^
@@ -1372234,6 +1372240,7 @@
 ||kwizzu.com^
 ||kwjbonukras.space^
 ||kwjfejtnfuxlj.space^
+||kwjffluyggjpn.website^
 ||kwjglwybtlhm.com^
 ||kwjiszgbegwuu.site^
 ||kwjlveezlcgac.online^
@@ -1883285,6 +1883292,7 @@
 ||qzbzd.top^
 ||qzcpotzdkfyn.com^
 ||qzcs94ct9pu-k899.top^
+||qzcwqxjkuijaq.website^
 ||qzcxtm.mango.com^
 ||qzczn.vip^
 ||qzd20.casino^
@@ -2562561,6 +2562569,7 @@
 ||yyhbt.cn^
 ||yyhdemcmse1.com^
 ||yyhjwjkzgfucr.website^
+||yyhkprhqenoan.space^
 ||yyhlnavqvcjuiq.bid^
 ||yyhnt.cn^
 ||yyhpqb.isawitfirst.com^

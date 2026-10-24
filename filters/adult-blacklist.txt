@@ -1,7 +1,7 @@
 ! Title: H-i-H 成人内容黑名单
 ! Source files: 2
 ! Total unique rules: 539979
-! Last modified: 2026-10-24 06:18:28 UTC+8
+! Last modified: 2026-10-24 14:51:32 UTC+8
 ! Homepage: https://github.com/H-i-H/AdGuard-Home-Rules
 ||0-0.asia^
 ||0-3353djb.garden^
