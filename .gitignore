@@ -9,10 +9,12 @@ __pycache__/
 .env
 .env.local
 
+# 上游规则缓存（不入库）
+sources/
+
 # 临时文件
 *.tmp
 *.log
-sources/*.tmp
 
 # IDE
 .vscode/
@@ -22,7 +24,3 @@ sources/*.tmp
 
 # macOS
 .DS_Store
-
-sources/
-filters/
-Release/combined-rules.txt
