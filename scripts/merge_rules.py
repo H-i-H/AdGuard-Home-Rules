@@ -1,173 +1,148 @@
-import os
 import re
+import sys
 from pathlib import Path
-from typing import Set, Optional
+from typing import Optional
 
-def is_valid_domain(domain: str) -> bool:
-    """检查是否为有效域名（更宽松）"""
-    if not domain or '.' not in domain:
-        return False
+# 与 fetch_upstream.py 的 SOURCES 键、README 订阅地址(filters/{cat}-blacklist.txt)保持一致
+CATEGORIES = ['ads', 'malware', 'adult']
 
-    # 允许字母、数字、连字符、下划线（某些内部系统使用）
-    # 不强制要求顶级域名长度（支持 .co.uk 等）
-    pattern = r'^[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*$'
-    return re.match(pattern, domain) is not None
+RE_HOSTS = re.compile(r'^(?:0\.0\.0\.0|127\.0\.0\.1|::)\s+(\S+)', re.I)
+RE_IPV4 = re.compile(r'^\d{1,3}(?:\.\d{1,3}){3}$')
+RE_IPV6 = re.compile(r'^[0-9a-f:]+$')
+RE_VALID = re.compile(r'^[^\s/^$*]+$')
+SINKHOLE = {'0.0.0.0', '127.0.0.1', '::', '::1', 'localhost', 'broadcasthost',
+            'localhost.localdomain', 'local', 'ip6-localhost'}
 
-def process_hosts_file(filepath: Path) -> Set[str]:
-    """处理 hosts 文件格式：提取 127.0.0.1 或 0.0.0.0 后的域名"""
-    rules = set()
-    try:
-        for line in filepath.read_text(encoding='utf-8', errors='ignore').splitlines():
-            line = line.strip()
-            if not line or line.startswith(('#', '!')):
-                continue
 
-            parts = line.split()
-            if len(parts) >= 2 and parts[0] in ('127.0.0.1', '0.0.0.0'):
-                domain = parts[1].lower()
-                if is_valid_domain(domain):
-                    rules.add(domain)
-    except Exception as e:
-        print(f"  ❌ Error processing {filepath}: {e}")
-    return rules
+def _norm(candidate: str) -> Optional[str]:
+    """规范化并校验；无效返回 None"""
+    d = candidate.lower().strip().strip('.')
+    if d.startswith('*.'):
+        d = d[2:]
+    if not d or d in SINKHOLE:
+        return None
+    if ':' in d:                      # IPv6 字面量
+        return d if RE_IPV6.match(d) and d.count(':') >= 2 else None
+    if '.' not in d:
+        return None
+    return d if RE_VALID.match(d) else None
 
-def process_adguard_file(filepath: Path) -> Set[str]:
-    """处理 AdGuard 规则文件"""
-    rules = set()
-    try:
-        for line in filepath.read_text(encoding='utf-8', errors='ignore').splitlines():
-            line = line.strip()
-            if not line or line.startswith(('!', '[')):
-                continue
 
-            # 支持格式: ||domain^ 和 ||domain^$third-party
-            domain = None
-            if line.startswith('||'):
-                # 移除选项部分
-                rule_part = line.split('^$')[0] if '^$' in line else line
-                domain = rule_part[2:].strip()
+def extract_from_line(line: str) -> Optional[str]:
+    """单行提取域名/IP。支持：
+    - hosts:      0.0.0.0 example.com
+    - adblock:    ||example.com^  ||example.com^$mod  ||1.2.3.4^  |https://example.com/path^
+    - 纯域名:      example.com  *.example.com
+    跳过：注释(#)、! 元信息、@@ 放行、/正则/、元素隐藏(##)
+    """
+    s = line.strip()
+    if not s or s[0] in '!#/[<' or s.startswith('@@') or '##' in s:
+        return None
 
-            if domain and is_valid_domain(domain):
-                rules.add(domain.lower())
-    except Exception as e:
-        print(f"  ❌ Error processing {filepath}: {e}")
-    return rules
+    m = RE_HOSTS.match(s)
+    if m:
+        cand = m.group(1)
+    else:
+        cand = s.split()[0].lstrip('|')
+        cand = re.sub(r'^https?://', '', cand)
+        cand = cand.split('^')[0].split('$')[0].split('/')[0]
+        if cand.count(':') == 1:      # domain:port；IPv6（多冒号）保留
+            cand = cand.split(':')[0]
 
-def detect_file_type(filepath: Path) -> str:
-    """检测文件类型（更可靠）"""
-    try:
-        content = filepath.read_text(encoding='utf-8', errors='ignore')
-        lines = content.splitlines()
+    return _norm(cand)
 
-        # 检查前10行非空非注释行
-        sample_lines = [
-            line.strip() for line in lines[:20]
-            if line.strip() and not line.startswith(('!', '#', '['))
-        ]
 
-        # 统计特征
-        has_adguard_format = any(
-            line.startswith('||') and ('^' in line or '$' in line)
-            for line in sample_lines
-        )
-        has_hosts_format = any(
-            line.split()[0] in ('127.0.0.1', '0.0.0.0') if line.split() else False
-            for line in sample_lines
-        )
+def detect_file_type(lines) -> str:
+    """仅用于日志展示，不参与解析决策"""
+    sample = [s for s in (l.strip() for l in lines) if s and s[0] not in '!#['][:50]
+    if not sample:
+        return 'empty'
+    if sum(1 for s in sample if RE_HOSTS.match(s)) > len(sample) // 2:
+        return 'hosts'
+    if sum(1 for s in sample if s.startswith('||')) > len(sample) // 2:
+        return 'adguard'
+    return 'plain/mixed'
 
-        if has_adguard_format and not has_hosts_format:
-            return 'adguard'
-        elif has_hosts_format and not has_adguard_format:
-            return 'hosts'
-        else:
-            # 默认或混合格式：尝试两种
-            return 'mixed'
-    except:
-        return 'unknown'
 
 def merge_category_rules(category: str) -> bool:
     """合并特定分类的规则"""
     print(f"  🔄 Merging {category} rules...")
-    all_rules = set()
     source_dir = Path('sources') / category
 
     if not source_dir.exists():
         print(f"  ⚠️  No sources directory: {source_dir}")
         return False
 
-    files = list(source_dir.glob('*'))
+    files = [p for p in source_dir.glob('*') if p.is_file()]
     if not files:
         print(f"  ⚠️  No files in {source_dir}")
         return False
 
+    all_rules = set()
+
     for filepath in files:
-        if not filepath.is_file():
-            continue
-
         print(f"    📄 Processing: {filepath.name}")
-
-        # 检测文件类型
-        file_type = detect_file_type(filepath)
-        print(f"      Detected format: {file_type}")
-
-        if file_type == 'adguard':
-            rules = process_adguard_file(filepath)
-        elif file_type == 'hosts':
-            rules = process_hosts_file(filepath)
-        elif file_type == 'mixed':
-            # 尝试两种方式，合并结果
-            rules = process_adguard_file(filepath) | process_hosts_file(filepath)
-        else:
-            print(f"      ⚠️  Unknown format, skipping")
+        try:
+            lines = filepath.read_text(encoding='utf-8', errors='ignore').splitlines()
+        except Exception as e:
+            print(f"      ❌ Read error: {e}")
             continue
 
-        all_rules.update(rules)
-        print(f"      ➕ Extracted {len(rules)} rules")
+        print(f"      Detected format: {detect_file_type(lines)}")
+
+        extracted = {d for d in (extract_from_line(l) for l in lines) if d}
+        all_rules.update(extracted)
+        print(f"      ➕ Extracted {len(extracted)} rules")
+
+        if not extracted:
+            size = filepath.stat().st_size
+            sample = ' | '.join(l.strip() for l in lines[:5])[:300]
+            print(f"      ⚠️ 0 rules extracted ({size} bytes). Sample: {sample}")
 
     if not all_rules:
-        print(f"  ⚠️  No rules extracted for {category}")
+        print(f"  ❌ No rules extracted for {category}")
         return False
 
-    # 保存合并后的规则
     output_dir = Path('filters')
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / f'{category}-blacklist.txt'
 
     try:
-        # 保持原始格式：如果是从hosts转换，保留为||格式
-        # 但记录原始来源信息
-        with open(output_file, 'w', encoding='utf-8') as f:
+        tmp_file = output_file.with_name(output_file.name + '.tmp')
+        with open(tmp_file, 'w', encoding='utf-8') as f:
             f.write(f"! Generated from {len(files)} sources\n")
             f.write(f"! Total unique rules: {len(all_rules)}\n")
             for rule in sorted(all_rules):
                 f.write(f"||{rule}^\n")
-
+        import os
+        os.replace(tmp_file, output_file)
         print(f"  💾 {category}: {len(all_rules)} unique rules saved to {output_file}")
         return True
     except Exception as e:
         print(f"  ❌ Error saving {output_file}: {e}")
         return False
 
+
 def merge_all_categories(categories: Optional[list] = None) -> bool:
     """合并所有分类规则"""
     print("🔄 Starting rule merging process...")
 
     if categories is None:
-        categories = ['ads', 'malware', 'adult']
+        categories = CATEGORIES
 
-    # 验证sources目录
     if not Path('sources').exists():
         print("❌ 'sources' directory not found!")
         return False
 
     success_count = 0
-
     for category in categories:
         if merge_category_rules(category):
             success_count += 1
 
-    print(f"\n✅ Merging complete: {success_count}/{len(categories)} categories processed")
-    return success_count > 0
+    ok = success_count == len(categories)
+    print(f"\n{'✅' if ok else '❌'} Merging complete: {success_count}/{len(categories)} categories processed")
+    return ok
+
 
 if __name__ == '__main__':
-    merge_all_categories()
+    sys.exit(0 if merge_all_categories() else 1)
