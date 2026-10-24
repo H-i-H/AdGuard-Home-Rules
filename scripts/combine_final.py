@@ -15,7 +15,7 @@ CATEGORIES = {
 }
 WHITELIST_FILE = Path('Release/combined-whitelist.txt')
 WHITELIST_MARK = '! ===== 白名单（内置）====='
-OUTPUT = Path('filters/combined-rules.txt')
+OUTPUT = Path('Release/combined-rules.txt')
 
 
 def collect_rules() -> set:
