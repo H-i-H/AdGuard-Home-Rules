@@ -1,34 +1,48 @@
-import requests
-import os
+import sys
 import time
 from pathlib import Path
 from urllib.parse import urlparse
-from typing import Tuple, Optional
+from typing import Tuple
 
 # 上游规则源配置
 SOURCES = {
     'ads': [
-        'https://raw.githubusercontent.com/ppfeufer/adguard-filter-list/refs/heads/master/blocklist',
-        'https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt',
-        'https://easylist-downloads.adblockplus.org/easylist.txt',
-        'https://easylist-downloads.adblockplus.org/easylistchina.txt',
-        'https://raw.githubusercontent.com/chinanjh/hosts/refs/heads/master/fuck%20youtube.txt',
+        'https://anti-ad.net/easylist.txt',
         'https://raw.githubusercontent.com/BlueSkyXN/AdGuardHomeRules/master/all.txt',
+        'https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/AWAvenue-Ads-Rule.txt',
+        'https://raw.githubusercontent.com/8680/GOODBYEADS/master/data/rules/dns.txt',
+        'https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt',
+        'https://raw.githubusercontent.com/ppfeufer/adguard-filter-list/refs/heads/master/blocklist',
+        'https://raw.githubusercontent.com/KiryChanOfficial/AdFilterForAdGuard/refs/heads/main/KR_DNS_Filter.txt',
         'https://raw.githubusercontent.com/damengzhu/banad/main/jiekouAD.txt',
         'https://cdn.jsdelivr.net/gh/banbendalao/ADgk@master/ADgk.txt',
-        'https://raw.githubusercontent.com/lingeringsound/adblock_auto/refs/heads/main/Rules/adblock_auto.txt',
         'https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/Ad-rules.txt',
         'https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/AdGuard-fanqie.txt',
-        'https://raw.githubusercontent.com/KiryChanOfficial/AdFilterForAdGuard/refs/heads/main/KR_DNS_Filter.txt',
-        'https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/Supplement-rules.txt',
-        'https://anti-ad.net/easylist.txt'
+        'https://raw.githubusercontent.com/lingeringsound/adblock_auto/refs/heads/main/Rules/adblock_auto.txt',
+        'https://raw.githubusercontent.com/chinanjh/hosts/refs/heads/master/fuck%20youtube.txt',
+        'https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt',
+        'https://hagezi.github.io/pro.txt',
+        'https://big.oisd.nl',
+        'https://badmojr.github.io/1Hosts/Lite/hosts.txt',
+        'https://raw.githubusercontent.com/lightswitch05/hosts/master/ads-and-tracking-extended.txt',
+        'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts',
+        'https://adaway.org/hosts.txt',
+        'https://someonewhocares.org/hosts/zero/hosts',
+        'https://easylist-downloads.adblockplus.org/easylist.txt',
+        'https://easylist-downloads.adblockplus.org/easylistchina.txt',
+        'https://easylist-downloads.adblockplus.org/easyprivacy.txt',
+        'https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt',
+        'https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt',
+        'https://raw.githubusercontent.com/notracking/hosts-blocklists/master/adblock.txt',
+        'https://raw.githubusercontent.com/blocklistproject/Lists/main/ads.txt'
     ],
     'malware': [
-        'https://malware-filter.pages.dev/urlhaus-filter-online.txt',
-        'https://malware-filter.pages.dev/phishing-filter.txt'
+        'https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-agh-online.txt',
+        'https://malware-filter.gitlab.io/malware-filter/phishing-filter-agh.txt'
     ],
     'adult': [
-        'https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts'
+        'https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts',
+        'https://nsfw.oisd.nl'
     ]
 }
 
@@ -38,17 +52,22 @@ RETRY_DELAY = 2
 MAX_RETRIES = 3
 MIN_FILE_SIZE = 50  # 最小文件大小（字节）
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+RETRYABLE_STATUS = {429, 500, 502, 503, 504}
+
 
 def get_filename_from_url(url: str) -> str:
-    """从URL生成有意义的文件名"""
+    """从URL生成有意义且不冲突的文件名（保留最后两级路径）"""
     parsed = urlparse(url)
     domain = parsed.netloc.replace('www.', '')
     path_parts = [p for p in parsed.path.split('/') if p]
 
     if path_parts:
-        name = path_parts[-1].split('.')[0]  # 去掉扩展名
-        return f"{domain}_{name}.txt"
-    return f"{domain}.txt"
+        name = '_'.join(path_parts[-2:])   # 例：rules_dns.txt / main_dns.txt
+    else:
+        name = 'index'
+    name = name.replace('%20', '-')
+    return f"{domain}_{name}.txt"
+
 
 def download_with_retry(url: str, filepath: Path, max_retries: int = MAX_RETRIES) -> Tuple[bool, str]:
     """带重试机制的下载"""
@@ -56,10 +75,9 @@ def download_with_retry(url: str, filepath: Path, max_retries: int = MAX_RETRIES
         try:
             print(f"    📥 Attempt {attempt + 1}/{max_retries}: {url}")
 
-            headers = {'User-Agent': USER_AGENT}
             response = requests.get(
                 url,
-                headers=headers,
+                headers={'User-Agent': USER_AGENT},
                 timeout=REQUEST_TIMEOUT,
                 allow_redirects=True,
                 verify=True
@@ -71,11 +89,11 @@ def download_with_retry(url: str, filepath: Path, max_retries: int = MAX_RETRIES
             if len(content) < MIN_FILE_SIZE:
                 return False, f"File too small ({len(content)} bytes)"
 
-            # 检查是否返回HTML错误页面
+            # 检查是否返回HTML错误页面（仅靠内容嗅探）
             content_type = response.headers.get('content-type', '').lower()
-            if 'text/html' in content_type and 'filter' not in url:
-                # 检查内容是否包含HTML标签
-                if b'<html' in content[:100].lower() or b'<!doctype' in content[:100].lower():
+            if 'text/html' in content_type:
+                head = content[:200].lower()
+                if b'<html' in head or b'<!doctype' in head:
                     return False, "Response appears to be HTML error page"
 
             # 保存文件
@@ -92,12 +110,13 @@ def download_with_retry(url: str, filepath: Path, max_retries: int = MAX_RETRIES
             time.sleep(RETRY_DELAY)
 
         except requests.exceptions.HTTPError as e:
-            if e.response.status_code == 404:
-                return False, "404 Not Found"
-            elif e.response.status_code == 403:
-                return False, "403 Forbidden (check User-Agent)"
-            else:
-                return False, f"HTTP {e.response.status_code}"
+            code = e.response.status_code if e.response is not None else 'unknown'
+            if code in RETRYABLE_STATUS and attempt < max_retries - 1:
+                wait = RETRY_DELAY * (attempt + 1)
+                print(f"    ⚠️  HTTP {code}, retrying in {wait}s...")
+                time.sleep(wait)
+                continue
+            return False, f"HTTP {code}"
 
         except requests.exceptions.RequestException as e:
             if attempt == max_retries - 1:
@@ -107,18 +126,20 @@ def download_with_retry(url: str, filepath: Path, max_retries: int = MAX_RETRIES
 
     return False, "Unknown error"
 
+
 def fetch_all_sources():
-    """获取所有上游规则"""
+    """获取所有上游规则，返回总体统计与各分类成功数"""
     print("🔄 Fetching upstream rules...")
 
     stats = {'success': 0, 'failed': 0, 'skipped': 0}
+    category_success = {category: 0 for category in SOURCES}
 
     for category, urls in SOURCES.items():
         print(f"\n📂 Processing category: {category}")
         category_dir = Path('sources') / category
         category_dir.mkdir(parents=True, exist_ok=True)
 
-        for i, url in enumerate(urls):
+        for url in urls:
             filename = get_filename_from_url(url)
             filepath = category_dir / filename
 
@@ -128,16 +149,16 @@ def fetch_all_sources():
                 if size > MIN_FILE_SIZE:
                     print(f"    ⏭️  Already exists: {filename} ({size} bytes)")
                     stats['skipped'] += 1
+                    category_success[category] += 1
                     continue
-                else:
-                    # 删除无效的旧文件
-                    filepath.unlink()
+                filepath.unlink()  # 删除无效的旧文件
 
             success, message = download_with_retry(url, filepath)
 
             if success:
                 print(f"    ✅ {message} -> {filename}")
                 stats['success'] += 1
+                category_success[category] += 1
             else:
                 print(f"    ❌ {message}")
                 stats['failed'] += 1
@@ -146,32 +167,45 @@ def fetch_all_sources():
             time.sleep(RETRY_DELAY)
 
     print(f"\n📊 Summary: {stats['success']} succeeded, {stats['failed']} failed, {stats['skipped']} skipped")
-    return stats['failed'] == 0
+    return stats, category_success
+
 
 def validate_downloaded_files():
     """验证下载的文件"""
     print("\n🔍 Validating downloaded files...")
 
     issues = []
-    for category in SOURCES.keys():
+
+    # 文件名冲突自检（冲突会让某个源永远被静默跳过）
+    for category, urls in SOURCES.items():
+        names = [get_filename_from_url(u) for u in urls]
+        dupes = sorted({n for n in names if names.count(n) > 1})
+        if dupes:
+            issues.append(f"Filename collision in '{category}': {dupes}")
+
+    for category in SOURCES:
         category_dir = Path('sources') / category
         if not category_dir.exists():
+            issues.append(f"Missing directory: {category_dir}")
             continue
+
+        # 预期文件齐全性
+        expected = {get_filename_from_url(u) for u in SOURCES[category]}
+        existing = {p.name for p in category_dir.glob('*.txt')}
+        for missing in sorted(expected - existing):
+            issues.append(f"Missing file: {category_dir / missing}")
 
         for filepath in category_dir.glob('*.txt'):
             size = filepath.stat().st_size
-            if size == 0:
-                issues.append(f"Empty file: {filepath}")
-            elif size < MIN_FILE_SIZE:
+            if size < MIN_FILE_SIZE:
                 issues.append(f"Small file ({size} bytes): {filepath}")
-
-            # 检查文件内容是否为空或只有空白
+                continue
             try:
                 content = filepath.read_text(encoding='utf-8', errors='ignore')
                 if not content.strip():
                     issues.append(f"File contains only whitespace: {filepath}")
-            except:
-                issues.append(f"Cannot read file: {filepath}")
+            except Exception as e:
+                issues.append(f"Cannot read file: {filepath} ({e})")
 
     if issues:
         print("  ⚠️  Validation issues found:")
@@ -182,10 +216,21 @@ def validate_downloaded_files():
     print("  ✅ All files validated")
     return True
 
+
 if __name__ == '__main__':
-    success = fetch_all_sources()
-    if success:
-        validate_downloaded_files()
-    else:
-        print("\n❌ Some downloads failed. Please check the logs.")
-        exit(1)
+    stats, category_success = fetch_all_sources()
+    validate_ok = validate_downloaded_files()
+
+    if stats['success'] + stats['skipped'] == 0:
+        print("\n❌ All downloads failed.")
+        sys.exit(1)
+
+    empty_categories = [c for c, n in category_success.items() if n == 0]
+    if empty_categories:
+        print(f"\n❌ No sources available for category: {empty_categories}")
+        sys.exit(1)
+
+    if not validate_ok:
+        print("\n⚠️  Validation reported issues (see above), continuing.")
+    if stats['failed'] > 0:
+        print(f"\n⚠️  {stats['failed']} source(s) failed, continuing with partial data.")
