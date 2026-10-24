@@ -34,9 +34,9 @@ AdGuard-Home-Rules/
 ├── .github/workflows/          # GitHub Actions 工作流配置
 │   └── auto-update.yml          # 自动更新规则主流程
 ├── Release/
-│   ├── combined-whitelist      #白名单规则集，如发现新增的，可直接添加在此文件
-│   └── combined-rules.txt       # 最终合并黑名单规则集（添加此黑名单即可）
-│   └── special-rules.txt       # 补充黑名单规则集（浏览器插件专用）
+│   ├── combined-whitelist      # 自定义白名单规则集，如发现新增的，可直接添加在此文件
+│   └── Supplement-rules.txt    # 自定义黑名单规则集，如发现新增的，可直接添加在此文件
+│   └── special-rules.txt       # 浏览器插件专用规则集
 ├── scripts/                      # 核心处理脚本
 │   ├── fetch_upstream.py        # 上游规则获取
 │   ├── merge_rules.py            # 规则合并处理
