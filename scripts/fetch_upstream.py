@@ -24,7 +24,7 @@ SOURCES = {
         # —— 国际 DNS 层主力 ——
         'https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt',
         'https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt',
-        'https://small.oisd.nl',
+        'https://big.oisd.nl',
         'https://badmojr.github.io/1Hosts/Lite/hosts.txt',
         'https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt',
         'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts',
