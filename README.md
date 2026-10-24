@@ -20,11 +20,11 @@ https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/malware-
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/adult-blacklist.txt
 ```
-# 合并黑名单（广告内容拦截+恶意内容拦截+成人内容拦截）
+合并黑名单（广告内容拦截+恶意内容拦截+成人内容拦截）
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-rules.txt
 ```
-# 白名单
+白名单
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-whitelist.txt
 ```
