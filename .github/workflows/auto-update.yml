@@ -1,21 +1,23 @@
 name: Daily Rules Update
 on:
   schedule:
-    - cron: '0 22 * * *'  # UTC 22:00 daily (Beijing 6:00+1)
+    - cron: '0 22 * * *'  # UTC 22:00 = UTC+8 beijing timezone: 06:00
   workflow_dispatch:
+
+# 防止手动触发和定时任务重叠推送冲突
+concurrency:
+  group: rules-update
+  cancel-in-progress: false
 
 jobs:
   update-rules:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Removed actions:write unless specifically needed
+      contents: write
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
+        uses: actions/checkout@v7
 
       - name: Verify scripts exist
         run: |
@@ -31,14 +33,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
           cache: 'pip'
 
       - name: Install dependencies
-        run: pip install requests tldextract
+        run: pip install -r requirements.txt
 
       - name: Create necessary directories
-        run: mkdir -p sources filters scripts Release
+        run: mkdir -p sources filters Release
 
       - name: Run rules pipeline
         run: |
@@ -62,11 +64,10 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-
-          if ! git diff --quiet || ! git diff --staged --quiet; then
-            git add Release/
+          git add Release/ filters/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
             git commit -m "Auto-update: $(date +'%Y-%m-%d %H:%M:%S')"
             git push
-          else
-            echo "No changes to commit"
           fi
