@@ -14,24 +14,19 @@
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-rules.txt
 ```
 
-````
-##### 广告内容拦截→
 ```
+广告内容拦截：
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/ads-blacklist.txt
-```
-##### 恶意内容拦截→
-```
+
+恶意内容拦截：
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/malware-blacklist.txt
-```
-##### 成人内容拦截→
-```
+
+成人内容拦截：
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/adult-blacklist.txt
-```
-##### 自维护白名单→
-```
+
+自维护白名单：
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-whitelist.txt
 ```
-````
 
 #### 文件目录说明
 ```
