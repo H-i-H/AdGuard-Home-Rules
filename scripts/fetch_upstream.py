@@ -1,15 +1,16 @@
 import sys
 import time
-import requests
 from pathlib import Path
 from urllib.parse import urlparse
 from typing import Tuple
 
-# 上游规则源配置
+import requests
+
+# 上游规则源配置（键名 = sources/ 子目录名 = filters/ 文件名前缀）
 SOURCES = {
     'ads': [
+        # —— 国内 ——
         'https://anti-ad.net/easylist.txt',
-        'https://raw.githubusercontent.com/BlueSkyXN/AdGuardHomeRules/master/all.txt',
         'https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/AWAvenue-Ads-Rule.txt',
         'https://raw.githubusercontent.com/8680/GOODBYEADS/master/data/rules/dns.txt',
         'https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt',
@@ -17,40 +18,45 @@ SOURCES = {
         'https://raw.githubusercontent.com/KiryChanOfficial/AdFilterForAdGuard/refs/heads/main/KR_DNS_Filter.txt',
         'https://raw.githubusercontent.com/damengzhu/banad/main/jiekouAD.txt',
         'https://cdn.jsdelivr.net/gh/banbendalao/ADgk@master/ADgk.txt',
-        'https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/Ad-rules.txt',
         'https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/AdGuard-fanqie.txt',
         'https://raw.githubusercontent.com/lingeringsound/adblock_auto/refs/heads/main/Rules/adblock_auto.txt',
         'https://raw.githubusercontent.com/chinanjh/hosts/refs/heads/master/fuck%20youtube.txt',
+        # —— 国际 DNS 层主力 ——
         'https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt',
-        'https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt',
-        'https://big.oisd.nl',
+        'https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/normal.txt',
+        'https://small.oisd.nl',
         'https://badmojr.github.io/1Hosts/Lite/hosts.txt',
         'https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt',
         'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts',
         'https://adaway.org/hosts.txt',
         'https://someonewhocares.org/hosts/zero/hosts',
+        # —— 浏览器级（仅提取域名规则）——
         'https://easylist-downloads.adblockplus.org/easylist.txt',
         'https://easylist-downloads.adblockplus.org/easylistchina.txt',
         'https://easylist-downloads.adblockplus.org/easyprivacy.txt',
         'https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt',
+        # —— 场景 ——
         'https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt',
-        'https://raw.githubusercontent.com/blocklistproject/Lists/main/ads.txt'
+        'https://raw.githubusercontent.com/blocklistproject/Lists/main/ads.txt',
+        # 已砍（体量太大、与以上高度重叠），要更全可恢复其一：
+        # 'https://raw.githubusercontent.com/BlueSkyXN/AdGuardHomeRules/master/all.txt',
+        # 'https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/Ad-rules.txt',
     ],
     'malware': [
         'https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-agh-online.txt',
-        'https://malware-filter.gitlab.io/malware-filter/phishing-filter-agh.txt'
+        'https://malware-filter.gitlab.io/malware-filter/phishing-filter-agh.txt',
     ],
     'adult': [
         'https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts',
-        'https://nsfw.oisd.nl'
-    ]
+        'https://nsfw.oisd.nl',
+    ],
 }
 
 # 请求配置
 REQUEST_TIMEOUT = 30
 RETRY_DELAY = 2
 MAX_RETRIES = 3
-MIN_FILE_SIZE = 50  # 最小文件大小（字节）
+MIN_FILE_SIZE = 50
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 RETRYABLE_STATUS = {429, 500, 502, 503, 504}
 
@@ -62,7 +68,6 @@ def get_filename_from_url(url: str) -> str:
     path_parts = [p for p in parsed.path.split('/') if p]
 
     if path_parts:
-        # 每级去掉扩展名再拼，避免出现 xxx.txt.txt
         name = '_'.join(p.rsplit('.', 1)[0] for p in path_parts[-2:])
     else:
         name = 'index'
@@ -85,19 +90,16 @@ def download_with_retry(url: str, filepath: Path, max_retries: int = MAX_RETRIES
             )
             response.raise_for_status()
 
-            # 验证内容
             content = response.content
             if len(content) < MIN_FILE_SIZE:
                 return False, f"File too small ({len(content)} bytes)"
 
-            # 检查是否返回HTML错误页面（仅靠内容嗅探）
             content_type = response.headers.get('content-type', '').lower()
             if 'text/html' in content_type:
                 head = content[:200].lower()
                 if b'<html' in head or b'<!doctype' in head:
                     return False, "Response appears to be HTML error page"
 
-            # 保存文件
             filepath.parent.mkdir(parents=True, exist_ok=True)
             with open(filepath, 'wb') as f:
                 f.write(content)
@@ -144,7 +146,6 @@ def fetch_all_sources():
             filename = get_filename_from_url(url)
             filepath = category_dir / filename
 
-            # 检查是否已存在且有效
             if filepath.exists():
                 size = filepath.stat().st_size
                 if size > MIN_FILE_SIZE:
@@ -152,7 +153,7 @@ def fetch_all_sources():
                     stats['skipped'] += 1
                     category_success[category] += 1
                     continue
-                filepath.unlink()  # 删除无效的旧文件
+                filepath.unlink()
 
             success, message = download_with_retry(url, filepath)
 
@@ -164,7 +165,6 @@ def fetch_all_sources():
                 print(f"    ❌ {message}")
                 stats['failed'] += 1
 
-            # 避免请求过于频繁
             time.sleep(RETRY_DELAY)
 
     print(f"\n📊 Summary: {stats['success']} succeeded, {stats['failed']} failed, {stats['skipped']} skipped")
@@ -177,7 +177,6 @@ def validate_downloaded_files():
 
     issues = []
 
-    # 文件名冲突自检（冲突会让某个源永远被静默跳过）
     for category, urls in SOURCES.items():
         names = [get_filename_from_url(u) for u in urls]
         dupes = sorted({n for n in names if names.count(n) > 1})
@@ -190,7 +189,6 @@ def validate_downloaded_files():
             issues.append(f"Missing directory: {category_dir}")
             continue
 
-        # 预期文件齐全性
         expected = {get_filename_from_url(u) for u in SOURCES[category]}
         existing = {p.name for p in category_dir.glob('*.txt')}
         for missing in sorted(expected - existing):
