@@ -25,7 +25,7 @@ def load_whitelist(path: Path) -> set:
         print(f"  ❌ Whitelist file not found: {path}")
         return whitelist
 
-    for raw in path.re_text(encoding='utf-8').splitlines():
+    for raw in path.read_text(encoding='utf-8').splitlines():
         line = raw.strip()
         if not line or line.startswith(('#', '!')):
             continue
