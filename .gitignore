@@ -9,8 +9,10 @@ __pycache__/
 .env
 .env.local
 
-# 上游规则缓存（不入库）
+# 规则产物（走 Release 附件，不入库）
 sources/
+filters/
+Release/combined-rules.txt
 
 # 临时文件
 *.tmp
