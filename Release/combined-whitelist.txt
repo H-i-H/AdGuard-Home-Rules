@@ -2,6 +2,8 @@
 # =================================
 # =============白名单列表============
 # =================================
+# 格式：@@||域名^$important
+# 更新时间：2026-10-24
 
 # ----------------------------------
 # 115网盘
@@ -76,7 +78,6 @@
 # 爱快
 # ----------------------------------
 @@||ikyun.oss.ikuai8.com^$important
-@@||imgur.com^$important
 
 # ----------------------------------
 # 百度
@@ -111,14 +112,14 @@
 @@||coolapk-oss-image.oss-cn-hangzhou.aliyuncs.com^$important
 
 # ----------------------------------
-# 美团
+# 美团/大众点评
+# （外卖主站、外卖图片、支付/订单、消息通知图片）
 # ----------------------------------
-@@||waimai.meituan.com^$important       # 外卖主站
-@@||i.waimai.meituan.com^$important     # 外卖图片
-@@||msp.meituan.com^$important          # 支付/订单
-@@||dianping.com^$important             # 大众点评
-@@||file.neixin.cn^$important           # 消息通知图片
+@@||waimai.meituan.com^$important
+@@||i.waimai.meituan.com^$important
+@@||msp.meituan.com^$important
 @@||dianping.com^$important
+@@||file.neixin.cn^$important
 
 # ----------------------------------
 # 搜狗输入法
@@ -176,9 +177,13 @@
 @@||alipay.com^$important
 
 # ----------------------------------
-# 淘宝
+# 淘宝/天猫
+# （阿里 CDN 收窄放行，避免放走 alicdn 上的广告素材）
 # ----------------------------------
-@@||alicdn.com^$important
+@@||gw.alicdn.com^$important
+@@||img.alicdn.com^$important
+@@||cbu01.alicdn.com^$important
+@@||ae01.alicdn.com^$important
 
 # ----------------------------------
 # 饿了么
@@ -194,13 +199,18 @@
 @@||certum.pl^$important
 
 # ----------------------------------
-# 优酷播放鉴权/视频分发（防误杀，保留广告拦截）
+# 优酷（播放鉴权/视频分发/风控；广告域 atm/sealine 不放行）
 # ----------------------------------
 @@||ott.cibntv.net^$important
 @@||ups.youku.com^$important
 @@||pl.youku.com^$important
 @@||pl-ali-golang.youku.com^$important
 @@||acs.youku.com^$important
-@@||js.ykimg.com^$important
+@@||vod-ant.youku.com^$important
 @@||ykimg.com^$important
 @@||mmstat.com^$important
+
+# ----------------------------------
+# 图片托管
+# ----------------------------------
+@@||imgur.com^$important
