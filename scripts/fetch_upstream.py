@@ -22,10 +22,10 @@ SOURCES = {
         'https://raw.githubusercontent.com/lingeringsound/adblock_auto/refs/heads/main/Rules/adblock_auto.txt',
         'https://raw.githubusercontent.com/chinanjh/hosts/refs/heads/master/fuck%20youtube.txt',
         'https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt',
-        'https://hagezi.github.io/pro.txt',
+        'https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt',
         'https://big.oisd.nl',
         'https://badmojr.github.io/1Hosts/Lite/hosts.txt',
-        'https://raw.githubusercontent.com/lightswitch05/hosts/master/ads-and-tracking-extended.txt',
+        'https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt',
         'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts',
         'https://adaway.org/hosts.txt',
         'https://someonewhocares.org/hosts/zero/hosts',
@@ -34,7 +34,6 @@ SOURCES = {
         'https://easylist-downloads.adblockplus.org/easyprivacy.txt',
         'https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt',
         'https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt',
-        'https://raw.githubusercontent.com/notracking/hosts-blocklists/master/adblock.txt',
         'https://raw.githubusercontent.com/blocklistproject/Lists/main/ads.txt'
     ],
     'malware': [
@@ -63,7 +62,8 @@ def get_filename_from_url(url: str) -> str:
     path_parts = [p for p in parsed.path.split('/') if p]
 
     if path_parts:
-        name = '_'.join(path_parts[-2:])   # 例：rules_dns.txt / main_dns.txt
+        # 每级去掉扩展名再拼，避免出现 xxx.txt.txt
+        name = '_'.join(p.rsplit('.', 1)[0] for p in path_parts[-2:])
     else:
         name = 'index'
     name = name.replace('%20', '-')
