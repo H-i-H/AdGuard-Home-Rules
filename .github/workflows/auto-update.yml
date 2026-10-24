@@ -41,6 +41,9 @@ jobs:
 
       - name: Create necessary directories
         run: mkdir -p sources filters Release
+        
+      - name: Lint scripts
+        run: python -m py_compile scripts/*.py
 
       - name: Run rules pipeline
         run: |
