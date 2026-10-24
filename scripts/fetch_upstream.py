@@ -41,6 +41,8 @@ SOURCES = {
         # 已砍（体量太大、与以上高度重叠）：
          'https://raw.githubusercontent.com/BlueSkyXN/AdGuardHomeRules/master/all.txt',
          'https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/Ad-rules.txt',
+        # 自定义：
+         'https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/refs/heads/main/Release/Supplement-rules.txt',
     ],
     'malware': [
         'https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-agh-online.txt',
