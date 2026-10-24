@@ -22,3 +22,7 @@ sources/*.tmp
 
 # macOS
 .DS_Store
+
+sources/
+filters/
+Release/combined-rules.txt
