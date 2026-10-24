@@ -192,3 +192,15 @@
 # 证书
 # ----------------------------------
 @@||certum.pl^$important
+
+# ----------------------------------
+# 优酷播放鉴权/视频分发（防误杀，保留广告拦截）
+# ----------------------------------
+@@||ott.cibntv.net^$important
+@@||ups.youku.com^$important
+@@||pl.youku.com^$important
+@@||pl-ali-golang.youku.com^$important
+@@||acs.youku.com^$important
+@@||js.ykimg.com^$important
+@@||ykimg.com^$important
+@@||mmstat.com^$important
