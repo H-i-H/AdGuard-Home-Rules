@@ -1,7 +1,7 @@
 name: Daily Rules Update
 on:
   schedule:
-    - cron: '0 22 * * *'  # UTC 22:00 = UTC+8 Asia/Shanghai timezone: 06:00
+    - cron: '0 22 * * *'  # UTC 22:00 = UTC+8 次日 06:00
   workflow_dispatch:
 
 concurrency:
@@ -63,23 +63,28 @@ jobs:
             exit 1
           fi
 
-      - name: Check file sizes (GitHub hard limit 100MB, warn 50MB)
+      - name: Publish rule files to GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          for f in filters/*.txt Release/combined-rules.txt; do
-            size=$(stat -c%s "$f")
-            if [ "$size" -gt 94371840 ]; then
-              echo "❌ $f is $((size/1048576))MB (>90MB), push will be rejected!"
-              exit 1
-            elif [ "$size" -gt 52428800 ]; then
-              echo "⚠️ $f is $((size/1048576))MB (>50MB), consider slimming sources."
-            fi
-          done
+          TAG="latest"
+          gh release create "$TAG" \
+            --title "Daily rules" \
+            --notes "每日自动构建产物（北京时间 06:00 前后更新），请从本页 Asset 订阅，勿从 git 历史取文件。" \
+            2>/dev/null || true
+          gh release upload "$TAG" \
+            filters/ads-blacklist.txt \
+            filters/malware-blacklist.txt \
+            filters/adult-blacklist.txt \
+            Release/combined-rules.txt \
+            --clobber
 
-      - name: Commit and push changes
+      - name: Commit small files only
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add filters/ Release/
+          git rm -r --cached --ignore-unmatch filters Release/combined-rules.txt
+          git add -A
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
