@@ -53,11 +53,11 @@ jobs:
 
       - name: Validate rules
         run: |
-          FILE="filters/combined-rules.txt"
+          FILE="Release/combined-rules.txt"
           if [ -s "$FILE" ]; then
             echo "✅ Rules generated successfully"
             echo "Line count: $(wc -l < "$FILE")"
-            du -h filters/*.txt
+            du -h filters/*.txt Release/combined-rules.txt
           else
             echo "❌ Combined rules file is empty or missing!"
             exit 1
@@ -65,7 +65,7 @@ jobs:
 
       - name: Check file sizes (GitHub hard limit 100MB, warn 50MB)
         run: |
-          for f in filters/*.txt; do
+          for f in filters/*.txt Release/combined-rules.txt; do
             size=$(stat -c%s "$f")
             if [ "$size" -gt 94371840 ]; then
               echo "❌ $f is $((size/1048576))MB (>90MB), push will be rejected!"
@@ -79,7 +79,7 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add filters/ Release/combined-whitelist.txt
+          git add filters/ Release/
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
