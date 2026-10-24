@@ -11,14 +11,12 @@ nhs.uk
 nih.gov
 
 ! ========== 医疗健康网站 ==========
-medical-site.com
 healthline.com
 mayoclinic.org
 webmd.com
 medlineplus.gov
 
 ! ========== 性教育/生殖健康 ==========
-sex-education.org
 plannedparenthood.org
 scarleteen.com
 
@@ -39,9 +37,9 @@ pubmed.ncbi.nlm.nih.gov
 
 ! ========== 公共卫生 ==========
 publichealth.gov
-healthcare.govmentalhealth.gov
+healthcare.gov
+mentalhealth.gov
 
 ! ==========老年用户友好 ==========
 !这些网站可能包含健康内容但被误判
 aarp.org
-webmd.com
