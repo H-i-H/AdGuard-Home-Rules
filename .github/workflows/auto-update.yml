@@ -1,10 +1,9 @@
 name: Daily Rules Update
 on:
   schedule:
-    - cron: '0 22 * * *'  # UTC 22:00 = UTC+8 beijing timezone: 06:00
+    - cron: '0 22 * * *'  # UTC 22:00 = UTC+8 次日 06:00
   workflow_dispatch:
 
-# 防止手动触发和定时任务重叠推送冲突
 concurrency:
   group: rules-update
   cancel-in-progress: false
@@ -30,6 +29,9 @@ jobs:
             exit 1
           fi
 
+      - name: Lint scripts
+        run: python -m py_compile scripts/*.py
+
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
@@ -41,9 +43,6 @@ jobs:
 
       - name: Create necessary directories
         run: mkdir -p sources filters Release
-        
-      - name: Lint scripts
-        run: python -m py_compile scripts/*.py
 
       - name: Run rules pipeline
         run: |
@@ -58,19 +57,37 @@ jobs:
           if [ -s "$FILE" ]; then
             echo "✅ Rules generated successfully"
             echo "Line count: $(wc -l < "$FILE")"
+            du -h "$FILE" filters/*.txt
           else
             echo "❌ Combined rules file is empty or missing!"
             exit 1
           fi
 
-      - name: Commit and push changes
+      - name: Commit small files only
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add Release/ filters/
+          git rm --cached -r --ignore-unmatch filters Release/combined-rules.txt
+          git add .gitignore Release/combined-whitelist.txt Release/special-rules.txt
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
             git commit -m "Auto-update: $(date +'%Y-%m-%d %H:%M:%S')"
             git push
           fi
+
+      - name: Publish rule files to GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="latest"
+          gh release create "$TAG" \
+            --title "Daily rules" \
+            --notes "每日自动构建产物，请从本页 Asset 订阅，勿从 git 历史取文件。" \
+            2>/dev/null || true
+          gh release upload "$TAG" \
+            filters/ads-blacklist.txt \
+            filters/malware-blacklist.txt \
+            filters/adult-blacklist.txt \
+            Release/combined-rules.txt \
+            --clobber
