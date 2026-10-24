@@ -38,9 +38,9 @@ SOURCES = {
         # —— 场景 ——
         'https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt',
         'https://raw.githubusercontent.com/blocklistproject/Lists/main/ads.txt',
-        # 已砍（体量太大、与以上高度重叠），要更全可恢复其一：
-        # 'https://raw.githubusercontent.com/BlueSkyXN/AdGuardHomeRules/master/all.txt',
-        # 'https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/Ad-rules.txt',
+        # 已砍（体量太大、与以上高度重叠）：
+         'https://raw.githubusercontent.com/BlueSkyXN/AdGuardHomeRules/master/all.txt',
+         'https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/Ad-rules.txt',
     ],
     'malware': [
         'https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-agh-online.txt',
