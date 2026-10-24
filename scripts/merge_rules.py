@@ -1,9 +1,12 @@
 import os
 import re
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Optional
+from typing import Optional  
+
+# 北京时间（UTC+8，无夏令时）
+TZ_BEIJING = timezone(timedelta(hours=8))
 
 # 必须与 fetch_upstream.py 的 SOURCES 键、README 订阅地址一致
 CATEGORIES = ['ads', 'malware', 'adult']
@@ -135,7 +138,7 @@ def merge_category_rules(category: str) -> bool:
             f.write(f"! Title: {CATEGORY_TITLES.get(category, category)}\n")
             f.write(f"! Source files: {len(files)}\n")
             f.write(f"! Total unique rules: {len(all_rules)}\n")
-            f.write(f"! Last modified: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} UTC+8\n")
+            f.write(f"! Last modified: {datetime.now(TZ_BEIJING).strftime('%Y-%m-%d %H:%M:%S')} UTC+8\n")
             f.write(f"! Homepage: https://github.com/H-i-H/AdGuard-Home-Rules\n")
             for rule in sorted(all_rules):
                 f.write(f"||{rule}^\n")
