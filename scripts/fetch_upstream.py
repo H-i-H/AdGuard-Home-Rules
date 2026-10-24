@@ -1,5 +1,6 @@
 import sys
 import time
+import requests
 from pathlib import Path
 from urllib.parse import urlparse
 from typing import Tuple
