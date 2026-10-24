@@ -10,19 +10,19 @@
 
 ##### 最终订阅地址（广告内容拦截+恶意内容拦截+成人内容拦截-白名单）→
 ```
-https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-rules.txt
+https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/combined-rules.txt
 ```
 
 ##### 单项订阅地址 →
 ```
 广告内容拦截：
-https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/ads-blacklist.txt
+https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/ads-blacklist.txt
 
 恶意内容拦截：
-https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/malware-blacklist.txt
+https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/malware-blacklist.txt
 
 成人内容拦截：
-https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/adult-blacklist.txt
+https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/adult-blacklist.txt
 
 自维护白名单：
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-whitelist.txt
