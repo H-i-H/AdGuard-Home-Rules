@@ -264,9 +264,11 @@
 @@||ssl-cdn.static.browser.mi-img.com^$important
 @@||ts.market.mi-img.com^$important
 @@||i.ai.mi.com^$important
+# 小米商城
+@@||retail.mi.com^$important
 # 小米日志上报（放行仅为排查/反馈，介意可删）
 @@||sentry.d.xiaomi.net^$important
-# MiMo
+# MiMo（小爱输入法等）
 @@||aistudio.xiaomimimo.com^$important
 @@||audio.miclaw.xiaomi.net^$important
 
