@@ -23,7 +23,7 @@ SOURCES = {
         'https://raw.githubusercontent.com/chinanjh/hosts/refs/heads/master/fuck%20youtube.txt',
         # —— 国际 DNS 层主力 ——
         'https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt',
-        'https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/normal.txt',
+        'https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt',
         'https://small.oisd.nl',
         'https://badmojr.github.io/1Hosts/Lite/hosts.txt',
         'https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt',
