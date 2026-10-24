@@ -11,7 +11,7 @@
 
 ##### 广告内容拦截→
 ```
-https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/ad-blacklist.txt
+https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/ads-blacklist.txt
 ```
 ##### 恶意内容拦截→
 ```
