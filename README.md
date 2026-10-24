@@ -7,13 +7,14 @@
 - **轻量精简**：基于高质量规则源，避免臃肿
 
 **使用方法**
-#### 直接使用：AdGuard Home 管理面板 → 过滤器 → DNS 黑名单/白名单中添加规则订阅：
+#### 直接使用：AdGuard Home 管理面板 → 过滤器 → DNS 黑名单/白名单中添加规则订阅（最终订阅地址和单项订阅地址二选一，）
 
 ##### 最终订阅地址（广告内容拦截+恶意内容拦截+成人内容拦截-白名单）→
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-rules.txt
 ```
 
+##### 单项订阅地址 →
 ```
 广告内容拦截：
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/filters/ads-blacklist.txt
