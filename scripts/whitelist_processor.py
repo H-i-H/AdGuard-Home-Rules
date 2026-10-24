@@ -113,7 +113,7 @@ def process_all() -> bool:
     """对所有分类应用白名单"""
     print("🔄 Applying whitelist (bake into blacklist)...")
 
-    whitelist = lo_whitelist(WHITELIST_FILE)
+    whitelist = load_whitelist(WHITELIST_FILE)
     if not whitelist:
         print("  ❌ Whitelist is empty or missing, abort.")
         return False
