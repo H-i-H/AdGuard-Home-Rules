@@ -1,9 +1,11 @@
-# Adguard Home Private Rules Bundle
-# =================================
-# =============白名单列表============
-# =================================
-# 格式：@@||域名^$important
+# Adguard Home Private Rules Bundle — 白名单（构建输入）
+# ============================================================
+# 用途：构建时并入 Release/combined-rules.txt（@@ 行追加至文件末尾）
+# 格式：@@||域名^$important    # 以 # 开头的行为注释
 # 更新时间：2026-10-24
+# 说明：已合并 filters/ 三个分类白名单中的有效条目；
+#       无效/占位/广告追踪域名已剔除。误杀反馈请开 issue。
+# ============================================================
 
 # ----------------------------------
 # 115网盘
@@ -15,11 +17,16 @@
 # Apple
 # ----------------------------------
 @@||apple.com^$important
+@@||icloud.com^$important
+@@||apple-cloudkit.com^$important
+@@||appstore.com^$important
+@@||mzstatic.com^$important
 
 # ----------------------------------
 # B站
 # ----------------------------------
 @@||bilibili.com^$important
+@@||bilivideo.com^$important
 @@||hdslb.com^$important
 
 # ----------------------------------
@@ -29,10 +36,11 @@
 @@||githubusercontent.com^$important
 
 # ----------------------------------
-# Google GMS/FCM
+# Google GMS/FCM/基础服务
 # ----------------------------------
 @@||googleapis.com^$important
 @@||gstatic.com^$important
+@@||gmail.com^$important
 
 # ----------------------------------
 # Microsoft
@@ -41,16 +49,23 @@
 @@||live.com^$important
 @@||skype.com^$important
 @@||bing.com^$important
-@@||ctldl.windowsupdate.com^$important
+@@||windowsupdate.com^$important
 @@||login.microsoftonline.com^$important
+@@||msftconnecttest.com^$important
+@@||office.com^$important
+@@||onedrive.com^$important
 
 # ----------------------------------
-# QQ
+# QQ/微信
 # ----------------------------------
 @@||qpic.cn^$important
 @@||gtimg.cn^$important
+@@||gtimg.com^$important
 @@||qlogo.cn^$important
 @@||push.qq.com^$important
+@@||weixin.qq.com^$important
+@@||res.wx.qq.com^$important
+@@||wechat.com^$important
 
 # ----------------------------------
 # Steam
@@ -60,24 +75,19 @@
 @@||steamstatic.com^$important
 
 # ----------------------------------
-# TMDB
+# TMDB / TrueNAS / 飞牛NAS / 爱快
 # ----------------------------------
 @@||tmdb.org^$important
-
-# ----------------------------------
-# TrueNAS
-# ----------------------------------
 @@||truenas.com^$important
+@@||fnnas.com^$important
+@@||ikyun.oss.ikuai8.com^$important
 
 # ----------------------------------
-# WPS
+# WPS / 搜狗输入法 / 证书
 # ----------------------------------
 @@||account.wps.cn^$important
-
-# ----------------------------------
-# 爱快
-# ----------------------------------
-@@||ikyun.oss.ikuai8.com^$important
+@@||img.shouji.sogou.com^$important
+@@||certum.pl^$important
 
 # ----------------------------------
 # 百度
@@ -90,11 +100,7 @@
 @@||wenku.baidu.com^$important
 @@||bdimg.com^$important
 @@||bdstatic.com^$important
-
-# ----------------------------------
-# 飞牛NAS
-# ----------------------------------
-@@||fnnas.com^$important
+@@||baidustatic.com^$important
 
 # ----------------------------------
 # 高德地图
@@ -104,6 +110,7 @@
 # ----------------------------------
 # 京东
 # ----------------------------------
+@@||jd.com^$important
 @@||360buyimg.com^$important
 
 # ----------------------------------
@@ -112,19 +119,14 @@
 @@||coolapk-oss-image.oss-cn-hangzhou.aliyuncs.com^$important
 
 # ----------------------------------
-# 美团/大众点评
-# （外卖主站、外卖图片、支付/订单、消息通知图片）
+# 美团/大众点评（外卖主站、外卖图片、支付/订单、消息通知图片）
 # ----------------------------------
 @@||waimai.meituan.com^$important
 @@||i.waimai.meituan.com^$important
 @@||msp.meituan.com^$important
 @@||dianping.com^$important
 @@||file.neixin.cn^$important
-
-# ----------------------------------
-# 搜狗输入法
-# ----------------------------------
-@@||img.shouji.sogou.com^$important
+@@||sankuai.com^$important
 
 # ----------------------------------
 # 网易云音乐
@@ -132,32 +134,39 @@
 @@||music.126.net^$important
 
 # ----------------------------------
-# 微博
+# 微博/新浪
 # ----------------------------------
 @@||sinaimg.cn^$important
-
-# ----------------------------------
-# 微信
-# ----------------------------------
-@@||weixin.qq.com^$important
-@@||res.wx.qq.com^$important
+@@||sina.com.cn^$important
+@@||weibo.com^$important
 
 # ----------------------------------
 # 小米/MIUI
+# （t*.market / cnbj*.fds 等半截通配已由父域覆盖）
 # ----------------------------------
 @@||market.xiaomi.com^$important
-@@||xmpush.xiaomi.com^$important
-@@||mipush.xiaomi.com^$important
-@@||resolver.msg.xiaomi.net^$important
-@@||pdc.micloud.xiaomi.net^$important
-@@||api.device.xiaomi.net^$important
+@@||mibi.api.xiaomi.com^$important
+@@||api.installer.xiaomi.com^$important
+@@||api.comm.miui.com^$important
+@@||api.hybrid.xiaomi.com^$important
+@@||api.vip.miui.com^$important
+@@||web.vip.miui.com^$important
+@@||ai.search.miui.com^$important
+@@||hot.browser.miui.com^$important
+@@||api.browser.miui.com^$important
+@@||cdn.browser.miui.com^$important
 @@||security.browser.miui.com^$important
 @@||r.browser.miui.com^$important
 @@||api.sec.miui.com^$important
 @@||metok.sys.miui.com^$important
+@@||xmpush.xiaomi.com^$important
+@@||mipush.xiaomi.com^$important
+@@||resolver.msg.xiaomi.net^$important
+@@||micloud.xiaomi.net^$important
+@@||fds.api.xiaomi.com^$important
 
 # ----------------------------------
-# 小红书
+# 小红书（注意：广告视频子域同在 xhscdn.com 下，此为整域放行的代价）
 # ----------------------------------
 @@||xhscdn.com^$important
 
@@ -167,19 +176,33 @@
 @@||sandai.net^$important
 
 # ----------------------------------
-# 今日头条
+# 字节跳动（抖音/头条；applog/log 埋点域不放行）
 # ----------------------------------
+@@||douyin.com^$important
+@@||bytecdntp.com^$important
+@@||pstatp.com^$important
+@@||snssdk.com^$important
 @@||toutiaoimg.com^$important
 
 # ----------------------------------
-# 支付宝
+# 支付
 # ----------------------------------
 @@||alipay.com^$important
+@@||unionpay.com^$important
+@@||95516.com^$important
+@@||paypal.com^$important
+@@||visa.com^$important
+@@||mastercard.com^$important
 
 # ----------------------------------
-# 淘宝/天猫
-# （阿里 CDN 收窄放行，避免放走 alicdn 上的广告素材）
+# 淘宝/天猫/阿里云
+# （alicdn 收窄放行，避免放走其上广告素材；要整域可自行加回 @@||alicdn.com^）
 # ----------------------------------
+@@||taobao.com^$important
+@@||tmall.com^$important
+@@||alibaba.com^$important
+@@||aliexpress.com^$important
+@@||aliyun.com^$important
 @@||gw.alicdn.com^$important
 @@||img.alicdn.com^$important
 @@||cbu01.alicdn.com^$important
@@ -194,12 +217,7 @@
 @@||aldcdn.com^$important
 
 # ----------------------------------
-# 证书
-# ----------------------------------
-@@||certum.pl^$important
-
-# ----------------------------------
-# 优酷（播放鉴权/视频分发/风控；广告域 atm/sealine 不放行）
+# 优酷（播放鉴权/分发/风控；广告域 atm/sealine 不放行）
 # ----------------------------------
 @@||ott.cibntv.net^$important
 @@||ups.youku.com^$important
@@ -214,3 +232,60 @@
 # 图片托管
 # ----------------------------------
 @@||imgur.com^$important
+@@||ms.vipstatic.com^$important
+
+# ----------------------------------
+# 常用网站
+# ----------------------------------
+@@||163.com^$important
+@@||zhihu.com^$important
+@@||amazon.com^$important
+@@||wikipedia.org^$important
+@@||twitter.com^$important
+@@||linkedin.com^$important
+@@||reddit.com^$important
+@@||reuters.com^$important
+@@||bbc.com^$important
+@@||nytimes.com^$important
+
+# ----------------------------------
+# 开发常用
+# ----------------------------------
+@@||stackoverflow.com^$important
+@@||npmjs.com^$important
+@@||pypi.org^$important
+
+# ----------------------------------
+# 医疗健康（防成人过滤误杀）
+# ----------------------------------
+@@||health.gov^$important
+@@||cdc.gov^$important
+@@||who.int^$important
+@@||nhs.uk^$important
+@@||nih.gov^$important
+@@||healthline.com^$important
+@@||mayoclinic.org^$important
+@@||webmd.com^$important
+@@||medlineplus.gov^$important
+@@||healthcare.gov^$important
+@@||mentalhealth.gov^$important
+@@||publichealth.gov^$important
+@@||aarp.org^$important
+
+# ----------------------------------
+# 性教育/生殖健康（防成人过滤误杀）
+# ----------------------------------
+@@||plannedparenthood.org^$important
+@@||scarleteen.com^$important
+
+# ----------------------------------
+# 教育/科研（防成人过滤误杀）
+# ----------------------------------
+@@||edu.cn^$important
+@@||harvard.edu^$important
+@@||stanford.edu^$important
+@@||mit.edu^$important
+@@||ox.ac.uk^$important
+@@||bmj.com^$important
+@@||nejm.org^$important
+@@||lancet.com^$important
