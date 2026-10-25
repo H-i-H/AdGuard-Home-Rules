@@ -1,175 +1,65 @@
-# Adguard Home Private Rules Bundle — 白名单（构建输入）
+# ============================================================
+# Adguard Home Private Rules Bundle —— 白名单（构建输入）
 # ============================================================
 # 用途：构建时并入 Release/combined-rules.txt（@@ 行追加至文件末尾）
 # 格式：@@||域名^$important    # 以 # 开头的行为注释
-# 更新时间：2026-10-24
-# 说明：按应用类型归类，同一产品的域名集中放在同一分组；
-#       新增条目请加到对应分组末尾。误杀反馈请开 issue。
+# 更新时间：2026-10-25
+# 说明：顶层分组 = 公司/平台，组内按产品细分；
 # ============================================================
 
 
 # ==========================================
-# 翻译 / 词典
+# 【腾讯】
 # ==========================================
 
-# 有道词典 / 有道翻译（查词、翻译、单词本；静态资源在 ydstatic）
-@@||dict.youdao.com^$important
-@@||cidian.youdao.com^$important
-@@||fanyi.youdao.com^$important
-@@||note.youdao.com^$important
-@@||shared.youdao.com^$important
-@@||ydstatic.com^$important
-# c.youdao.com：客户端下载/更新通道（同时承担计数，介意可删）
-@@||c.youdao.com^$important
-
-# 百度翻译 / 百度汉语
-@@||fanyi.baidu.com^$important
-@@||dict.baidu.com^$important
-# 部分版本/组件走的翻译接口
-@@||translate.baidu.com^$important
-# 翻译页资源，社区有过误杀记录
-@@||sp1.baidu.com^$important
-# 百度账号登录（翻译/网盘等通用）
-@@||passport.baidu.com^$important
-# 登录人机验证
-@@||wappass.baidu.com^$important
-
-
-# ==========================================
-# 笔记 / 办公
-# ==========================================
-
-# 印象笔记（登录、网页版、notestore 同步 API 全在 yinxiang.com 子域下）
-@@||yinxiang.com^$important
-# 国际账号、网页剪藏、客户端更新
-@@||evernote.com^$important
-
-# WPS
-@@||account.wps.cn^$important
-
-
-# ==========================================
-# 网盘 / 下载
-# ==========================================
-
-# 115网盘
-@@||115.com^$important
-@@||115cdn.net^$important
-
-# 迅雷
-@@||sandai.net^$important
-
-
-# ==========================================
-# 搜索 / 门户 / 百科
-# ==========================================
-
-# 百度（搜索、网盘、地图、贴吧、百科、文库）
-@@||www.baidu.com^$important
-@@||pan.baidu.com^$important
-@@||map.baidu.com^$important
-@@||tieba.baidu.com^$important
-@@||baike.baidu.com^$important
-@@||wenku.baidu.com^$important
-# 百度系公共静态资源（翻译/网盘/百科/文库通用）
-@@||bdimg.com^$important
-@@||bdstatic.com^$important
-@@||baidustatic.com^$important
-
-# 知乎（正文 + 图片）
-@@||zhihu.com^$important
-@@||zhimg.com^$important
-
-# 微博/新浪
-@@||weibo.com^$important
-@@||sina.com.cn^$important
-@@||sinaimg.cn^$important
-
-# 豆瓣
-@@||music.douban.com^$important
-@@||doubanio.com^$important
-
-# 小红书（注意：广告视频子域同在 xhscdn.com 下，此为整域放行的代价）
-@@||xhscdn.com^$important
-
-# 维基百科（正文 + 图片/媒体）
-@@||wikipedia.org^$important
-@@||wikimedia.org^$important
-
-
-# ==========================================
-# 社交通讯（腾讯 QQ / 微信）
-# ==========================================
-
-@@||weixin.qq.com^$important
-@@||res.wx.qq.com^$important
-@@||wechat.com^$important
-@@||push.qq.com^$important
+# ---- 微信 / QQ ----
 @@||qpic.cn^$important
 @@||gtimg.cn^$important
 @@||gtimg.com^$important
 @@||qlogo.cn^$important
+@@||push.qq.com^$important
+# QQ 群内打卡图片
+@@||cdn.ark.qq.com^$important
+# QQ 聊天里的分享
+@@||sq.bls.mdt.qq.com^$important
+# QQ 小程序 微博分享（腾讯信标域，仅为小程序分享需要）
+@@||istrategy.beacon.qq.com^$important
+@@||weixin.qq.com^$important
+@@||res.wx.qq.com^$important
+@@||wechat.com^$important
+@@||szlong.weixin.qq.com^$important
 
-# QQ 音乐
+# ---- 手机QQ ----
+# 查找好友加载页面
+@@||rdelivery.qq.com^$important
+
+# ---- 应用宝 ----
+@@||sqdd.myapp.com^$important
+
+# ---- 腾讯视频 ----
+@@||soup.v.qq.com^$important
+
+# ---- QQ 音乐 ----
 @@||y.qq.com^$important
 
+# ---- 腾讯音乐 · 酷狗音乐 ----
+@@||mobilelog.kugou.com^$important
 
-# ==========================================
-# 影音 / 娱乐
-# ==========================================
+# ---- 搜狗输入法（腾讯旗下）----
+@@||shouji.sogou.com^$important
+@@||v2.get.sogou.com^$important
+@@||img.shouji.sogou.com^$important
+@@||sogoucdn.com^$important
 
-# B站（含播放器 API）
-@@||bilibili.com^$important
-@@||bilivideo.com^$important
-@@||hdslb.com^$important
-@@||biliapi.com^$important
-@@||biliapi.net^$important
-
-# 网易云音乐（CDN + API）
-@@||music.126.net^$important
-@@||music.163.com^$important
-
-# 优酷（播放鉴权/分发/风控；广告域 atm/sealine 不放行）
-@@||ott.cibntv.net^$important
-@@||ups.youku.com^$important
-@@||pl.youku.com^$important
-@@||pl-ali-golang.youku.com^$important
-@@||acs.youku.com^$important
-@@||vod-ant.youku.com^$important
-@@||ykimg.com^$important
-# mmstat.com：阿里系统计域，若播放正常可考虑收窄
-@@||mmstat.com^$important
-
-# 芒果TV
-@@||da.mgtv.com^$important
-
-# 字节跳动（抖音/头条；applog/log 埋点域不放行）
-@@||douyin.com^$important
-@@||bytecdntp.com^$important
-@@||pstatp.com^$important
-@@||snssdk.com^$important
-@@||toutiaoimg.com^$important
+# ---- 腾讯其它 ----
+@@||l.qq.com^$important
 
 
 # ==========================================
-# 游戏
+# 【阿里巴巴】
 # ==========================================
 
-# Steam
-@@||steampowered.com^$important
-@@||steamcommunity.com^$important
-@@||steamstatic.com^$important
-# 游戏下载/内容分发
-@@||steamcontent.com^$important
-# 联机/中继
-@@||steamserver.net^$important
-
-
-# ==========================================
-# 购物 / 电商
-# ==========================================
-
-# 淘宝/天猫/阿里云
+# ---- 淘宝 / 天猫 / 阿里云 ----
 # （alicdn 收窄放行，避免放走其上广告素材；要整域可自行加回 @@||alicdn.com^）
 @@||taobao.com^$important
 @@||tmall.com^$important
@@ -180,63 +70,175 @@
 @@||img.alicdn.com^$important
 @@||cbu01.alicdn.com^$important
 @@||ae01.alicdn.com^$important
+# 阿里云 DNS 控制台
+@@||www.alidns.com^$important
+# 阿里系统计域（优酷等共用；若播放正常可考虑收窄）
+@@||mmstat.com^$important
+@@||gm.mmstat.com^$important
+@@||wgo.mmstat.com^$important
+@@||amdc.m.taobao.com^$important
+@@||click.mz.simba.taobao.com^$important
+@@||eco.taobao.com^$important
+@@||err.taobao.com^$important
+@@||s.click.taobao.com^$important
+# 第三方授权一键绑定
+@@||tunion-api.m.taobao.com^$important
 
-# 京东
-@@||jd.com^$important
-@@||360buyimg.com^$important
+# ---- 1688 / 阿里集团 ----
+@@||dcms.1688.com^$important
+@@||tanx.com^$important
+@@||zconfig.alibabausercontent.com^$important
 
-# Amazon
-@@||amazon.com^$important
-# 商品图片
-@@||media-amazon.com^$important
+# ---- 优酷（播放鉴权/分发/风控；广告域 atm/sealine 不放行）----
+# vali-g1：电脑端提示广告加载失败，易产生歧义，实际在有效倒计时
+@@||vali-g1.cp31.ott.cibntv.net^$important
+@@||ott.cibntv.net^$important
+@@||ups.youku.com^$important
+@@||pl.youku.com^$important
+@@||pl-ali-golang.youku.com^$important
+@@||acs.youku.com^$important
+@@||vod-ant.youku.com^$important
+@@||ykimg.com^$important
 
-
-# ==========================================
-# 外卖 / 本地生活
-# ==========================================
-
-# 美团/大众点评（外卖主站、外卖图片、支付/订单、消息通知图片、单车）
-@@||waimai.meituan.com^$important
-@@||i.waimai.meituan.com^$important
-@@||msp.meituan.com^$important
-@@||bike.meituan.com^$important
-@@||d.meituan.net^$important
-@@||dianping.com^$important
-@@||sankuai.com^$important
-@@||file.neixin.cn^$important
-
-# 饿了么
+# ---- 饿了么 ----
 @@||h5.ele.me^$important
 @@||elemecdn.com^$important
 @@||elemecdn.net^$important
 @@||aldcdn.com^$important
+# 支付宝小程序饿了么（入口、登录、商品、购物车）
+@@||waimai-guide.ele.me^$important
+@@||ipassport.ele.me^$important
+@@||shopping.ele.me^$important
+@@||alsc-buy2.ele.me^$important
 
-
-# ==========================================
-# 地图 / 出行
-# ==========================================
-
-# 高德地图
+# ---- 高德地图 ----
 @@||amap.com^$important
 
-
-# ==========================================
-# 支付 / 金融
-# ==========================================
-
+# ---- 支付宝 ----
 @@||alipay.com^$important
-@@||unionpay.com^$important
-@@||95516.com^$important
-@@||paypal.com^$important
-@@||visa.com^$important
-@@||mastercard.com^$important
+
+# ---- UC 短视频 ----
+@@||huichuan-mc.sm.cn^$important
+@@||huichuan.sm.cn^$important
+@@||vps.uc.cn^$important
+
+# ---- UC 直播 ----
+@@||ulive-interact.uc.cn^$important
+@@||ulive-sc.uc.cn^$important
+@@||v.uc.cn^$important
+
+# ---- UC 浏览器 ----
+@@||ucweb.com^$important
+
+# ---- 夸克浏览器（Quark）----
+# 网络监测 / 账户登录
+@@||www.myquark.cn^$important
+@@||access.open.uc.cn^$important
+# 学习 / 搜索框（神马搜索）
+@@||quark.sm.cn^$important
+# 图片
+@@||vt.sm.cn^$important
+# 小说 / 小说模式
+@@||api-novel.uc.cn^$important
+@@||alissl.ucdl.pp.uc.cn^$important
+# 数据同步
+@@||quark-api.uc.cn^$important
+# 云盘
+@@||bcloud.uc.cn^$important
+# 未成年人模式
+@@||h5.sm.cn^$important
+# 神马搜索
+@@||mipstatic.sm-tc.cn^$important
+
+# ---- 豌豆荚 ----
+@@||www.wandoujia.com^$important
+@@||android-apps.pp.cn^$important
+
+# ---- iconfont（阿里旗下图标库）----
+@@||www.iconfont.cn^$important
 
 
 # ==========================================
-# 小米 / MIUI
+# 【字节跳动】
+# ==========================================
+# 抖音 / 头条；applog/log 埋点域不放行
+@@||douyin.com^$important
+@@||bytecdntp.com^$important
+@@||pstatp.com^$important
+@@||snssdk.com^$important
+@@||toutiaoimg.com^$important
+
+# ---- 抖音 ----
+@@||haohuo.snssdk.com^$important
+# 抖音实名认证校验页面
+@@||lf1-cdn-tos.bytegoofy.com^$important
+
+# ---- 番茄畅听 ----
+# 反馈帮助页面
+@@||ic.snssdk.com^$important
+
+
+# ==========================================
+# 【百度】
+# ==========================================
+
+# ---- 搜索 / 门户 / 百科 / 网盘 ----
+@@||www.baidu.com^$important
+@@||pan.baidu.com^$important
+@@||map.baidu.com^$important
+@@||tieba.baidu.com^$important
+@@||baike.baidu.com^$important
+@@||wenku.baidu.com^$important
+# 百度系公共静态资源（翻译/网盘/百科/文库通用）
+@@||bdimg.com^$important
+@@||bdstatic.com^$important
+@@||baidustatic.com^$important
+# 百度关键词跳转
+@@||boxer.baidu.com^$important
+# 百度网盘 exe 客户端下载
+@@||issuecdn.baidupcs.com^$important
+@@||ms.bdimg.com^$important
+@@||fc3tn.baidu.com^$important
+@@||fc5tn.baidu.com^$important
+@@||feed-image.baidu.com^$important
+@@||fexclick.baidu.com^$important
+@@||gsp0.baidu.com^$important
+@@||sofire.baidu.com^$important
+@@||wan.baidu.com^$important
+# 大牌餐饮
+@@||sjh.baidu.com^$important
+# 秒针广告监测域，仅因百度搜索结果卡片需要；介意可不加
+@@||e.cn.miaozhen.com^$important
+
+# ---- 百度云加速 ----
+@@||yunjiasu.com^$important
+
+# ---- 百度翻译 / 百度汉语 ----
+@@||fanyi.baidu.com^$important
+@@||dict.baidu.com^$important
+# 部分版本/组件走的翻译接口
+@@||translate.baidu.com^$important
+# 翻译页资源，社区有过误杀记录
+@@||sp1.baidu.com^$important
+
+# ---- 百度账号（通用登录）----
+@@||passport.baidu.com^$important
+# 登录人机验证
+@@||wappass.baidu.com^$important
+
+# ---- 百度手机输入法 ----
+# 云联想
+@@||udpolimenew.baidu.com^$important
+# 灵感语录同步
+@@||mime.baidu.com^$important
+
+
+# ==========================================
+# 【小米 / MIUI】
+# ==========================================
 # （t*.market / cnbj*.fds 等半截通配已由父域覆盖）
-# ==========================================
 
+# ---- 小米账号 / 系统服务 ----
 @@||market.xiaomi.com^$important
 @@||mibi.api.xiaomi.com^$important
 @@||api.installer.xiaomi.com^$important
@@ -245,12 +247,6 @@
 @@||api.vip.miui.com^$important
 @@||web.vip.miui.com^$important
 @@||ai.search.miui.com^$important
-@@||hot.browser.miui.com^$important
-@@||api.browser.miui.com^$important
-@@||cdn.browser.miui.com^$important
-@@||security.browser.miui.com^$important
-@@||r.browser.miui.com^$important
-@@||api.sec.miui.com^$important
 @@||metok.sys.miui.com^$important
 @@||xmpush.xiaomi.com^$important
 @@||mipush.xiaomi.com^$important
@@ -261,35 +257,62 @@
 @@||update.miui.com^$important
 @@||api.zhuti.xiaomi.com^$important
 @@||feedback.miui.com^$important
+@@||i.ai.mi.com^$important
+
+# ---- MIUI 浏览器 ----
+@@||hot.browser.miui.com^$important
+@@||api.browser.miui.com^$important
+@@||cdn.browser.miui.com^$important
+@@||security.browser.miui.com^$important
+@@||r.browser.miui.com^$important
 @@||ssl-cdn.static.browser.mi-img.com^$important
 @@||ts.market.mi-img.com^$important
-@@||i.ai.mi.com^$important
-# 小米商城
+
+# ---- MIUI 安全 / 骚扰拦截 ----
+@@||api.sec.miui.com^$important
+@@||api.miui.security.xiaomi.com^$important
+# 迅雷 App 扫一扫调用的 MIUI 安全服务
+@@||srv.sec.miui.com^$important
+
+# ---- 小米商城 ----
 @@||retail.mi.com^$important
-# 小米日志上报（放行仅为排查/反馈，介意可删）
+
+# ---- 小米日志上报（放行仅为排查/反馈，介意可删）----
 @@||sentry.d.xiaomi.net^$important
-# MiMo（小爱输入法等）
+
+# ---- MiMo（小爱输入法等）----
 @@||aistudio.xiaomimimo.com^$important
 @@||audio.miclaw.xiaomi.net^$important
 
+# ---- 米家 IoT ----
+@@||ot.io.mi.com^$important
+
 
 # ==========================================
-# Apple
+# 【Apple】
 # ==========================================
 
+# ---- Apple Music（iTunes 流媒体）----
+@@||aod.itunes.g.aaplimg.com^$important
+@@||aod-cn-lb.itunes-apple.com.akadns.net^$important
+
+# ---- Apple / iCloud / App Store ----
 @@||apple.com^$important
 @@||icloud.com^$important
 @@||apple-cloudkit.com^$important
 @@||appstore.com^$important
 @@||mzstatic.com^$important
+@@||stats.gc.apple.com^$important
 
 
 # ==========================================
-# Microsoft
+# 【Microsoft】
 # ==========================================
 
+# ---- Windows / Office / 账号 ----
 @@||microsoft.com^$important
 @@||live.com^$important
+@@||g.live.com^$important
 @@||skype.com^$important
 @@||bing.com^$important
 @@||windowsupdate.com^$important
@@ -297,27 +320,401 @@
 @@||msftconnecttest.com^$important
 @@||office.com^$important
 @@||onedrive.com^$important
+# OneDrive Mac 客户端 / 分享短链
+@@||1drv.com^$important
 
-
-# ==========================================
-# Google GMS/FCM/基础服务
-# ==========================================
-
-@@||googleapis.com^$important
-@@||gstatic.com^$important
-@@||gmail.com^$important
-
-
-# ==========================================
-# 开发 / 程序员常用
-# ==========================================
-
-# GitHub（网页 + 静态资源 + raw 内容）
+# ---- GitHub（微软旗下；网页 + 静态资源 + raw 内容）----
 @@||github.com^$important
 @@||githubusercontent.com^$important
 @@||githubassets.com^$important
 
-# Python / Node 包管理
+# ---- LinkedIn（微软旗下）----
+@@||linkedin.com^$important
+@@||licdn.com^$important
+
+
+# ==========================================
+# 【Google】
+# ==========================================
+# GMS / FCM / 基础服务
+@@||googleapis.com^$important
+@@||gstatic.com^$important
+@@||gmail.com^$important
+@@||csi.gstatic.com^$important
+@@||googleadservices.com^$important
+@@||gvt2.com^$important
+@@||s0.2mdn.net^$important
+
+
+# ==========================================
+# 【网易】
+# ==========================================
+
+# ---- 网易（邮箱/新闻）----
+@@||163.com^$important
+@@||api.iplay.163.com^$important
+
+# ---- 网易云音乐（CDN + API）----
+@@||music.126.net^$important
+@@||music.163.com^$important
+# 云贝签到
+@@||ac.dun.163yun.com^$important
+
+# ---- 有道词典 / 有道翻译（查词、翻译、单词本；静态资源在 ydstatic）----
+@@||dict.youdao.com^$important
+@@||cidian.youdao.com^$important
+@@||fanyi.youdao.com^$important
+@@||note.youdao.com^$important
+@@||shared.youdao.com^$important
+@@||ydstatic.com^$important
+# c.youdao.com：客户端下载/更新通道（同时承担计数，介意可删）
+@@||c.youdao.com^$important
+
+
+# ==========================================
+# 【新浪 / 微博】
+# ==========================================
+@@||weibo.com^$important
+@@||sina.com.cn^$important
+@@||sinaimg.cn^$important
+@@||iask.cn^$important
+@@||iask.com.cn^$important
+@@||mix.sina.com.cn^$important
+
+
+# ==========================================
+# 【搜狐】
+# ==========================================
+# ---- 搜狐视频 ----
+@@||api.tv.sohu.com^$important
+@@||track.sohu.com^$important
+@@||yule.sohu.com^$important
+# 拦截该域名 Safari 无法播放视频
+@@||data.vod.itc.cn^$important
+
+
+# ==========================================
+# 【哔哩哔哩】
+# ==========================================
+# 含播放器 API
+@@||bilibili.com^$important
+@@||bilivideo.com^$important
+@@||hdslb.com^$important
+@@||biliapi.com^$important
+@@||biliapi.net^$important
+@@||data.bilibili.com^$important
+@@||live-trace.bilibili.com^$important
+
+
+# ==========================================
+# 【快手】
+# ==========================================
+@@||api.kwaizt.com^$important
+# 送礼使用规则
+@@||w1.kskwai.com^$important
+
+
+# ==========================================
+# 【爱奇艺】
+# ==========================================
+@@||act.vip.iqiyi.com^$important
+@@||msg.video.qiyi.com^$important
+@@||subscription.iqiyi.com^$important
+
+
+# ==========================================
+# 【斗鱼】
+# ==========================================
+@@||gift.douyucdn.cn^$important
+@@||msg.douyu.com^$important
+
+
+# ==========================================
+# 【芒果TV（湖南广电）】
+# ==========================================
+@@||da.mgtv.com^$important
+
+
+# ==========================================
+# 【东方财富】
+# ==========================================
+@@||dfcfw.com^$important
+@@||mobappconfig.securities.eastmoney.com^$important
+
+
+# ==========================================
+# 【东方网 · 东方头条】
+# ==========================================
+@@||dftoutiao.com^$important
+
+
+# ==========================================
+# 【趣头条 · 米读小说】
+# ==========================================
+@@||apiwz.midukanshu.com^$important
+
+
+# ==========================================
+# 【点众科技 · 短剧】
+# ==========================================
+@@||1sapp.com^$important
+
+
+# ==========================================
+# 【中关村在线（ZOL）】
+# ==========================================
+@@||direct.wap.zol.com.cn^$important
+
+
+# ==========================================
+# 【优米电视】
+# ==========================================
+@@||umiwi.com^$important
+
+
+# ==========================================
+# 【百姓网】
+# ==========================================
+@@||baixing.com^$important
+
+
+# ==========================================
+# 【奇虎 360】
+# ==========================================
+@@||h5.mse.360.cn^$important
+@@||jspassport.ssl.qhimg.com^$important
+@@||qhres2.com^$important
+@@||se.360.cn^$important
+# 360 极速浏览器（安装包下载）
+@@||down.360safe.com^$important
+
+
+# ==========================================
+# 【京东】
+# ==========================================
+@@||jd.com^$important
+@@||360buyimg.com^$important
+@@||orbit.jd.com^$important
+@@||wl.jd.com^$important
+
+
+# ==========================================
+# 【美团 / 大众点评】
+# ==========================================
+# 外卖主站、外卖图片、支付/订单、消息通知图片、单车
+@@||waimai.meituan.com^$important
+@@||i.waimai.meituan.com^$important
+@@||msp.meituan.com^$important
+@@||bike.meituan.com^$important
+@@||d.meituan.net^$important
+@@||dianping.com^$important
+@@||sankuai.com^$important
+@@||file.neixin.cn^$important
+# 拦截该域名提示网络错误，无法打开消息列表设置
+@@||pubmsg.meituan.com^$important
+
+
+# ==========================================
+# 【知乎】
+# ==========================================
+# 正文 + 图片
+@@||zhihu.com^$important
+@@||zhimg.com^$important
+
+
+# ==========================================
+# 【豆瓣】
+# ==========================================
+@@||music.douban.com^$important
+@@||doubanio.com^$important
+
+
+# ==========================================
+# 【小红书】
+# ==========================================
+# 注意：广告视频子域同在 xhscdn.com 下，此为整域放行的代价
+@@||xhscdn.com^$important
+
+
+# ==========================================
+# 【印象笔记】
+# ==========================================
+# 登录、网页版、notestore 同步 API 全在 yinxiang.com 子域下
+@@||yinxiang.com^$important
+# 国际账号、网页剪藏、客户端更新
+@@||evernote.com^$important
+
+
+# ==========================================
+# 【金山办公 · WPS】
+# ==========================================
+@@||account.wps.cn^$important
+
+
+# ==========================================
+# 【115 网盘】
+# ==========================================
+@@||115.com^$important
+@@||115cdn.net^$important
+
+
+# ==========================================
+# 【迅雷】
+# ==========================================
+@@||sandai.net^$important
+# 迅雷 App 客户端升级
+@@||upgrade.xl9.xunlei.com^$important
+@@||api-shoulei-ssl.xunlei.com^$important
+
+
+# ==========================================
+# 【驾考宝典（木仓科技）】
+# ==========================================
+# 教学视频
+@@||short-video.kakamobi.cn^$important
+
+
+# ==========================================
+# 【Amazon】
+# ==========================================
+@@||amazon.com^$important
+# 商品图片
+@@||media-amazon.com^$important
+
+
+# ==========================================
+# 【Valve · Steam】
+# ==========================================
+@@||steampowered.com^$important
+@@||steamcommunity.com^$important
+@@||steamstatic.com^$important
+# 游戏下载/内容分发
+@@||steamcontent.com^$important
+# 联机/中继
+@@||steamserver.net^$important
+
+
+# ==========================================
+# 【游戏】
+# ==========================================
+# ---- 蜗牛 ----
+@@||woniu.com^$important
+# ---- 千橡互动 ----
+@@||imop.com^$important
+# ---- 3975 游戏 ----
+@@||3975.com^$important
+# ---- 模拟城市（EA）----
+@@||live.simcitybuildit.com^$important
+# ---- 巨人网络 ----
+@@||ztgame.com^$important
+# ---- 米哈游 · 原神 ----
+@@||log-upload.mihoyo.com^$important
+
+
+# ==========================================
+# 【支付 / 金融】
+# ==========================================
+# ---- 银联 ----
+@@||unionpay.com^$important
+@@||95516.com^$important
+# ---- 建设银行 ----
+@@||adv.ccb.com^$important
+# ---- 深圳通 ----
+@@||ecard.shenzhentong.com^$important
+# ---- 国际卡组织 / 支付 ----
+@@||paypal.com^$important
+@@||visa.com^$important
+@@||mastercard.com^$important
+
+
+# ==========================================
+# 【运营商 / 云盘】
+# ==========================================
+# ---- 中国电信 ----
+# 天翼云盘（认证登录）；天翼账号本机号码免注册一键登录
+@@||id6.me^$important
+# 电信一键登录（多 App 通用）
+@@||waphn.189.cn^$important
+# ---- 中国移动 ----
+# 中国移动云盘（活动页面）
+@@||ad.mcloud.139.com^$important
+# 移动应用商场
+@@||da.mmarket.com^$important
+
+
+# ==========================================
+# 【政务】
+# ==========================================
+# 新疆网上税务局
+@@||xj-n-tax.gov.cn^$important
+
+
+# ==========================================
+# 【品牌官网】
+# ==========================================
+# 百事公司大中华区
+@@||pepsico.com.cn^$important
+# 娇韵诗
+@@||clarins.com.cn^$important
+
+
+# ==========================================
+# 【工具软件 / 站点服务】
+# ==========================================
+# ---- Adobe ----
+@@||ereg.wip3.adobe.com^$important
+@@||auditude.com^$important
+# ---- Bitsum（Process Lasso 激活服务）----
+@@||bitsumactivationserver.com^$important
+# ---- SimilarWeb ----
+@@||similarweb.com^$important
+# ---- 下载站 ----
+@@||duote.com^$important
+# ---- MAC 地址查询 ----
+@@||7x24s.com^$important
+# ---- 天气预报（中国天气网）----
+@@||e.weather.com.cn^$important
+# ---- 老毛桃 PE 工具 ----
+@@||laomaotao.net^$important
+# ---- 域名注册 / 虚拟主机 ----
+@@||bluehost.com^$important
+@@||ename.com.cn^$important
+@@||ename.net^$important
+@@||hosting24.com^$important
+# ---- Raidrive ----
+# 2023.9.90 版本，拦截该广告域名频繁弹窗 Unknown 及 ConnectionAborted 错误
+# @@||ads.raidrive.com^$important
+# ---- 电视盒子 ----
+# 电视盒子下载，cnhezi.niuaniua.com
+@@||niuaniua.com^$important
+
+
+# ==========================================
+# 【Rakuten Advertising（原 LinkShare，广告联盟）】
+# ==========================================
+# 推广/商店跳转链接需要
+@@||click.linksynergy.com^$important
+
+
+# ==========================================
+# 【同盾科技（风控）】
+# ==========================================
+@@||fp.tongdun.net^$important
+@@||fraudmetrix.cn^$important
+
+
+# ==========================================
+# 【成人站点】
+# ==========================================
+@@||xlivesex.com^$important
+@@||hpyrdr.com^$important
+
+
+# ==========================================
+# 【开发 / 程序员常用】
+# ==========================================
+
+# ---- Python / Node 包管理 ----
 @@||pypi.org^$important
 # pip 实际下载的包文件
 @@||files.pythonhosted.org^$important
@@ -325,28 +722,18 @@
 # registry.npmjs.org 在 .org 下，.com 覆盖不到
 @@||npmjs.org^$important
 
-# Stack Overflow
+# ---- Stack Overflow ----
 @@||stackoverflow.com^$important
 @@||stackexchange.com^$important
 @@||sstatic.net^$important
 
-
-# ==========================================
-# 系统工具 / 输入法 / 证书
-# ==========================================
-
-# 搜狗输入法
-@@||v2.get.sogou.com^$important
-@@||img.shouji.sogou.com^$important
-
-# 证书
-@@||certum.pl^$important
+# ---- 图标 / 素材库 ----
+@@||www.easyicon.net^$important
 
 
 # ==========================================
-# NAS / 自建服务 / 影视元数据
+# 【NAS / 自建服务 / 影视元数据】
 # ==========================================
-
 @@||tmdb.org^$important
 @@||truenas.com^$important
 @@||fnnas.com^$important
@@ -354,49 +741,50 @@
 
 
 # ==========================================
-# 图片托管 / 社区
+# 【证书】
 # ==========================================
+@@||certum.pl^$important
 
+
+# ==========================================
+# 【图片托管 / 社区】
+# ==========================================
 @@||imgur.com^$important
 @@||ms.vipstatic.com^$important
 
-# 酷安（图片走阿里云 OSS）
+# ---- 酷安（图片走阿里云 OSS）----
 @@||coolapk-oss-image.oss-cn-hangzhou.aliyuncs.com^$important
 
 
 # ==========================================
-# 常用国外网站
+# 【国外网站 / 社区 / 媒体】
 # ==========================================
 
-# 网易（邮箱/新闻）
-@@||163.com^$important
-
-# Twitter / X（新域名、短链、图片视频）
+# ---- Twitter / X（新域名、短链、图片视频）----
 @@||twitter.com^$important
 @@||x.com^$important
 @@||t.co^$important
 @@||twimg.com^$important
 
-# LinkedIn
-@@||linkedin.com^$important
-@@||licdn.com^$important
-
-# Reddit
+# ---- Reddit ----
 @@||reddit.com^$important
 @@||redditstatic.com^$important
 @@||redditmedia.com^$important
 
-# 新闻媒体
+# ---- 新闻媒体 ----
 @@||reuters.com^$important
 @@||bbc.com^$important
 @@||bbci.co.uk^$important
 @@||nytimes.com^$important
 
+# ---- 维基百科（正文 + 图片/媒体）----
+@@||wikipedia.org^$important
+@@||wikimedia.org^$important
+
 
 # ==========================================
-# 医疗健康（防成人过滤误杀）
+# 【医疗健康（防成人过滤误杀）】
 # ==========================================
-
 @@||health.gov^$important
 @@||cdc.gov^$important
 @@||who.int^$important
@@ -413,17 +801,15 @@
 
 
 # ==========================================
-# 性教育/生殖健康（防成人过滤误杀）
+# 【性教育 / 生殖健康（防成人过滤误杀）】
 # ==========================================
-
 @@||plannedparenthood.org^$important
 @@||scarleteen.com^$important
 
 
 # ==========================================
-# 教育/科研（防成人过滤误杀）
+# 【教育 / 科研（防成人过滤误杀）】
 # ==========================================
-
 @@||edu.cn^$important
 @@||harvard.edu^$important
 @@||stanford.edu^$important
@@ -435,7 +821,54 @@
 
 
 # ==========================================
-# 其他
+# 【网站主页】
 # ==========================================
-
 @@||www.51kim.com^$important
+
+
+# ==========================================
+# 【个人网站】
+# ==========================================
+@@||zhebk.cn^$important
+@@||zixu.site^$important
+
+
+# ==========================================
+# 【其它 / 第三方服务】
+# ==========================================
+# Evidon（Cookie 合规横幅）
+@@||c.evidon.com^$important
+# Amazon CloudFront
+@@||d1z2jf7jlzjs58.cloudfront.net^$important
+@@||d2na2p72vtqyok.cloudfront.net^$important
+# 兑吧（积分运营）
+@@||duiba.com.cn^$important
+# HubSpot 表单
+@@||hsforms.net^$important
+# 分享组件
+@@||jiathis.com^$important
+# Jimdo 建站
+@@||jimdo.com^$important
+# JW Player 播放器
+@@||jwpcdn.com^$important
+# 中科三方（域名/IDC）
+@@||knet.cn^$important
+# 阿里云系共享域（日志/加速）
+@@||lc-cn-n1-shared.com^$important
+# 来必力（Livere 评论）
+@@||livere.com^$important
+# CSDN 个人主页图片
+@@||profile.csdnimg.cn^$important
+# Statsig（功能开关/统计）
+@@||statsig.com^$important
+@@||tagtic.cn^$important
+@@||w8.com.cn^$important
+# Gleam 抽奖组件
+@@||widget.gleamjs.io^$important
+# Wikimedia 工具
+@@||wmflabs.org^$important
+@@||wxapp.lvyadx.cn^$important
+@@||x6img.com^$important
+@@||xifuquan.com^$important
+# 杂志铺
+@@||zazhipu.com^$important
