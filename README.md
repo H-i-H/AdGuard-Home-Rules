@@ -2,7 +2,8 @@
 ```
 重要‼️：已更新订阅方式，规则巨大，不推荐使用，建议Fork自己仓库按需调整上游规则！！！
 ```
-这是一个由Ai编写的为AdGuard Home设计的过滤规则仓库，仅用于测试，如有违规，请联系作者删除，该仓库具有以下特点：
+这是一个由Ai编写的为AdGuard Home设计的过滤规则仓库，仅用于测试，如有违规，请联系作者删除。
+该仓库具有以下特点：
 
 - **自动化更新**：每日06:00⏰ UTC+8自动更新规则
 - **分类管理**：广告、恶意网站、成人内容分门别类
@@ -27,7 +28,7 @@ https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/malware-bla
 成人内容拦截：
 https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/adult-blacklist.txt
 
-自维护白名单：
+自维护白名单（不定期更新）：
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-whitelist.txt
 ```
 
