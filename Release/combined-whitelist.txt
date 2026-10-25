@@ -4,7 +4,6 @@
 # 用途：构建时并入 Release/combined-rules.txt（@@ 行追加至文件末尾）
 # 格式：@@||域名^$important    # 以 # 开头的行为注释
 # 更新时间：2026-10-25
-# 说明：顶层分组 = 公司/平台，组内按产品细分；
 # ============================================================
 
 
@@ -233,13 +232,13 @@
 @@||zijieapi.com^$important
 
 # ---- 抖音 ----
-@@||haohuo.snssdk.com^$important
+# @@||haohuo.snssdk.com^$important
 # 抖音实名认证校验页面
 @@||lf1-cdn-tos.bytegoofy.com^$important
 
 # ---- 番茄畅听 ----
 # 反馈帮助页面
-@@||ic.snssdk.com^$important
+# @@||ic.snssdk.com^$important
 
 # ==========================================
 # 【百度】
@@ -275,7 +274,10 @@
 ! --- 百度通用静态资源 CDN 放行 ---
 @@||psstatic.cdn.bcebos.com^$important
 @@||apps.bdimg.com^$important
+@@||aisearch.cdn.bcebos.com^$important
 # ---- 搜索静态资源 ----
+@@||bdstatic.com^$important
+@@||bdimg.com^$important
 # sp*：搜索结果页资源（sp1 曾有误杀记录）
 @@||sp0.baidu.com^$important
 @@||sp1.baidu.com^$important
@@ -299,8 +301,6 @@
 @@||gips4.baidu.com^$important
 # 百度分享组件
 @@||bdimg.share.baidu.com^$important
-# 注：ss0-ss5 / s1-s9 .bdstatic.com、ms.bdimg.com、maponline0-9.bdimg.com
-#     已由公共静态资源规则 @@||bdstatic.com^ / @@||bdimg.com^ 覆盖，不再重复列出
 
 # ---- 账号 / 登录 / 安全 ----
 @@||passport.baidu.com^$important
