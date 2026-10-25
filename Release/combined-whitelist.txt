@@ -37,7 +37,10 @@
 @@||sqdd.myapp.com^$important
 
 # ---- 腾讯视频 ----
-@@||soup.v.qq.com^$important
+@@||v.qq.com^$important
+# 播放鉴权
+@@||vv.video.qq.com^$important
+@@||h5vv.video.qq.com^$important
 
 # ---- QQ 音乐 ----
 @@||y.qq.com^$important
@@ -168,6 +171,13 @@
 @@||snssdk.com^$important
 @@||toutiaoimg.com^$important
 
+# ---- 今日头条 ----
+@@||toutiao.com^$important
+# 图片 CDN（头条/抖音系共用）
+@@||byteimg.com^$important
+# 客户端配置/接口（is.snssdk.com 等已由 snssdk.com 覆盖）
+@@||zijieapi.com^$important
+
 # ---- 抖音 ----
 @@||haohuo.snssdk.com^$important
 # 抖音实名认证校验页面
@@ -195,6 +205,8 @@
 @@||baidustatic.com^$important
 # 百度关键词跳转
 @@||boxer.baidu.com^$important
+# ---- 文心（文心一言/大模型）----
+@@||wenxin.baidu.com^$important
 # 百度网盘 exe 客户端下载
 @@||issuecdn.baidupcs.com^$important
 @@||ms.bdimg.com^$important
@@ -258,6 +270,19 @@
 @@||api.zhuti.xiaomi.com^$important
 @@||feedback.miui.com^$important
 @@||i.ai.mi.com^$important
+
+# ---- 小米主题 ----
+@@||zhuti.xiaomi.com^$important
+
+# ---- 小米商城 ----
+@@||m.mi.com^$important
+
+# ---- 小米有品 ----
+@@||stat.youpin.mi.com^$important
+@@||shopapi.io.mi.com^$important
+
+# ---- 小米开发者平台 ----
+@@||hyperos.developer.xiaomi.com^$important
 
 # ---- MIUI 浏览器 ----
 @@||hot.browser.miui.com^$important
@@ -420,7 +445,15 @@
 @@||act.vip.iqiyi.com^$important
 @@||msg.video.qiyi.com^$important
 @@||subscription.iqiyi.com^$important
-
+# 播放缓存/CDN（拦截会黑屏或卡加载）
+@@||cache.video.qiyi.com^$important
+# 网页版快进/进度条
+@@||meta.video.qiyi.com^$important
+# VIP 充值界面加载
+@@||iface.iqiyi.com^$important
+# 观看记录图片
+@@||rcd.iqiyi.com^$important
+@@||l.rcd.iqiyi.com^$important
 
 # ==========================================
 # 【斗鱼】
@@ -434,6 +467,9 @@
 # ==========================================
 @@||da.mgtv.com^$important
 
+# 播放器/剧集信息（拦截 disp.titan.mgtv.com 会导致无法播放）
+@@||titan.mgtv.com^$important
+@@||disp.titan.mgtv.com^$important
 
 # ==========================================
 # 【东方财富】
@@ -510,9 +546,27 @@
 @@||dianping.com^$important
 @@||sankuai.com^$important
 @@||file.neixin.cn^$important
+# ---- 订单/通用接口 ----
+@@||api.meituan.com^$important
+@@||i.meituan.com^$important
+# ---- 美团单车（原摩拜）----
+@@||mobike.com^$important
+# 个人中心/头像等图片
+@@||p0.meituan.net^$important
+@@||img.meituan.net^$important
+
 # 拦截该域名提示网络错误，无法打开消息列表设置
 @@||pubmsg.meituan.com^$important
 
+# ==========================================
+# 【携程】
+# ==========================================
+@@||ctrip.com^$important
+@@||ctrip.cn^$important
+# 图片 CDN（dimg03/04.c-ctrip.com 等）
+@@||c-ctrip.com^$important
+# 静态资源/客户端下载
+@@||ctripcdn.com^$important
 
 # ==========================================
 # 【知乎】
@@ -573,6 +627,13 @@
 # 教学视频
 @@||short-video.kakamobi.cn^$important
 
+# ==========================================
+# 【汽车之家】
+# ==========================================
+# 接口（openapi/club/car 子域）
+@@||autohome.com.cn^$important
+# 图片 CDN（car3.autoimg.cn 等）
+@@||autoimg.cn^$important
 
 # ==========================================
 # 【Amazon】
