@@ -37,10 +37,24 @@
 @@||sqdd.myapp.com^$important
 
 # ---- 腾讯视频 ----
+# 注：*.v.qq.com（api/cache/cdn/static/player/passport/pay/vip/image/pic/
+#     msg/push/data/config/update/upgrade/download/upload/soup 等）均为
+#     v.qq.com 子域，已由父域规则覆盖，不再重复列出
 @@||v.qq.com^$important
-# 播放鉴权
+# 注：*.video.qq.com（vv / h5vv / qpic / qlogo / gtimg.video）已由 video.qq.com 覆盖
+@@||video.qq.com^$important
+# 播放鉴权（保留明细便于排查，实为 video.qq.com 子域）
 @@||vv.video.qq.com^$important
 @@||h5vv.video.qq.com^$important
+# ---- 视频分发 ----
+@@||plvideo.qq.com^$important
+@@||flvvideo.qq.com^$important
+@@||mp4video.qq.com^$important
+@@||hlsvideo.qq.com^$important
+# ---- 其它 ----
+@@||v.qq.com.cn^$important
+# Akamai CNAME 目标（AdGuard Home 可匹配 CNAME 链）
+@@||v.qq.com.edgesuite.net^$important
 
 # ---- QQ 音乐 ----
 @@||y.qq.com^$important
@@ -92,16 +106,53 @@
 @@||tanx.com^$important
 @@||zconfig.alibabausercontent.com^$important
 
-# ---- 优酷（播放鉴权/分发/风控；广告域 atm/sealine 不放行）----
-# vali-g1：电脑端提示广告加载失败，易产生歧义，实际在有效倒计时
-@@||vali-g1.cp31.ott.cibntv.net^$important
-@@||ott.cibntv.net^$important
+# ---- 优酷youku----
+# （广告域 atm/sealine 不放行）
+@@||www.youku.com^$important
+@@||m.youku.com^$important
+@@||api.youku.com^$important
+@@||cache.youku.com^$important
+@@||cdn.youku.com^$important
+@@||static.youku.com^$important
+@@||video.youku.com^$important
+@@||player.youku.com^$important
+# ---- 账号 / 支付 / VIP ----
+@@||passport.youku.com^$important
+@@||verify.youku.com^$important
+@@||pay.youku.com^$important
+@@||vip.youku.com^$important
+# ---- 播放鉴权 / 分发 / 风控 ----
 @@||ups.youku.com^$important
 @@||pl.youku.com^$important
 @@||pl-ali-golang.youku.com^$important
 @@||acs.youku.com^$important
 @@||vod-ant.youku.com^$important
+# vali-g1：电脑端提示广告加载失败，易产生歧义，实际在有效倒计时
+@@||vali-g1.cp31.ott.cibntv.net^$important
+@@||ott.cibntv.net^$important
 @@||ykimg.com^$important
+@@||ykimg.alicdn.com^$important
+# ---- 图片 / 消息 / 配置 ----
+@@||image.youku.com^$important
+@@||pic.youku.com^$important
+@@||push.youku.com^$important
+@@||msg.youku.com^$important
+@@||data.youku.com^$important
+@@||config.youku.com^$important
+@@||download.youku.com^$important
+@@||upload.youku.com^$important
+@@||update.youku.com^$important
+@@||upgrade.youku.com^$important
+# ---- 日志 / 安全 / 客服 ----
+# （log/stat 属埋点，拦截会偶发弹错；介意可删）
+@@||log.youku.com^$important
+@@||stat.youku.com^$important
+@@||safe.youku.com^$important
+@@||check.youku.com^$important
+# 客服工单（udesk）
+@@||youku.udesk.cn^$important
+# （未见公开使用记录，白名单无害；想精简可删）
+@@||youku.youku.com^$important
 
 # ---- 饿了么 ----
 @@||h5.ele.me^$important
@@ -187,29 +238,144 @@
 # 反馈帮助页面
 @@||ic.snssdk.com^$important
 
-
 # ==========================================
 # 【百度】
 # ==========================================
 
-# ---- 搜索 / 门户 / 百科 / 网盘 ----
+# ---- 搜索 / 门户 / 内容 ----
 @@||www.baidu.com^$important
-@@||pan.baidu.com^$important
-@@||map.baidu.com^$important
-@@||tieba.baidu.com^$important
+@@||m.baidu.com^$important
+@@||news.baidu.com^$important
+@@||image.baidu.com^$important
+@@||video.baidu.com^$important
+@@||music.baidu.com^$important
+@@||top.baidu.com^$important
+@@||index.baidu.com^$important
+@@||zhidao.baidu.com^$important
+@@||xueshu.baidu.com^$important
+
+# ---- 百科 / 贴吧 / 文库 ----
 @@||baike.baidu.com^$important
+@@||tieba.baidu.com^$important
 @@||wenku.baidu.com^$important
-# 百度系公共静态资源（翻译/网盘/百科/文库通用）
-@@||bdimg.com^$important
-@@||bdstatic.com^$important
-@@||baidustatic.com^$important
+
+# ---- 好看视频 ----
+@@||haokan.baidu.com^$important
+@@||m.haokan.baidu.com^$important
+
+# ---- hao123 ----
+@@||hao.baidu.com^$important
+@@||123.baidu.com^$important
+@@||www.hao123.com^$important
+@@||m.hao123.com^$important
+
+# ---- 搜索静态资源 ----
+# sp*：搜索结果页资源（sp1 曾有误杀记录）
+@@||sp0.baidu.com^$important
+@@||sp1.baidu.com^$important
+@@||sp2.baidu.com^$important
+@@||sp3.baidu.com^$important
+# t1-t9：搜索图片/静态 CDN
+@@||t1.baidu.com^$important
+@@||t2.baidu.com^$important
+@@||t3.baidu.com^$important
+@@||t4.baidu.com^$important
+@@||t5.baidu.com^$important
+@@||t6.baidu.com^$important
+@@||t7.baidu.com^$important
+@@||t8.baidu.com^$important
+@@||t9.baidu.com^$important
+# 百度分享组件
+@@||bdimg.share.baidu.com^$important
+# 注：ss0-ss5 / s1-s9 .bdstatic.com、ms.bdimg.com、maponline0-9.bdimg.com
+#     已由公共静态资源规则 @@||bdstatic.com^ / @@||bdimg.com^ 覆盖，不再重复列出
+
+# ---- 账号 / 登录 / 安全 ----
+@@||passport.baidu.com^$important
+# 登录人机验证
+@@||wappass.baidu.com^$important
+@@||login.baidu.com^$important
+@@||account.baidu.com^$important
+@@||safe.baidu.com^$important
+@@||verify.baidu.com^$important
+@@||check.baidu.com^$important
+
+# ---- 百度翻译 / 词典 ----
+@@||fanyi.baidu.com^$important
+@@||dict.baidu.com^$important
+# 部分版本/组件走的翻译接口
+@@||translate.baidu.com^$important
+
+# ---- AI / 云 / 开发者 ----
+@@||ai.baidu.com^$important
+@@||cloud.baidu.com^$important
+@@||developer.baidu.com^$important
+@@||aip.baidubce.com^$important
+@@||mob.baidubce.com^$important
+@@||bce.baidu.com^$important
+
+# ---- 百度网盘 ----
+@@||pan.baidu.com^$important
+# 注：passport./static./res./check./verify./upload.pan.baidu.com 均为 pan 子域，已覆盖
+@@||pan-user.baidu.com^$important
+@@||pcs.baidu.com^$important
+# 注：d./c./api.pcs.baidu.com 已被 pcs.baidu.com 覆盖
+@@||issuecdn.baidupcs.com^$important
+@@||hot.cdn.baidupcs.com^$important
+@@||qd.baidupcs.com^$important
+# 网盘上传/传输节点
+@@||pcs-bj.baidu.com^$important
+@@||pcs-sh.baidu.com^$important
+@@||pcs-gz.baidu.com^$important
+@@||pcs-cd.baidu.com^$important
+@@||upload0.baidu.com^$important
+@@||upload1.baidu.com^$important
+@@||upload2.baidu.com^$important
+@@||upload3.baidu.com^$important
+@@||dl.baidu.com^$important
+@@||down.baidu.com^$important
+@@||speed.baidu.com^$important
+
+# ---- 百度地图 ----
+# 注：api.map / api0-9.map / loc / ak / search / poi / static.map / res.map /
+#     passport.map / verify.map / safety.map / weather / bus / walk / ride /
+#     drive / indoor / panorama.map 均为 map.baidu.com 子域，已由父域规则覆盖
+@@||map.baidu.com^$important
+@@||navi.baidu.com^$important
+@@||naviservice.baidu.com^$important
+@@||lbsyun.baidu.com^$important
+@@||fence.baidu.com^$important
+@@||trace.baidu.com^$important
+@@||traffic.baidu.com^$important
+
+# ---- 百度其它 App / 通用 ----
+@@||box.baidu.com^$important
 # 百度关键词跳转
 @@||boxer.baidu.com^$important
-# ---- 文心（文心一言/大模型）----
-@@||wenxin.baidu.com^$important
-# 百度网盘 exe 客户端下载
-@@||issuecdn.baidupcs.com^$important
-@@||ms.bdimg.com^$important
+@@||app.baidu.com^$important
+# （疑似 mobile 的拼写变体，保留无害）
+@@||moblie.baidu.com^$important
+@@||imtt.baidu.com^$important
+@@||sdk.baidu.com^$important
+@@||push.baidu.com^$important
+@@||msg.baidu.com^$important
+# 语音 / OCR
+@@||voice.baidu.com^$important
+@@||speech.baidu.com^$important
+@@||ocr.baidu.com^$important
+# 用户资料
+@@||u.baidu.com^$important
+@@||user.baidu.com^$important
+@@||profile.baidu.com^$important
+# 通用静态/配置/升级
+@@||static.baidu.com^$important
+@@||res.baidu.com^$important
+@@||cdn.baidu.com^$important
+@@||config.baidu.com^$important
+@@||setting.baidu.com^$important
+@@||update.baidu.com^$important
+@@||upgrade.baidu.com^$important
+# 以下为原白名单保留的百度条目
 @@||fc3tn.baidu.com^$important
 @@||fc5tn.baidu.com^$important
 @@||feed-image.baidu.com^$important
@@ -219,30 +385,15 @@
 @@||wan.baidu.com^$important
 # 大牌餐饮
 @@||sjh.baidu.com^$important
-# 秒针广告监测域，仅因百度搜索结果卡片需要；介意可不加
-@@||e.cn.miaozhen.com^$important
-
-# ---- 百度云加速 ----
-@@||yunjiasu.com^$important
-
-# ---- 百度翻译 / 百度汉语 ----
-@@||fanyi.baidu.com^$important
-@@||dict.baidu.com^$important
-# 部分版本/组件走的翻译接口
-@@||translate.baidu.com^$important
-# 翻译页资源，社区有过误杀记录
-@@||sp1.baidu.com^$important
-
-# ---- 百度账号（通用登录）----
-@@||passport.baidu.com^$important
-# 登录人机验证
-@@||wappass.baidu.com^$important
-
 # ---- 百度手机输入法 ----
 # 云联想
 @@||udpolimenew.baidu.com^$important
 # 灵感语录同步
 @@||mime.baidu.com^$important
+# ---- 百度云加速 ----
+@@||yunjiasu.com^$important
+# 秒针广告监测域，仅因百度搜索结果卡片需要；介意可不加
+@@||e.cn.miaozhen.com^$important
 
 
 # ==========================================
@@ -440,20 +591,58 @@
 
 
 # ==========================================
-# 【爱奇艺】
+# 【爱奇艺】（腾讯视频/优酷同理，见下）
 # ==========================================
-@@||act.vip.iqiyi.com^$important
-@@||msg.video.qiyi.com^$important
+# ---- 网页 / 移动端 ----
+@@||www.iqiyi.com^$important
+@@||m.iqiyi.com^$important
+@@||api.iqiyi.com^$important
+@@||cache.iqiyi.com^$important
+@@||cdn.iqiyi.com^$important
+@@||static.iqiyi.com^$important
+@@||video.iqiyi.com^$important
+@@||player.iqiyi.com^$important
+# ---- 账号 / 支付 / VIP ----
+@@||passport.iqiyi.com^$important
+@@||verify.iqiyi.com^$important
+@@||pay.iqiyi.com^$important
+@@||vip.iqiyi.com^$important
 @@||subscription.iqiyi.com^$important
-# 播放缓存/CDN（拦截会黑屏或卡加载）
+@@||act.vip.iqiyi.com^$important
+# VIP 充值界面加载
+@@||iface.iqiyi.com^$important
+# ---- 播放 / 元数据（qiyi.com 为爱奇艺另一主域）----
 @@||cache.video.qiyi.com^$important
 # 网页版快进/进度条
 @@||meta.video.qiyi.com^$important
-# VIP 充值界面加载
-@@||iface.iqiyi.com^$important
-# 观看记录图片
+@@||msg.video.qiyi.com^$important
+# ---- 图片 / 记录 ----
+@@||image.iqiyi.com^$important
+@@||pic.iqiyi.com^$important
 @@||rcd.iqiyi.com^$important
 @@||l.rcd.iqiyi.com^$important
+# ---- 推送 / 消息 / 配置 ----
+@@||push.iqiyi.com^$important
+@@||msg.iqiyi.com^$important
+@@||data.iqiyi.com^$important
+@@||config.iqiyi.com^$important
+@@||download.iqiyi.com^$important
+@@||upload.iqiyi.com^$important
+@@||update.iqiyi.com^$important
+@@||upgrade.iqiyi.com^$important
+# 唯品会域上的爱奇艺合作页（vip.com 归属唯品会，此处按来源保留）
+@@||iqiyi.vip.com^$important
+# （未见公开使用记录，白名单无害；想精简可删）
+@@||71.am.iqiyi.com^$important
+@@||72.am.iqiyi.com^$important
+@@||73.am.iqiyi.com^$important
+@@||74.am.iqiyi.com^$important
+@@||75.am.iqiyi.com^$important
+@@||76.am.iqiyi.com^$important
+@@||77.am.iqiyi.com^$important
+@@||78.am.iqiyi.com^$important
+@@||79.am.iqiyi.com^$important
+@@||80.am.iqiyi.com^$important
 
 # ==========================================
 # 【斗鱼】
@@ -533,6 +722,54 @@
 @@||orbit.jd.com^$important
 @@||wl.jd.com^$important
 
+# ==========================================
+# 【唯品会】
+# ==========================================
+# ---- 网页 / 移动端 ----
+@@||www.vip.com^$important
+@@||m.vip.com^$important
+@@||api.vip.com^$important
+@@||cache.vip.com^$important
+@@||cdn.vip.com^$important
+@@||static.vip.com^$important
+# ---- 账号 / 支付 ----
+@@||passport.vip.com^$important
+@@||verify.vip.com^$important
+@@||pay.vip.com^$important
+@@||safe.vip.com^$important
+@@||check.vip.com^$important
+# ---- 交易链路（订单/购物车/商品）----
+@@||order.vip.com^$important
+@@||cart.vip.com^$important
+@@||goods.vip.com^$important
+@@||product.vip.com^$important
+# ---- 营销 / 客服 ----
+@@||coupon.vip.com^$important
+@@||promotion.vip.com^$important
+@@||activity.vip.com^$important
+@@||service.vip.com^$important
+@@||customer.vip.com^$important
+# ---- 图片 / 配置 / 升级 ----
+@@||image.vip.com^$important
+@@||pic.vip.com^$important
+@@||data.vip.com^$important
+@@||config.vip.com^$important
+@@||update.vip.com^$important
+@@||upgrade.vip.com^$important
+# ---- vipshop.com ----
+@@||vipshop.com^$important
+@@||m.vipshop.com^$important
+@@||api.vipshop.com^$important
+@@||pay.vipshop.com^$important
+@@||passport.vipshop.com^$important
+@@||static.vipshop.com^$important
+@@||image.vipshop.com^$important
+@@||pic.vipshop.com^$important
+# ---- 日志 / 埋点（介意可删）----
+@@||log.vip.com^$important
+@@||stat.vip.com^$important
+# （未见公开使用记录，白名单无害；想精简可删）
+@@||vip.vip.com^$important
 
 # ==========================================
 # 【美团 / 大众点评】
