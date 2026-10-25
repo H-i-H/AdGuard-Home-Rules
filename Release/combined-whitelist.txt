@@ -434,6 +434,7 @@
 @@||micloud.xiaomi.net^$important
 @@||fds.api.xiaomi.com^$important
 @@||account.xiaomi.com^$important
+@@||passport.xiaomi.com^$important
 @@||update.miui.com^$important
 @@||feedback.miui.com^$important
 @@||i.ai.mi.com^$important
@@ -481,7 +482,27 @@
 
 # ---- 米家 IoT ----
 @@||ot.io.mi.com^$important
+@@||home.mi.com^$important
+@@||app.xiaomi.com^$important
 
+# --- 小米IoT设备DNS校验放行（防止设备误判网络异常） ---
+@@||dns.xiaomi.com^$important
+@@||ns1.xiaomi.com^$important
+
+# --- 小米智能摄像头核心域名放行 ---
+@@||business.smartcamera.api.io.mi.com^$important
+@@||home.camera.xiaomi.com^$important
+@@||video.camera.mi.com^$important
+
+# --- 小爱音箱/语音服务放行 ---
+@@||ai.mi.com^$important
+@@||voice.xiaomi.com^$important
+@@||duer.mi.com^$important
+
+# --- 小米运动/手环/健康设备放行 ---
+@@||api.huami.com^$important
+@@||sport.xiaomi.com^$important
+@@||health.mi.com^$important
 
 # ==========================================
 # 【Apple】
