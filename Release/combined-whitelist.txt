@@ -272,6 +272,9 @@
 @@||www.hao123.com^$important
 @@||m.hao123.com^$important
 
+! --- 百度通用静态资源 CDN 放行 ---
+@@||psstatic.cdn.bcebos.com^$important
+@@||apps.bdimg.com^$important
 # ---- 搜索静态资源 ----
 # sp*：搜索结果页资源（sp1 曾有误杀记录）
 @@||sp0.baidu.com^$important
@@ -313,6 +316,7 @@
 @@||fanyi.baidu.com^$important
 @@||fanyi-cdn.cdn.bcebos.com^$important
 @@||fanyi-api.baidu.com^$important
+@@||fanyi-service.baidu.com^$important
 @@||dict.baidu.com^$important
 # 部分版本/组件走的翻译接口
 @@||translate.baidu.com^$important
