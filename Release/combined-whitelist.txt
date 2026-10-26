@@ -54,6 +54,9 @@
 @@||apd-vlive.apdcdn.tc.qq.com^$important
 # ---- 其它 ----
 @@||v.qq.com.cn^$important
+@@||my.qq.com^$important
+@@||qpic.video.qq.com^$important
+
 # Akamai CNAME 目标（AdGuard Home 可匹配 CNAME 链）
 @@||v.qq.com.edgesuite.net^$important
 
@@ -115,6 +118,7 @@
 @@||api.youku.com^$important
 @@||cache.youku.com^$important
 @@||cdn.youku.com^$important
+@@||g.alicdn.com^$important
 @@||static.youku.com^$important
 @@||video.youku.com^$important
 @@||player.youku.com^$important
@@ -838,6 +842,10 @@
 @@||dianping.com^$important
 @@||sankuai.com^$important
 @@||file.neixin.cn^$important
+@@||passport.meituan.com^$important
+@@||loc.meituan.com^$important
+@@||pay.meituan.com^$important
+
 # ---- 订单/通用接口 ----
 @@||api.meituan.com^$important
 @@||i.meituan.com^$important
@@ -845,6 +853,7 @@
 @@||mobike.com^$important
 # 个人中心/头像等图片
 @@||p0.meituan.net^$important
+@@||p1.meituan.net^$important
 @@||img.meituan.net^$important
 
 # 拦截该域名提示网络错误，无法打开消息列表设置
