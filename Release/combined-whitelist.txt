@@ -675,7 +675,7 @@
 @@||pic.iqiyi.com^$important
 @@||rcd.iqiyi.com^$important
 @@||l.rcd.iqiyi.com^$important
-@@||www.iqiyipic.com^$important
+@@||iqiyipic.com^$important
 # ---- 推送 / 消息 / 配置 ----
 @@||push.iqiyi.com^$important
 @@||msg.iqiyi.com^$important
