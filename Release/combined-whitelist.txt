@@ -3,7 +3,7 @@
 # ============================================================
 # 用途：构建时并入 Release/combined-rules.txt（@@ 行追加至文件末尾）
 # 格式：@@||域名^$important    # 以 # 开头的行为注释
-# 更新时间：2026-10-25
+# 更新时间：2026-10-26
 # ============================================================
 
 
@@ -438,15 +438,25 @@
 @@||update.miui.com^$important
 @@||feedback.miui.com^$important
 @@||i.ai.mi.com^$important
+# Ai扫描
+@@||aivision.xiaoaiscan.net^$important
+
+# ---- 小爱同学 ----
+@@||ai.xiaomi.cn^$important
+@@||api.mina.xiaomi.com^$important
+@@||iot-apiserver.mi.com^$important
 
 # ---- 小米主题 ----
-@@||zhuti.xiaomi.com^$important
 @@||api.zhuti.xiaomi.com^$important
+@@||res.zhuti.xiaomi.com^$important
+@@||download.zhuti.xiaomi.com^$important
+# @@||market.mi-img.com^$important
 # 铃声推荐
 @@||h5res.kuyin123.com^$important
 
 # ---- 小米商城 ----
 @@||m.mi.com^$important
+@@||mi-img.com^$important
 
 # ---- 小米有品 ----
 @@||stat.youpin.mi.com^$important
@@ -461,8 +471,8 @@
 @@||cdn.browser.miui.com^$important
 @@||security.browser.miui.com^$important
 @@||r.browser.miui.com^$important
-@@||ssl-cdn.static.browser.mi-img.com^$important
-@@||ts.market.mi-img.com^$important
+# @@||ssl-cdn.static.browser.mi-img.com^$important
+# @@||ts.market.mi-img.com^$important
 
 # ---- MIUI 安全 / 骚扰拦截 ----
 @@||api.sec.miui.com^$important
@@ -706,6 +716,10 @@
 # ==========================================
 @@||dfcfw.com^$important
 @@||mobappconfig.securities.eastmoney.com^$important
+@@||np-anot.eastmoney.com^$important
+@@||emchart.eastmoney.com^$important
+@@||push2.eastmoney.com^$important
+@@||trade.18.cn^$important
 
 
 # ==========================================
@@ -1093,7 +1107,10 @@
 
 # ---- 酷安（图片走阿里云 OSS）----
 @@||coolapk-oss-image.oss-cn-hangzhou.aliyuncs.com^$important
-
+@@||api.coolapk.com^$important
+@@||image.coolapk.com^$important
+@@||download.coolapk.com^$important
+@@||api.coolapk.com.cn^$important
 
 # ==========================================
 # 【国外网站 / 社区 / 媒体】
