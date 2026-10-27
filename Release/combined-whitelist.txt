@@ -140,6 +140,8 @@
 @@||ups.youku.com^$important
 @@||pl.youku.com^$important
 @@||pl-ali-golang.youku.com^$important
+# pl-ali：播放分发网关，与 pl/pl-ali-golang 是兄弟域，缺它无法播放
+@@||pl-ali.youku.com^$important
 @@||acs.youku.com^$important
 # un-acs：未登录/游客态网关，与 acs 是兄弟域非子域，勿删
 @@||un-acs.youku.com^$important
