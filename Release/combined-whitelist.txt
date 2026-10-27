@@ -449,6 +449,16 @@
 @@||ai.xiaomi.cn^$important
 @@||api.mina.xiaomi.com^$important
 @@||iot-apiserver.mi.com^$important
+# MiMo / 小爱同学（对话、意图路由、技能分发、建议、鉴权、小爱输入法等）
+@@||aistudio.xiaomimimo.com^$important
+@@||miclaw.xiaomi.net^$important
+@@||miclaw-ecology.developer.miui.com^$important
+@@||i.xiaomixiaoai.com^$important
+@@||query-suggestion.xiaomixiaoai.com^$important
+# 快应用卡片资源（小爱导航卡片等）
+@@||mi-fds.com^$important
+# 小米云服务补充（文件传输 CDN，在 micloud.mi.com 下）
+@@||micloud.mi.com^$important
 
 # ---- 小米主题 ----
 @@||api.zhuti.xiaomi.com^$important
@@ -489,10 +499,6 @@
 
 # ---- 小米日志上报（放行仅为排查/反馈，介意可删）----
 @@||sentry.d.xiaomi.net^$important
-
-# ---- MiMo（小爱输入法等）----
-@@||aistudio.xiaomimimo.com^$important
-@@||audio.miclaw.xiaomi.net^$important
 
 # ---- 米家 IoT ----
 @@||ot.io.mi.com^$important
@@ -716,15 +722,62 @@
 @@||disp.titan.mgtv.com^$important
 
 # ==========================================
-# 【东方财富】
+# 金融 / 证券（东方财富 + 平安系交易通道）
 # ==========================================
-@@||dfcfw.com^$important
-@@||mobappconfig.securities.eastmoney.com^$important
-@@||np-anot.eastmoney.com^$important
-@@||emchart.eastmoney.com^$important
+
+# 账号 / 登录
+@@||awebapi2-account.eastmoney.com^$important
+@@||awebapi5-account.eastmoney.com^$important
+
+# 行情 / 数据 / 图表
 @@||push2.eastmoney.com^$important
+@@||emchart.eastmoney.com^$important
+@@||datacenter.eastmoney.com^$important
+@@||codedictdata.eastmoney.com^$important
+@@||emisdatacentercdn.eastmoney.com^$important
+
+# 东方财富 CDN 父域（研报 PDF、表情包、图表素材；覆盖 gbfek 等子域）
+@@||dfcfw.com^$important
+
+# 交易
+# eastmoneysec.com：东方财富自有交易域
+@@||emdctrade.eastmoneysec.com^$important
+# 18.cn 为平安系域名，此为 App 内挂接的平安证券/期货交易通道
 @@||trade.18.cn^$important
 
+# 自选股 / 收藏
+@@||myfavor.eastmoney.com^$important
+@@||myfavor1.eastmoney.com^$important
+@@||myfavor-collect.eastmoney.com^$important
+
+# 头像（官方域拼写即 avator）
+@@||avator.eastmoney.com^$important
+
+# 消息 / 公告 / 推送 / IM 长连接
+@@||msgcnt.eastmoney.com^$important
+@@||np-anot.eastmoney.com^$important
+@@||push-profile-api.eastmoney.com^$important
+@@||emimpcpf.eastmoney.com^$important
+@@||emimpcpf-hspre.eastmoney.com^$important
+
+# App 配置 / 服务器列表 / HTTPDNS
+@@||mobappconfig.securities.eastmoney.com^$important
+@@||emcfgdata.securities.eastmoney.com^$important
+@@||eminterservice.securities.eastmoney.com^$important
+@@||appserverlistal.eastmoney.com^$important
+@@||appserverlistal.dflcs.cn^$important
+@@||httpdns2.eastmoney.com^$important
+
+# 股吧（互动 API 独立域 emhudong.cn）
+@@||gbapi.emhudong.cn^$important
+
+# App 更新 / 资源下载
+@@||swdlcdn.eastmoney.com^$important
+
+# 股吧运营位 / 活动页资源（可选）
+@@||gboperation.eastmoney.com^$important
+@@||bdstatics.eastmoney.com^$important
+@@||bd-fireworks.eastmoney.com^$important
 
 # ==========================================
 # 【东方网 · 东方头条】
@@ -1116,6 +1169,7 @@
 
 # ---- 酷安（图片走阿里云 OSS）----
 @@||coolapk-oss-image.oss-cn-hangzhou.aliyuncs.com^$important
+@@||avatar.coolapk.com^$important
 @@||api.coolapk.com^$important
 @@||image.coolapk.com^$important
 @@||download.coolapk.com^$important
