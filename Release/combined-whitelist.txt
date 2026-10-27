@@ -110,37 +110,46 @@
 @@||tanx.com^$important
 @@||zconfig.alibabausercontent.com^$important
 
-# ---- 优酷youku----
-# （广告域 atm/sealine 不放行）
+# ---- 优酷 youku ----
+# （不放行广告域：atm/sealine、yk-ssp.ad、adx-open-service、missile、qzs.gdtimg.com）
+# ----------------------------------
+
+# ---- 主站 / 页面 / 静态资源 ----
 @@||www.youku.com^$important
 @@||m.youku.com^$important
 @@||v.youku.com^$important
 @@||api.youku.com^$important
 @@||cache.youku.com^$important
 @@||cdn.youku.com^$important
-@@||g.alicdn.com^$important
 @@||static.youku.com^$important
 @@||video.youku.com^$important
 @@||player.youku.com^$important
+@@||image.youku.com^$important
+@@||pic.youku.com^$important
+@@||ykimg.com^$important
+# ACG/番剧频道
+@@||acg.youku.com^$important
+
 # ---- 账号 / 支付 / VIP ----
 @@||passport.youku.com^$important
 @@||verify.youku.com^$important
 @@||pay.youku.com^$important
 @@||vip.youku.com^$important
+
 # ---- 播放鉴权 / 分发 / 风控 ----
 @@||ups.youku.com^$important
 @@||pl.youku.com^$important
 @@||pl-ali-golang.youku.com^$important
 @@||acs.youku.com^$important
+# un-acs：未登录/游客态网关，与 acs 是兄弟域非子域，勿删
+@@||un-acs.youku.com^$important
 @@||vod-ant.youku.com^$important
-# vali-g1：电脑端提示广告加载失败，易产生歧义，实际在有效倒计时
-@@||vali-g1.cp31.ott.cibntv.net^$important
 @@||ott.cibntv.net^$important
-@@||ykimg.com^$important
-@@||ykimg.alicdn.com^$important
-# ---- 图片 / 消息 / 配置 ----
-@@||image.youku.com^$important
-@@||pic.youku.com^$important
+# vali-g1：电脑端提示广告加载失败，易产生歧义，实际在有效倒计时
+# （已被 ott.cibntv.net 父域覆盖，留作说明）
+@@||vali-g1.cp31.ott.cibntv.net^$important
+
+# ---- 消息 / 配置 / 更新 ----
 @@||push.youku.com^$important
 @@||msg.youku.com^$important
 @@||data.youku.com^$important
@@ -149,6 +158,7 @@
 @@||upload.youku.com^$important
 @@||update.youku.com^$important
 @@||upgrade.youku.com^$important
+
 # ---- 日志 / 安全 / 客服 ----
 # （log/stat 属埋点，拦截会偶发弹错；介意可删）
 @@||log.youku.com^$important
@@ -159,6 +169,21 @@
 @@||youku.udesk.cn^$important
 # （未见公开使用记录，白名单无害；想精简可删）
 @@||youku.youku.com^$important
+
+# ---- 阿里 CDN 素材（alicdn 逐子域放行，勿整域）----
+# 注意：ykimg.alicdn.com 是 alicdn.com 子域，ykimg.com 覆盖不到
+@@||ykimg.alicdn.com^$important
+@@||g.alicdn.com^$important
+@@||at.alicdn.com^$important
+@@||o.alicdn.com^$important
+@@||liangcang-material.alicdn.com^$important
+@@||hudong.alicdn.com^$important
+
+# ---- 登录/风控人机验证（阿里云验证码，过 punish 页验证用）----
+@@||cf.aliyun.com^$important
+
+# ---- 统计（若播放正常可考虑收窄）----
+@@||mmstat.com^$important
 
 # ---- 饿了么 ----
 @@||h5.ele.me^$important
