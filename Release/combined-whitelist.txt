@@ -324,6 +324,9 @@
 # 百度分享组件
 @@||bdimg.share.baidu.com^$important
 
+# 百度图片
+@@/(^|\.)img\d+\.baidu\.com$/$important
+
 # ---- 账号 / 登录 / 安全 ----
 @@||passport.baidu.com^$important
 # 登录人机验证
@@ -433,7 +436,6 @@
 @@||yunjiasu.com^$important
 # 秒针广告监测域，仅因百度搜索结果卡片需要；介意可不加
 @@||e.cn.miaozhen.com^$important
-
 
 # ==========================================
 # 【小米 / MIUI】
