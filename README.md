@@ -1,6 +1,6 @@
 # AdGuard-Home-Rules
 ```
-重要‼️：已更新订阅方式，规则巨大，不推荐使用，建议Fork自己仓库按需调整上游规则！！！
+重要‼️：已更新订阅方式，规则巨大，低配设备不推荐使用，建议Fork自己仓库按需调整上游规则！！！
 ```
 这是一个由Ai编写的为AdGuard Home设计的过滤规则仓库，仅用于测试，如有违规，请联系作者删除。
 该仓库具有以下特点：
@@ -16,6 +16,10 @@
 ```
 https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/combined-rules.txt
 ```
+##### 最终订阅地址国内加速版→
+```
+https://cdn.akaere.online/https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/combined-rules.txt
+```
 
 ##### 单项订阅地址 →
 ```
@@ -28,7 +32,7 @@ https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/malware-bla
 成人内容拦截：
 https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/adult-blacklist.txt
 
-自维护白名单（不定期更新）：
+自维护白名单（持续更新中，每日自动加至最终订阅地址）：
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-whitelist.txt
 ```
 
