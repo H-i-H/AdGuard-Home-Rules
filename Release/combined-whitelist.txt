@@ -3,7 +3,7 @@
 # ============================================================
 # 用途：构建时并入 Release/combined-rules.txt（@@ 行追加至文件末尾）
 # 格式：@@||域名^$important    # 以 # 开头的行为注释
-# 更新时间：2026-10-28
+# 更新时间：2026-11-01 21:50
 # ============================================================
 
 
@@ -310,26 +310,16 @@
 @@||bdstatic.com^$important
 @@||bdimg.com^$important
 # sp*：搜索结果页资源（sp1 曾有误杀记录）
-@@||sp0.baidu.com^$important
-@@||sp1.baidu.com^$important
-@@||sp2.baidu.com^$important
-@@||sp3.baidu.com^$important
+# @@||sp0.baidu.com^$important
+@@/(^|\.)sp\d+\.baidu\.com$/$important
 # t1-t9：搜索图片/静态 CDN
-@@||t1.baidu.com^$important
-@@||t2.baidu.com^$important
-@@||t3.baidu.com^$important
-@@||t4.baidu.com^$important
-@@||t5.baidu.com^$important
-@@||t6.baidu.com^$important
-@@||t7.baidu.com^$important
-@@||t8.baidu.com^$important
-@@||t9.baidu.com^$important
+# @@||t1.baidu.com^$important
+@@/(^|\.)t\d+\.baidu\.com$/$important
+
 # gips0-gips4  图片/静态 CDN
-@@||gips0.baidu.com^$important
-@@||gips1.baidu.com^$important
-@@||gips2.baidu.com^$important
-@@||gips3.baidu.com^$important
-@@||gips4.baidu.com^$important
+# @@||gips0.baidu.com^$important
+@@/(^|\.)gips\d+\.baidu\.com$/$important
+
 # 百度分享组件
 @@||bdimg.share.baidu.com^$important
 
@@ -469,6 +459,11 @@
 @@||update.miui.com^$important
 @@||feedback.miui.com^$important
 @@||i.ai.mi.com^$important
+# 小米飞机火车通知
+@@||verca.xpa.assistant.miui.com^$important
+# 小米支付 TSM（NFC 交通卡/门钥匙/银行卡）
+@@||tsmapi.pay.xiaomi.com^$important
+
 # Ai扫描
 @@||aivision.xiaoaiscan.net^$important
 
@@ -550,6 +545,8 @@
 @@||api.huami.com^$important
 @@||sport.xiaomi.com^$important
 @@||health.mi.com^$important
+# 小米运动健康（运动/健康数据同步）
+@@||hlth.io.mi.com^$important
 
 # ==========================================
 # 【Apple】
