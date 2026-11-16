@@ -286,6 +286,7 @@
 @@||index.baidu.com^$important
 @@||zhidao.baidu.com^$important
 @@||xueshu.baidu.com^$important
+@@||www.a.shifen.com^$important
 
 # ---- 百科 / 贴吧 / 文库 ----
 @@||baike.baidu.com^$important
@@ -462,6 +463,7 @@
 @@||update.miui.com^$important
 @@||feedback.miui.com^$important
 @@||i.ai.mi.com^$important
+
 # 小米飞机火车通知
 @@||verca.xpa.assistant.miui.com^$important
 # 小米支付 TSM（NFC 交通卡/门钥匙/银行卡）
@@ -551,6 +553,9 @@
 # 小米运动健康（运动/健康数据同步）
 @@||hlth.io.mi.com^$important
 
+# 多看
+@@||www.duokan.com^$important
+@@||cdn-font.hyperos.mi.com^$important
 # ==========================================
 # 【Apple】
 # ==========================================
@@ -970,7 +975,7 @@
 # ==========================================
 # 注意：广告视频子域同在 xhscdn.com 下，此为整域放行的代价
 @@||xhscdn.com^$important
-
+@@||www.xiaohongshu.com^$important
 
 # ==========================================
 # 【印象笔记】
