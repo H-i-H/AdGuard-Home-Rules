@@ -132,8 +132,8 @@ AdGuard-Home-Rules/
 | --- | --- | --- |
 | ✅ 保留 | anti-AD、AdGuard SDNS、GOODBYEADS、oisd small、HaGeZi multi、malware ×2、成人 ×2 | 质量高、误杀少、中英文覆盖均衡 |
 | ➡️ 移出 DNS | EasyList、EasyList China、EasyPrivacy、ADgk、AWAvenue | 浏览器专用规则，已挪至 `special-rules.txt` |
-| ⏸️ 注释停用 | BlueSkyXN all.txt、oisd big、HaGeZi pro 及 11 条重复/激进源 | 巨型合集、档位过激、高度重叠，误杀主因 |
-| 🔧 专项可选 | SmartTV、jiekouAD、AdGuard-fanqie | 仅特定设备/场景需要，默认停用 |
+| ⏸️ 注释停用 | BlueSkyXN all.txt、oisd big、HaGeZi pro 及多条重复 / 激进源 | 巨型合集、档位过激、高度重叠，误杀主因 |
+| 🔧 专项可选 | SmartTV、jiekouAD、AdGuard-fanqie、fuck youtube | 仅特定设备 / 场景需要，默认停用 |
 
 > [!TIP]
 > 规则越多，误杀概率越高。建议按需订阅单项规则；恢复任何源之前，先确认确实有覆盖缺口。
@@ -188,25 +188,25 @@ AdGuard-Home-Rules/
 | oisd nsfw | https://nsfw.oisd.nl |
 
 <!-- ============================================================
-以下为已注释停用的上游源，恢复 = 删除对应的 <!-- --> 包裹即可。
+以下为已注释停用的上游源。恢复方法：删除对应区块首尾的注释标记即可。
 ============================================================ -->
 
-<!-- ---------- 移出 DNS：浏览器插件专用，请加入 special-rules.txt ----------
+<!-- 【移出 DNS：浏览器插件专用，请加入 special-rules.txt】
 📌 ADS (browser-only)
 - EasyList               https://easylist-downloads.adblockplus.org/easylist.txt
 - EasyList China         https://easylist-downloads.adblockplus.org/easylistchina.txt
 - EasyPrivacy            https://easylist-downloads.adblockplus.org/easyprivacy.txt
 - ADgk                   https://cdn.jsdelivr.net/gh/banbendalao/ADgk@master/ADgk.txt
 - AWAvenue-Ads-Rule      https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/AWAvenue-Ads-Rule.txt
--->
+==== -->
 
-<!-- ---------- 注释停用：巨型合集 / 档位过激（误杀主因） ----------
+<!-- 【注释停用：巨型合集 / 档位过激，误杀主因】
 - BlueSkyXN all.txt      https://raw.githubusercontent.com/BlueSkyXN/AdGuardHomeRules/master/all.txt
 - oisd big               https://big.oisd.nl                （已降档替换为 small）
 - HaGeZi pro             https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt （已降档替换为 multi）
--->
+==== -->
 
-<!-- ---------- 注释停用：与核心源高度重复 ----------
+<!-- 【注释停用：与核心源高度重复】
 - Cats-Team/AdRules      https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt
 - StevenBlack/hosts      https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
 - AdAway                 https://adaway.org/hosts.txt
@@ -218,14 +218,15 @@ AdGuard-Home-Rules/
 - kl0711 Ad-rules        https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/Ad-rules.txt
 - lingeringsound         https://raw.githubusercontent.com/lingeringsound/adblock_auto/refs/heads/main/Rules/adblock_auto.txt
 - KiryChan KR_DNS_Filter https://raw.githubusercontent.com/KiryChanOfficial/AdFilterForAdGuard/refs/heads/main/KR_DNS_Filter.txt
--->
+- 1Hosts Lite            https://badmojr.github.io/1Hosts/Lite/hosts.txt
+==== -->
 
-<!-- ---------- 专项可选：特定设备/场景才启用 ----------
+<!-- 【专项可选：特定设备 / 场景才启用】
 - SmartTV                https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
 - jiekouAD               https://raw.githubusercontent.com/damengzhu/banad/main/jiekouAD.txt
 - AdGuard-fanqie         https://raw.githubusercontent.com/kl0711/adRlues/refs/heads/main/AdGuard-fanqie.txt
 - fuck youtube           https://raw.githubusercontent.com/chinanjh/hosts/refs/heads/master/fuck%20youtube.txt
--->
+==== -->
 
 ---
 
