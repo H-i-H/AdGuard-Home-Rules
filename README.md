@@ -15,20 +15,42 @@
 </div>
 
 > [!IMPORTANT]
-> 已更新订阅方式，规则体量巨大，**低配设备不推荐使用**，建议 Fork 本仓库按需精简上游规则。
+> **已更新订阅方式** —— 规则体量巨大，低配设备不推荐使用。
+>
+> 建议 Fork 本仓库，按需精简上游规则后自行构建。
+>
 > 本仓库由 AI 编写，仅用于测试。如有侵权或违规，请联系作者删除（QQ：1753582514）。
 
 ---
 
 ## ✨ 特性
 
-| <small>**特性**</small> | <small>**说明**</small> |
-|:---:|:---:|
-| <small>🕘 自动更新</small> | <small>每日 06:00（UTC+8）自动拉取上游并合并发布</small> |
-| <small>🗂️ 分类管理</small> | <small>广告 / 恶意 / 成人独立订阅，按需自由组合</small> |
-| <small>✅ 白名单机制</small> | <small>自维护白名单每日扣减，持续降低误杀</small> |
-| <small>✂️ 精简上游</small> | <small>仅保留高质量、低误杀的核心规则源</small> |
-| <small>🌐 国内加速</small> | <small>提供 CDN 加速订阅地址，拉取更稳定</small> |
+<table width="100%">
+  <tr>
+    <th align="left" width="22%"><small><b>特性</b></small></th>
+    <th align="left"><small><b>说明</b></small></th>
+  </tr>
+  <tr>
+    <td align="left"><small>🕘 自动更新</small></td>
+    <td align="left"><small>每日 06:00（UTC+8）自动拉取上游并合并发布</small></td>
+  </tr>
+  <tr>
+    <td align="left"><small>🗂️ 分类管理</small></td>
+    <td align="left"><small>广告 / 恶意 / 成人独立订阅，按需自由组合</small></td>
+  </tr>
+  <tr>
+    <td align="left"><small>✅ 白名单机制</small></td>
+    <td align="left"><small>自维护白名单每日扣减，持续降低误杀</small></td>
+  </tr>
+  <tr>
+    <td align="left"><small>✂️ 精简上游</small></td>
+    <td align="left"><small>仅保留高质量、低误杀的核心规则源</small></td>
+  </tr>
+  <tr>
+    <td align="left"><small>🌐 国内加速</small></td>
+    <td align="left"><small>提供 CDN 加速订阅地址，拉取更稳定</small></td>
+  </tr>
+</table>
 
 ---
 
@@ -112,12 +134,28 @@ AdGuard-Home-Rules/
 
 <small>为降低误杀（部分应用无法打开）与规则体积，上游源已精简；被停用的源以注释保留在文末，取消注释即可恢复。</small>
 
-| <small>**处理**</small> | <small>**说明**</small> |
-|:---:|:---:|
-| <small>✅ 保留生效</small> | <small>广告 5 · 恶意 2 · 成人 2，共 9 个核心源</small> |
-| <small>➡️ 移出 DNS</small> | <small>浏览器规则 5 个 → 移入 special-rules.txt</small> |
-| <small>⏸️ 注释停用</small> | <small>巨型 / 激进 / 重复源 15 个，详见文末注释</small> |
-| <small>🔧 专项可选</small> | <small>SmartTV · jiekouAD · fanqie · fuck youtube</small> |
+<table width="100%">
+  <tr>
+    <th align="left" width="22%"><small><b>处理</b></small></th>
+    <th align="left"><small><b>说明</b></small></th>
+  </tr>
+  <tr>
+    <td align="left"><small>✅ 保留生效</small></td>
+    <td align="left"><small>广告 5 · 恶意 2 · 成人 2，共 9 个核心源</small></td>
+  </tr>
+  <tr>
+    <td align="left"><small>➡️ 移出 DNS</small></td>
+    <td align="left"><small>浏览器规则 5 个 → 移入 special-rules.txt</small></td>
+  </tr>
+  <tr>
+    <td align="left"><small>⏸️ 注释停用</small></td>
+    <td align="left"><small>巨型 / 激进 / 重复源 15 个，详见文末注释</small></td>
+  </tr>
+  <tr>
+    <td align="left"><small>🔧 专项可选</small></td>
+    <td align="left"><small>SmartTV · jiekouAD · fanqie · fuck youtube</small></td>
+  </tr>
+</table>
 
 ---
 
