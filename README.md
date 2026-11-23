@@ -2,7 +2,9 @@
 
 # AdGuard-Home-Rules
 
-<small>为 AdGuard Home 打造的自动化过滤规则集 · 广告 / 恶意网站 / 成人内容分类拦截，白名单兜底</small>
+为 AdGuard Home 打造的自动化过滤规则集
+
+**广告拦截 · 恶意网站拦截 · 成人内容拦截 —— 分类订阅，白名单兜底**
 
 ![更新时间](https://img.shields.io/badge/更新时间-每日%2006%3A00-2ea44f?style=flat-square)
 ![运行平台](https://img.shields.io/badge/运行平台-AdGuard%20Home-24292f?style=flat-square)
@@ -10,7 +12,7 @@
 ![设备要求](https://img.shields.io/badge/设备要求-中高配-b08800?style=flat-square)
 ![状态](https://img.shields.io/badge/状态-测试版-cb3837?style=flat-square)
 
-<small><b>[特性](#-特性) · [使用方法](#-使用方法) · [目录结构](#-目录结构) · [规则精简](#-规则精简) · [误杀排查](#-误杀排查) · [鸣谢](#-鸣谢) · [免责声明](#-免责声明)</b></small>
+**[特性](#-特性) · [使用方法](#-使用方法) · [目录结构](#-目录结构) · [规则精简](#-规则精简) · [误杀排查](#-误杀排查) · [鸣谢](#-鸣谢) · [免责声明](#-免责声明)**
 
 </div>
 
@@ -21,79 +23,56 @@
 >
 > 本仓库由 AI 编写，仅用于测试。如有侵权或违规，请联系作者删除（QQ：1753582514）。
 
----
-
 ## ✨ 特性
 
-<table width="100%">
-  <tr>
-    <th align="left" width="22%"><small><b>特性</b></small></th>
-    <th align="left"><small><b>说明</b></small></th>
-  </tr>
-  <tr>
-    <td align="left"><small>🕘 自动更新</small></td>
-    <td align="left"><small>每日 06:00（UTC+8）自动拉取上游并合并发布</small></td>
-  </tr>
-  <tr>
-    <td align="left"><small>🗂️ 分类管理</small></td>
-    <td align="left"><small>广告 / 恶意 / 成人独立订阅，按需自由组合</small></td>
-  </tr>
-  <tr>
-    <td align="left"><small>✅ 白名单机制</small></td>
-    <td align="left"><small>自维护白名单每日扣减，持续降低误杀</small></td>
-  </tr>
-  <tr>
-    <td align="left"><small>✂️ 精简上游</small></td>
-    <td align="left"><small>仅保留高质量、低误杀的核心规则源</small></td>
-  </tr>
-  <tr>
-    <td align="left"><small>🌐 国内加速</small></td>
-    <td align="left"><small>提供 CDN 加速订阅地址，拉取更稳定</small></td>
-  </tr>
-</table>
-
----
+- **🕘 自动更新** — 每日 06:00（UTC+8）自动拉取上游规则并合并发布
+- **🗂️ 分类管理** — 广告 / 恶意 / 成人独立订阅，按需自由组合
+- **✅ 白名单机制** — 自维护白名单每日扣减，持续降低误杀
+- **✂️ 精简上游** — 仅保留高质量、低误杀的核心规则源
+- **🌐 国内加速** — 提供 CDN 加速订阅地址，拉取更稳定
 
 ## 🚀 使用方法
 
-<small>**面板路径**：过滤器 → DNS 黑名单（白名单同理）→ 添加订阅 → 检查更新　|　最终订阅与单项订阅<b>二选一</b></small>
+**面板路径**：过滤器 → DNS 黑名单（白名单同理）→ 添加订阅 → 检查更新
 
-<small>**完整版**（广告 + 恶意 + 成人 − 白名单）</small>
+**订阅方式**：最终订阅与单项订阅二选一
+
+**完整版**（广告 + 恶意 + 成人 − 白名单）
 
 ```
 https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/combined-rules.txt
 ```
 
-<small>**国内加速版**</small>
+**国内加速版**
 
 ```
 https://cdn.akaere.online/https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/combined-rules.txt
 ```
 
 <details>
-<summary><small><b>单项订阅地址（广告 / 恶意 / 成人 / 白名单）</b></small></summary>
+<summary><b>单项订阅地址（广告 / 恶意 / 成人 / 白名单）</b></summary>
 
 <br>
 
-<small>**广告内容拦截**</small>
+**广告内容拦截**
 
 ```
 https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/ads-blacklist.txt
 ```
 
-<small>**恶意内容拦截**</small>
+**恶意内容拦截**
 
 ```
 https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/malware-blacklist.txt
 ```
 
-<small>**成人内容拦截**</small>
+**成人内容拦截**
 
 ```
 https://github.com/H-i-H/AdGuard-Home-Rules/releases/download/latest/adult-blacklist.txt
 ```
 
-<small>**自维护白名单**（已自动合入最终订阅，也可单独添加）</small>
+**自维护白名单**（已自动合入最终订阅，也可单独添加）
 
 ```
 https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined-whitelist.txt
@@ -101,12 +80,10 @@ https://raw.githubusercontent.com/H-i-H/AdGuard-Home-Rules/main/Release/combined
 
 </details>
 
----
-
 ## 📁 目录结构
 
 <details>
-<summary><small><b>展开查看</b></small></summary>
+<summary><b>展开查看</b></summary>
 
 <br>
 
@@ -128,56 +105,32 @@ AdGuard-Home-Rules/
 
 </details>
 
----
-
 ## ✂️ 规则精简
 
-<small>为降低误杀（部分应用无法打开）与规则体积，上游源已精简；被停用的源以注释保留在文末，取消注释即可恢复。</small>
+为降低误杀（部分应用无法打开）与规则体积，上游源已精简；被停用的源以注释保留在文末，取消注释即可恢复。
 
-<table width="100%">
-  <tr>
-    <th align="left" width="22%"><small><b>处理</b></small></th>
-    <th align="left"><small><b>说明</b></small></th>
-  </tr>
-  <tr>
-    <td align="left"><small>✅ 保留生效</small></td>
-    <td align="left"><small>广告 5 · 恶意 2 · 成人 2，共 9 个核心源</small></td>
-  </tr>
-  <tr>
-    <td align="left"><small>➡️ 移出 DNS</small></td>
-    <td align="left"><small>浏览器规则 5 个 → 移入 special-rules.txt</small></td>
-  </tr>
-  <tr>
-    <td align="left"><small>⏸️ 注释停用</small></td>
-    <td align="left"><small>巨型 / 激进 / 重复源 15 个，详见文末注释</small></td>
-  </tr>
-  <tr>
-    <td align="left"><small>🔧 专项可选</small></td>
-    <td align="left"><small>SmartTV · jiekouAD · fanqie · fuck youtube</small></td>
-  </tr>
-</table>
-
----
+- **✅ 保留生效** — 广告 5 · 恶意 2 · 成人 2，共 9 个核心源
+- **➡️ 移出 DNS** — 浏览器规则 5 个，移入 special-rules.txt
+- **⏸️ 注释停用** — 巨型 / 激进 / 重复源 15 个，详见文末注释
+- **🔧 专项可选** — SmartTV · jiekouAD · fanqie · fuck youtube
 
 ## 🔧 误杀排查
 
-<small>应用打不开时按此流程定位：</small>
+应用打不开时按此流程定位：
 
-1. <small>复现失败，查看 **查询日志**，按客户端 / 时间过滤出 blocked 域名</small>
-2. <small>`nslookup 域名` 验证是否被解析为 `0.0.0.0`</small>
-3. <small>白名单添加 `@@||域名^`，或提交至 `Release/combined-whitelist.txt`</small>
-4. <small>若域名经 CNAME 跳转第三方，请把最终目标域名一并加白</small>
-5. <small>高频误杀欢迎提交 Issue / PR，次日构建自动生效</small>
+1. 复现失败，查看**查询日志**，按客户端 / 时间过滤出 blocked 域名
+2. `nslookup 域名` 验证是否被解析为 `0.0.0.0`
+3. 白名单添加 `@@||域名^`，或提交至 `Release/combined-whitelist.txt`
+4. 若域名经 CNAME 跳转第三方，请把最终目标域名一并加白
+5. 高频误杀欢迎提交 Issue / PR，次日构建自动生效
 
-<small>**常见易误杀类别**：推送 SDK · 登录分享 · 支付验证码 · 地图 API · 崩溃上报 · 自更新与 CDN</small>
-
----
+**常见易误杀类别**：推送 SDK · 登录分享 · 支付验证码 · 地图 API · 崩溃上报 · 自更新与 CDN
 
 ## 🙏 鸣谢
 
-<small>上游规则版权归原作者，如有侵权请联系删除：<b>QQ：1753582514</b></small>
+上游规则版权归原作者，如有侵权请联系删除：**QQ：1753582514**
 
-<small>**📌 广告（ADS）— 当前生效**</small>
+**📌 广告（ADS）— 当前生效**
 
 ```
 https://anti-ad.net/easylist.txt
@@ -187,14 +140,14 @@ https://small.oisd.nl
 https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/multi.txt
 ```
 
-<small>**📌 恶意内容（Malware）— 当前生效**</small>
+**📌 恶意内容（Malware）— 当前生效**
 
 ```
 https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-agh-online.txt
 https://malware-filter.gitlab.io/malware-filter/phishing-filter-agh.txt
 ```
 
-<small>**📌 成人内容（Adult）— 当前生效**</small>
+**📌 成人内容（Adult）— 当前生效**
 
 ```
 https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts
@@ -245,4 +198,4 @@ https://nsfw.oisd.nl
 
 ## ⚖️ 免责声明
 
-<small>仅用于测试与学习 · 规则版权归原作者，侵权即删 · 一切直接或间接损失与作者无关</small>
+仅用于测试与学习 · 规则版权归原作者，侵权即删 · 一切直接或间接损失与作者无关
